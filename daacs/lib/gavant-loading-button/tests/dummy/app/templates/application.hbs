@@ -1,0 +1,12 @@
+<h2 id="title">Welcome to Ember</h2>
+
+<p>
+    {{#loading-button clicked=(action "clickWithPromise") class="btn-primary"}}
+        With Promise
+    {{/loading-button}}
+</p>
+<p>
+    {{#loading-button clicked=(action "clickWithoutPromise") class="btn-default"}}
+        Without Promise
+    {{/loading-button}}
+</p>

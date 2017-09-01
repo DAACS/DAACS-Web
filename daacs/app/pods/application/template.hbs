@@ -1,0 +1,7 @@
+<div class="{{media.classNames}} {{currentPathClasses}} {{userConsent}} application-container">
+    {{outlet "header"}}
+    {{outlet}}
+    {{outlet "footer"}}
+</div>
+{{outlet "modal"}}
+{{ember-notify messageStyle="bootstrap"}}

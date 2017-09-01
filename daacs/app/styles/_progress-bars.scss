@@ -1,0 +1,19 @@
+.progress-bar-skin {
+  @include progress-bar-variant($skincolor);
+}
+
+.progress-bar {
+    &.text-left {
+        text-align: left;
+    }
+
+    &.text-right {
+        text-align: right;
+    }
+
+    > span {
+        padding: 0 6px;
+        font-weight: bold;
+        text-shadow: 1px 1px 0px fade-out(#000, 0.3);
+    }
+}

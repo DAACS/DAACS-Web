@@ -1,0 +1,71 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern margin-btm-30">
+        <div class="container text-center">
+            <h1>
+                {{#if model.isGraded}}
+                    {{score-display score=model.overallScore class="pull-left"}}
+                {{/if}}
+                {{assessmentContent.label}}
+            </h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3">
+                {{partial "assessments/results-sidebar"}}
+            </div>
+            <div class="col-md-8 col-lg-9">
+                {{#if finished}}
+                    {{alert-message type="success" text=(t "assessment.finishedMessage" model.assessmentLabel)}}
+                {{/if}}
+                {{#if model.isGraded}}
+                    <p>
+                        {{link-to (t "dashboard.label") "dashboard"}}
+                        &nbsp;&raquo;&nbsp; {{assessmentContent.label}}
+                    </p>
+                    <h2>{{t "assessment.domain.overview"}}</h2>
+                    {{#track-link-clicks}}
+                        <p>{{mathjax-content content=overallAssessmentFeedback}}</p>
+                    {{/track-link-clicks}}
+                    {{#each sortedDomainScores as |domainScore|}}
+                        {{#unless (domain-content "isAnalysisDomain" domainScore.domainId assessmentContent.domains)}}
+                            <hr>
+                            {{domain-results
+                                id=(concat "domain-" domainScore.domainId)
+                                assessmentId=model.assessmentId
+                                assessmentCategory=assessmentContent.lowerCaseCategory
+                                takenDate=selectedTakenDate
+                                domainScore=domainScore
+                                domains=assessmentContent.domains
+                            }}
+                        {{/unless}}
+                    {{/each}}
+                    <div class="space40"></div>
+                {{else}}
+                    <div class="jumbotron text-center">
+                        <p>{{emptyText}}</p>
+                        <div class="space30"></div>
+                        {{#if (or model.isCompleted model.isGradingFailed finished)}}
+                            {{#if model.isWritingPrompt}}
+                                <hr>
+                                <div class="margin-btm-30 text-left">{{newline-to-break writingSample.sample}}</div>
+                            {{/if}}
+                        {{else if (can "assessments.take")}}
+                            <p>
+                                {{#if model.isInProgress}}
+                                    {{#link-to "assessments.take" assessmentContent.lowerCaseCategory class="btn btn-xl btn-border-theme"}}
+                                        {{t "assessment.continueAssessment"}}
+                                    {{/link-to}}
+                                {{else}}
+                                    {{#link-to "assessments.start" assessmentContent.lowerCaseCategory class="btn btn-xl btn-border-theme"}}
+                                        {{t "assessment.startAssessment"}}
+                                    {{/link-to}}
+                                {{/if}}
+                            </p>
+                        {{/if}}
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{/page-section}}

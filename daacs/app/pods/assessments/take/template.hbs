@@ -1,0 +1,15 @@
+<div class="assessment-question-container {{model.dasherizedCategory}}" id="assessment-content">
+    {{#if minBrowserResolution}}
+        {{assessment-question
+            type=model.assessmentType
+            questionGroup=currentQuestionGroup
+            writingSample=currentWritingSample
+            onAnswerChange=(action "onAnswerChange")
+            requestHelp=(action "requestHelp")
+            hasSubmitError=(or hasSubmitQuestionErrors completeAssessmentError)
+            displayedQuestion=displayedQuestion
+        }}
+    {{else}}
+        {{partial 'assessments/small-device'}}
+    {{/if}}
+</div>

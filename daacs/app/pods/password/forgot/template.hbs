@@ -1,0 +1,31 @@
+{{#page-section}}
+    <div class="space80"></div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary margin-btm-50">
+                <div class="panel-heading">{{t "password.resetHeading"}}</div>
+                <div class="panel-body">
+                    {{#if submitSuccess}}
+                        {{alert-message type="success" closeable=false text=(t "password.sendSuccess")}}
+                        <div>{{link-to (t "password.backToLogin") "login"}}</div>
+                    {{else}}
+                        <p>{{t "password.instructions"}}</p>
+                        {{server-errors errors=submitError}}
+                        {{#form-validator submit=(action "sendPasswordEmail") class="form account-form" errors=errors as |submit|}}
+                            {{#input-validator target="emailAddress" text=(t "password.email") labelClass="sr-only"}}
+                                {{input value=emailAddress type="text" class="form-control" placeholder=(t "password.email") maxlength="128"}}
+                            {{/input-validator}}
+                            <div class="form-group">
+                                {{#loading-button clicked=submit class="login-button full-size btn btn-border-theme btn-block btn-lg"}}
+                                    {{t "password.send"}}
+                                    {{fa-icon icon="arrow-circle-o-right"}}
+                                {{/loading-button}}
+                                <div>{{link-to (t "password.backToLogin") "login"}}</div>
+                            </div>
+                        {{/form-validator}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+{{/page-section}}

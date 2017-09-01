@@ -1,0 +1,10 @@
+<div
+    class={{progressBarClasses}}
+    style={{render-html progressBarStyle}}
+    role="progressbar"
+    aria-valuenow={{percentageValue}}
+    aria-valuemin={{minValue}}
+    aria-valuemax={{maxValue}}
+>
+    <span class={{unless showLabel "sr-only"}}>{{percentageValue}}%</span>
+</div>

@@ -1,0 +1,50 @@
+.performance-stars {
+    padding: 4px;
+    font-size: 24px;
+    letter-spacing: -2px;
+
+    &.small {
+        font-size: 14px;
+        padding: 0;
+        letter-spacing: -1px;
+    }
+
+    &.no-score {
+        .fa-star-o {
+            color: fade-out(#000, 0.9);
+        }
+    }
+
+    &.pull-left {
+        margin-right: 6px;
+    }
+
+    &.pull-right {
+        margin-left: 6px;
+    }
+
+    .fa-star {
+        color: $skincolor;
+    }
+
+    .fa-star-o {
+        color: #ccc;
+    }
+
+    .page-title & {
+        margin-top: -4px;
+        padding: 4px 8px;
+        border-radius: 3px;
+        background: fade-out(#000, 0.9);
+        box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.15);
+
+        .fa-star {
+            color: lighten($skincolor, 20%);
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+        }
+
+        .fa-star-o {
+            color: fade-out(#fff, 0.5);
+        }
+    }
+}

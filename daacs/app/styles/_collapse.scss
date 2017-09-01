@@ -1,0 +1,40 @@
+.collapsible-accordion {
+    .panel-heading {
+        padding: 0;
+
+        a {
+            display: block;
+            padding: 10px 0;
+            margin-bottom: -1px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+
+            &.collapsed > {
+                i.collapsible-icon:before {
+                    content: $fa-var-chevron-right;
+                }
+            }
+        }
+    }
+
+    .panel {
+        margin-bottom: 0;
+        box-shadow: none;
+    }
+
+    .panel-body {
+        padding: 10px 0;
+
+        .collapsible-accordion {
+            margin-top: -10px;
+
+            .panel-heading a {
+                padding-left: 10px;
+            }
+
+            .panel-body {
+                padding-left: 10px;
+            }
+        }
+    }
+}

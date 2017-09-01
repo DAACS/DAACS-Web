@@ -1,0 +1,19 @@
+.question-likert {
+    .ember-light-table {
+        border: 0;
+    }
+
+    .affixed-block.affix {
+        top: 65px;
+        background-color: #fff;
+    }
+}
+
+.likert-table.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: fade-out(lighten(desaturate($skincolor, 55%), 40%), 0.7);
+}
+
+.likert-table-answer-header {
+    text-align: center;
+    font-weight: normal;
+}

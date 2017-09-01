@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DAACS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{content-for "head"}}
+
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/daacs.css">
+    <!-- CSS_OVERRIDE_LINK -->
+
+    {{content-for "head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
+
+    <!-- Browser requirement message -->
+    <div class="full-page-alert browser-req-msg">
+        <div class="alert alert-warning">
+            You must use a modern web browser (e.g.
+            <a href="https://www.google.com/chrome" target="_blank">Google Chrome</a>,
+            <a href="https://mozilla.org/firefox" target="_blank">Mozilla Firefox</a>, or
+            <a href="https://www.microsoft.com/en-us/download/internet-explorer.aspx">Internet Explorer v10+</a>)
+            in order to access this website.
+        </div>
+    </div>
+
+    <!-- JavaScript disabled message -->
+    <noscript>
+        <div class="full-page-alert">
+            <div class="alert alert-warning">
+                JavaScript must be enabled in order to access this website. Here are the
+                <a href="http://www.enable-javascript.com/" target="_blank">
+                    instructions for enabling JavaScript in your web browser
+                </a>.
+            </div>
+        </div>
+    </noscript>
+
+
+    <script src="assets/vendor.js"></script>
+    <script src="assets/daacs.js"></script>
+
+    {{content-for "body-footer"}}
+
+    <!-- This is a temporary fix for https://github.com/cibernox/ember-power-select/issues/371 -->
+    <div id="ember-basic-dropdown-wormhole"></div>
+  </body>
+</html>

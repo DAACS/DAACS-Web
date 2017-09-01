@@ -1,0 +1,51 @@
+<div class="media-left">
+    <div class="media-box">
+        {{fa-icon icon=icon size="2x" class=colorClass}}
+        <span class="sr-only">{{t (if isCorrect "assessment.domain.correct" "assessment.domain.incorrect")}}</span>
+    </div>
+</div>
+<div class="media-body">
+    <h4 class="media-heading question-result-question-text">
+        <a href="" {{action "onInfoLinkClick"}}>
+            {{mathjax-content content=questionText}}&nbsp;
+            <button class="btn btn-xs btn-default">
+                {{t (if isExpanded "assessment.domain.lessInfo" "assessment.domain.moreInfo")}}
+            </button>
+        </a>
+    </h4>
+    <div class="{{if (not isExpanded) 'hidden'}}">
+        {{question-content itemContent=questionItem.itemContent.question truncateContent=true}}
+        <ul class="list-unstyled">
+            {{#each questionItem.possibleItemAnswers as |answer|}}
+                <li class="question-answer-text {{if (eq answer.score 1) 'text-success' 'text-danger'}}">
+                    {{fa-icon icon=(if (eq answer.score 1) "check" "times") fixedWidth=true}}
+                    {{#if (eq answer.id questionItem.chosenItemAnswerId)}}
+                        <strong>{{mathjax-content content=answer.content}}</strong>
+                        <em>({{t "assessment.domain.yourAnswer"}})</em>
+                    {{else}}
+                        {{mathjax-content content=answer.content}}
+                    {{/if}}
+                    <span class="sr-only">({{t (if (eq answer.score 1) "assessment.domain.correct" "assessment.domain.incorrect")}})</span>
+                </li>
+            {{/each}}
+        </ul>
+        {{#if questionItem.itemContent.feedback.content}}
+            <h4>{{t "assessment.domain.feedback"}}</h4>
+            {{#track-link-clicks}}
+                {{mathjax-content content=questionItem.itemContent.feedback.content}}
+            {{/track-link-clicks}}
+        {{/if}}
+    </div>
+    <div class="{{if isExpanded 'hidden'}}">
+        <div class={{colorClass}}>
+            {{mathjax-content content=feedbackText}}
+            {{#unless isCorrect}}
+                {{img-link-list images=chosenAnswerImages onLinkClick=onImageLinkClick}}
+                <br>
+            {{/unless}}
+            {{if isCorrect (t "assessment.domain.answerIs") (t "assessment.domain.correctAnswerIs")}}
+            <strong>{{mathjax-content content=correctAnswerText}}</strong>.
+            {{img-link-list images=correctAnswerImages onLinkClick=onImageLinkClick}}
+        </div>
+    </div>
+</div>

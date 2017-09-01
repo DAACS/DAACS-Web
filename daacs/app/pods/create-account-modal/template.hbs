@@ -1,0 +1,36 @@
+{{#modal-dialog title=(t "createAccount.label") cancel="cancel" size="modal-md"}}
+    {{#form-validator errors=errors submit=(action "submit") as |formSubmit|}}
+        <div class="modal-body">
+            {{server-errors errors=model.errors}}
+            {{#input-validator text=(t "createAccount.firstName") target="model.firstName"}}
+                {{input type="text" value=model.firstName class="form-control" maxlength=255}}
+            {{/input-validator}}
+            {{#input-validator text=(t "createAccount.lastName") target="model.lastName"}}
+                {{input type="text" value=model.lastName class="form-control" maxlength=255}}
+            {{/input-validator}}
+            {{#input-validator text=(t "createAccount.email") target="model.username"}}
+                {{input type="text" value=model.username class="form-control" maxlength=255}}
+            {{/input-validator}}
+            {{#input-validator text=(t "createAccount.password") target="model.password"}}
+                {{input type="password" value=model.password class="form-control" maxlength=255}}
+            {{/input-validator}}
+            {{#input-validator text=(t "createAccount.passwordConfirm") target="model.passwordConfirmation"}}
+                {{input type="password" value=model.passwordConfirm class="form-control" maxlength=255}}
+            {{/input-validator}}
+            {{#input-validator text=(t "createAccount.role") target="model.role"}}
+                <select onchange={{action (mut model.role) value="target.value"}} class="form-control" id="create-account-role">
+                    <option value="">{{t "createAccount.selectRole"}}</option>
+                    <option value="ROLE_STUDENT" selected={{eq model.role "ROLE_STUDENT"}}>{{t "createAccount.student"}}</option>
+                </select>
+            {{/input-validator}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" {{action "cancel"}}>
+                {{t "dialog.close"}}
+            </button>
+            {{#loading-button clicked=formSubmit class="btn-primary"}}
+                {{t "createAccount.label"}}
+            {{/loading-button}}
+        </div>
+    {{/form-validator}}
+{{/modal-dialog}}

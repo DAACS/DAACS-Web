@@ -1,0 +1,25 @@
+.blurred {
+    filter: blur(20px);
+}
+
+/**project filter**/
+
+#grid .mix {
+    display: none;
+}
+
+.project-filters {
+
+    li {
+        text-transform: uppercase;
+        cursor: pointer;
+        display: inline-block;
+        margin: 3px;
+        padding: 3px 12px;
+        background: #f5f5f5;
+        &.active {
+            background: $skincolor;
+            color: #fff;
+        }
+    }
+}

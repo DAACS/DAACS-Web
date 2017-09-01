@@ -1,0 +1,33 @@
+<!--footer-->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 margin-btm-10">
+                {{#link-to "home" class="logo-light"}}
+                    <div class="sr-only">{{t "brand.name"}}</div>
+                {{/link-to}}
+                <div class="space30"></div>
+                <p>{{t "footer.slogan"}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 margin-btm-5">
+                <p><small>{{t "footer.disclaimer"}}</small></p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-7">
+                <ul class="list-inline">
+                    <li>{{#link-to "home"}}{{t "home.label"}}{{/link-to}}</li>
+                    <li>{{#link-to "about"}}{{t "about.label"}}{{/link-to}}</li>
+                    <li>{{#link-to "dashboard"}}{{t "dashboard.label"}}{{/link-to}}</li>
+                </ul>
+            </div>
+            <div class="col-sm-5 text-right">
+                <span>{{t "brand.copyright"}}</span>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--footer end-->

@@ -1,0 +1,73 @@
+.question-text,
+.question-answer-text,
+.question-content-word {
+    //make images embedded in question/answer text responsive
+    //and apply some margins to space them from the text
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 10px 0;
+    }
+}
+
+.question-content-word,
+.question-content-formula {
+    margin-bottom: 20px;
+}
+
+.question-content-passage {
+    width: 940px;
+    padding: 15px 15px 15px 46px;
+    margin: 40px auto;
+    background: fade-out(#fdfdfd, 0.6);
+    border: 1px solid #ececec;
+    border-radius: 3px;
+    overflow-x: auto;
+    white-space: nowrap;
+    counter-reset: passageLine;
+
+    .modal-dialog &,
+    .question-result & {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .truncate-text {
+        > span {
+            counter-increment: passageLine;
+        }
+
+        > span:nth-of-type(5n):before {
+            display: block;
+            float: left;
+            margin-left: -38px;
+            font-weight: bold;
+            content: "(" counter(passageLine) ")";
+        }
+    }
+}
+
+.question-content-formula {
+    //give the formula area a min height that the majority
+    //of formulas will be within, to eliminate jumpiness
+    //when the source content is transformed by MathJax
+    min-height: 75px;
+}
+
+.mathjax-hide-src {
+    visibility: hidden;
+
+    //hide browsers' native rendering of MathML content
+    //since MathJax will transform/re-render it once it has
+    //finished processing the content
+    math {
+        display: none;
+    }
+}
+
+#MathJax_MenuFrame {
+    //make sure the mathjax context menu is positioned above everything else
+    z-index: 9999 !important;
+}

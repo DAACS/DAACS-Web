@@ -1,0 +1,19 @@
+/*
+Staff
+*/
+
+.person-col{
+    background: #f5f5f5;
+    border:1px solid #ddd;
+    h4{
+        margin-bottom: 5px;
+    }
+    span{
+        color:$skincolor;
+        display: block;
+        margin-bottom: 10px;
+    }
+    .person-desc{
+        padding: 15px;
+    }
+}

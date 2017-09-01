@@ -1,0 +1,141 @@
+/**static hero**/
+.hero-banner {
+    position: relative;
+    overflow: hidden;
+    .hero-overlay {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        .hero-inner {
+            width: 100%;
+            height: 100%;
+            display: table;
+            position: relative;
+            .hero-content {
+                width: 100%;
+                height: 100%;
+                display: table-cell;
+                vertical-align: middle;
+                h1 {
+                    color: #fff;
+                    font-weight: 500;
+                    font-size: 60px;
+                    line-height: 60px;
+                    text-transform: capitalize;
+                }
+                p {
+                    color: #fff;
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+}
+
+.hero {
+    padding: 110px 0;
+    background: url("/assets/images/pattern.png"), linear-gradient(to bottom, $themecolor 0%, darken($themecolor, 15%) 100%);
+    overflow: hidden;
+
+    @include mobile {
+        padding: 40px 0;
+    }
+
+    h1 {
+        color: #fff;
+        font-weight: 500;
+        font-size: 48px;
+        line-height: 60px;
+    }
+
+    p {
+        color: #fff;
+        font-size: 22px;
+    }
+
+    .panel {
+        margin-top: 20px;
+        background-color: rgba(255,255,255,0.8);
+
+        .panel-heading {
+            background-color: $themecolor;
+            color: white;
+            font-weight: bold;
+        }
+
+        .panel-body {
+
+            button {
+                background-color: $themecolor;
+                color: white;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+.daacs-progress {
+    &-outline {
+        fill: $skincolor;
+    }
+
+    &-circle-bg {
+        fill: #fff;
+    }
+
+    @include non-mobile {
+        .daacs-progress-img {
+            margin: 0 40px 10px 40px;
+        }
+
+        .daacs-progress-text {
+            .col-sm-2 {
+                width: 20%;
+            }
+
+            .col-sm-4 {
+                width: 40%;
+            }
+
+            div:nth-child(2) {
+                margin-top: -30px;
+            }
+
+            div:nth-child(4) {
+                margin-top: -40px;
+            }
+        }
+
+        p {
+            text-align: center;
+        }
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+
+.jumbotron {
+    background-color: fade-out($jumbotron-bg, 0.6);
+}
+
+/****Responsive css**/
+@media(max-width: $screen-xs-max) {
+    .hero-banner .hero-overlay .hero-inner .hero-content h1 {
+        font-size: 30px;
+        line-height: 30px;
+    }
+    .hero-banner .hero-overlay .hero-inner .hero-content {
+        p {
+            font-size: 13px;
+            line-height: 22px;
+        }
+    }
+    .hero-banner .hero-overlay .hero-inner .hero-content .btn-xl {
+        padding: 6px 12px;
+    }
+}

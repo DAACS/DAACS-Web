@@ -1,0 +1,11 @@
+.user-is-nonconsenting {
+    .hidden-for-nonconsenting {
+        display: none;
+    }
+}
+
+.user-is-consenting {
+    .hidden-for-consenting {
+        display: none;
+    }
+}

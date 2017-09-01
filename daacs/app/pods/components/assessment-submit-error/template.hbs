@@ -1,0 +1,6 @@
+{{#if hasSubmitError}}
+    {{#alert-message type="danger"}}
+        <p>{{t "assessment.submitError"}}</p>
+        <button class="btn btn-border-danger" {{action requestHelp}}>{{t "assessment.help.request"}}</button>
+    {{/alert-message}}
+{{/if}}

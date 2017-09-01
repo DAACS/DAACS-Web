@@ -1,0 +1,24 @@
+{{#modal-dialog title=(t "admin.import.assessment") cancel="cancel" size="modal-lg"}}
+    {{#form-validator submit=(action "save") errors=errors as |formSubmit|}}
+        <div class="modal-body">
+            {{server-errors errors=submitError}}
+            <label>{{t "admin.import.instructions"}}</label>
+            {{#if hasFileApi}}
+                {{#input-validator text=(t "admin.import.file") target="assessmentFilename" labelClass="sr-only"}}
+                    {{file-upload-input onChange=(action "fileSelected") accept="application/json" fileInputId="assessment-import-file"}}
+                {{/input-validator}}
+            {{/if}}
+            {{#input-validator text=(t "admin.import.definition") target="assessmentJson" labelClass="sr-only"}}
+                {{textarea value=assessmentJson rows="25" class="form-control monospaced-control"}}
+            {{/input-validator}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" {{action "cancel"}}>
+                {{t "dialog.close"}}
+            </button>
+            {{#confirmation-save-button submit=formSubmit shouldConfirm=(action "shouldConfirmSave") confirmationText=(t "admin.import.confirmSave") class="btn btn-primary"}}
+                {{t "admin.import.save"}}
+            {{/confirmation-save-button}}
+        </div>
+    {{/form-validator}}
+{{/modal-dialog}}

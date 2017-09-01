@@ -1,0 +1,4 @@
+{{newline-to-break textWithWrappedLines}}
+{{#if needsTruncation ~}}
+    <button class="btn btn-link" {{action "toggle"}}>{{if isTruncated (t "truncateText.seeMore") (t "truncateText.seeLess")}}</button>
+{{/if}}

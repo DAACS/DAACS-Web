@@ -1,0 +1,153 @@
+//outline button variant
+@mixin outline-button-variant($border, $color, $active-background, $active-color) {
+    color: $color;
+    background-color: transparent;
+    border: 2px solid $border;
+
+    &:focus,
+    &.focus {
+        color: $active-color;
+        background-color: $active-background;
+        border-color: $border;
+    }
+    &:hover {
+        color: $active-color;
+        background-color: $active-background;
+        border-color: $border;
+    }
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        color: $active-color;
+        background-color: $active-background;
+        border-color: $border;
+
+        &:hover,
+        &:focus,
+        &.focus {
+            color: $active-color;
+            background-color: $active-background;
+            border-color: $border;
+        }
+    }
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        background-image: none;
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        background-color: transparent;
+        color: #aaa;
+        border-color: #aaa;
+
+        &:hover,
+        &:focus,
+        &.focus,
+        &:active,
+        &.active,
+        &:active:hover {
+            background-color: transparent;
+            color: #aaa;
+            border-color: #aaa;
+        }
+    }
+
+    .badge {
+        color: $active-background;
+        background-color: $color;
+    }
+}
+
+//custom button variant
+@mixin custom-button-variant($color, $background, $active-background, $active-color) {
+    color: $color;
+    background-color: $background;
+
+    &:focus,
+    &.focus {
+        color: $active-color;
+        background-color: $active-background;
+    }
+    &:hover {
+        color: $active-color;
+        background-color: $active-background;
+    }
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        color: $active-color;
+        background-color: $active-background;
+
+        &:hover,
+        &:focus,
+        &.focus {
+            color: $active-color;
+            background-color: $active-background;
+        }
+    }
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        background-image: none;
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        &:hover,
+        &:focus,
+        &.focus {
+            color: $color;
+            background-color: $background;
+        }
+    }
+
+    .badge {
+        color: $background;
+        background-color: $color;
+    }
+}
+
+//media query mixins
+@mixin mobile {
+    @media (max-width: #{$screen-xs-max}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$screen-sm-min}) and (max-width: #{$screen-sm-max}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$screen-md-min}) and (max-width: #{$screen-md-max}) {
+        @content;
+    }
+}
+
+@mixin jumbo {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
+@mixin small-screen {
+    @media (max-width: #{$screen-sm-max}) {
+        @content;
+    }
+}
+
+@mixin large-screen {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+@mixin non-mobile {
+    @media (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+}

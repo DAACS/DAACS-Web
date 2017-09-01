@@ -1,0 +1,7 @@
+{{#if hasBlock}}
+    {{yield}}
+{{else}}
+    {{#empty-link class="tab-item-link"}}
+        {{text}}
+    {{/empty-link}}
+{{/if}}

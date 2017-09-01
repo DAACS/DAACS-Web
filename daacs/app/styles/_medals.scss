@@ -1,0 +1,89 @@
+$medal-ribbon-bg: lighten($themecolor, 8%);
+
+.performance-medal {
+    .medal {
+        content: "";
+        width: 52px;
+        height: 52px;
+        display: inline-block;
+        position: relative;
+        border-radius: 50px;
+        z-index: 3;
+        box-shadow: inset -1px -5px 0px 0px rgba(0, 0, 0, 0.2);
+
+        &.bronze {
+            background: linear-gradient(45deg,  rgba(223,182,103,1) 0%,rgba(249,243,232,1) 56%,rgba(231,192,116,1) 96%);
+        }
+
+        &.silver {
+            background: linear-gradient(45deg,  rgba(160,160,160,1) 0%,rgba(232,232,232,1) 56%);
+        }
+
+        &.gold {
+            background: linear-gradient(45deg, rgba(242,215,12,1) 0%,rgba(255,255,255,1) 56%,rgba(252,235,0,1) 96%);
+        }
+    }
+
+    &.has-ribbon {
+        position: absolute;
+
+        .ribbon {
+            position: absolute;
+            z-index: 1;
+            top: 20px;
+
+            > div {
+                float: left;
+                width: 10px;
+                height: 55px;
+                background-color: $medal-ribbon-bg;
+
+                &:first-child {
+                    transform: skewY(-40deg);
+                }
+
+                &:last-child {
+                    margin-left: -1px;
+                    transform: skewY(40deg);
+                }
+            }
+
+            &.left {
+                left: 10px;
+                z-index: 2;
+                transform: rotate(20deg);
+
+                > div:last-child {
+                    border-right: 1px solid rgba(0,0,0,0.2);
+                }
+            }
+
+            &.right {
+                right: 10px;
+                transform: rotate(-20deg);
+            }
+        }
+    }
+
+    &.inline {
+        display: inline-block;
+        position: relative;
+    }
+
+    &.small {
+        .medal {
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+        }
+
+        .ribbon {
+            top: 14px;
+
+            > div {
+                width: 7px;
+                height: 40px;
+            }
+        }
+    }
+}

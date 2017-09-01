@@ -1,0 +1,14 @@
+{{#link-to "admin.manage-assessments.assessment" row.content.id class="btn btn-table-action btn-border-skin"}}
+    {{fa-icon icon="edit"}}  <span class="hidden-small-screen">{{t "admin.view"}}</span>
+{{/link-to}}
+{{#loading-button
+    clicked=(action tableActions.toggleAssessment row.content (not row.content.enabled))
+    class="btn-table-action btn-border-skin"
+    disabled=(not (can "assessments.edit"))
+}}
+    {{#if row.content.enabled}}
+        {{fa-icon icon="stop-circle"}} <span class="hidden-small-screen">{{t "admin.deactivate"}}</span>
+    {{else}}
+        {{fa-icon icon="play-circle"}} <span class="hidden-small-screen">{{t "admin.activate"}}</span>
+    {{/if}}
+{{/loading-button}}

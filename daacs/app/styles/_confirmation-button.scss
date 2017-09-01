@@ -1,0 +1,20 @@
+.confirmation-container {
+    &.is-disabled {
+        a {
+            color: #EEE !important;
+            background-color: #FFF !important;
+            cursor: default;
+        }
+    }
+    a {
+        .loading-animation.active {
+            width: 12px;
+            height: 12px;
+            margin: 0;
+        }
+    }
+    .confirmation {
+        display: none;
+        width: 400px;
+    }
+}

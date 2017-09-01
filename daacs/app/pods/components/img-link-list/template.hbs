@@ -1,0 +1,12 @@
+{{#if images}}
+    <small>
+        ({{~#if hasMultipleImages~}}
+            {{t "assessment.domain.viewImage"}}:
+        {{~/if~}}
+        {{~#each images as |imgSrc index|~}}
+            <a href={{imgSrc}} {{action "onLinkClick" imgSrc}}>
+                {{~if hasMultipleImages (inc index) (t "assessment.domain.viewImage")~}}
+            </a>
+        {{~/each~}})
+    </small>
+{{/if}}

@@ -1,0 +1,15 @@
+{{#unless (or media.isMobile media.isTablet)}}
+<td class="likert-results-question-cell">
+    {{questionItem.question}}
+</td>
+{{/unless}}
+{{#each answerColumns as |col index|}}
+    <td
+        class="likert-results-answer-col-cell {{if col.isFilled "is-filled"}} {{if col.isChosenAnswer "is-chosen-answer"}}"
+        style={{render-html answerColumnStyle}}
+    >
+        {{#if col.isChosenAnswer}}
+            <div class="likert-results-answer-text">{{col.answerText}}</div>
+        {{/if}}
+    </td>
+{{/each}}

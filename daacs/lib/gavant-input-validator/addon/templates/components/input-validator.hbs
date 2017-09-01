@@ -1,0 +1,15 @@
+{{#if label}}
+    <h5><label for="{{inputId}}" class="{{labelClass}} input-validator-label">{{fieldLabel}}</label></h5>
+{{/if}}
+
+{{yield}}
+
+<span class="input-validation-error">
+    {{#if hasError}}
+        {{#if error}}
+            <b class="text-danger {{errorClass}}">
+                {{fieldLabel}}{{error}}
+            </b>
+        {{/if}}
+    {{/if}}
+</span>

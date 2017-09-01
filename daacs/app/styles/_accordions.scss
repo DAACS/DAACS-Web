@@ -1,0 +1,32 @@
+/*
+accordions
+*/
+.panel-group{
+    .panel{
+        border-radius: 0px;
+    }
+}
+.panel-default{
+    border: 0px;
+}
+.panel-default>.panel-heading+.panel-collapse>.panel-body{
+    border: 0px;
+}
+.panel-default>.panel-heading{
+    background: #fff;
+    border: 0px;
+}
+.panel-title{
+    color:#777;
+}
+.panel-group .panel .panel-heading .panel-title a:before {
+    font-family: 'FontAwesome';
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: $fa-var-chevron-down;
+    margin-right: 5px;
+}
+.panel-group .panel .panel-heading .panel-title a.collapsed:before {
+    content: $fa-var-chevron-right;
+}

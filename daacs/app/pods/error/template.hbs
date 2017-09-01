@@ -1,0 +1,23 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern">
+        <div class="container text-center">
+            <h1>{{t "serverError.title"}}</h1>
+        </div>
+    </div>
+    <div class="space80"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                {{#each errorInfo.errors as |error|}}
+                    {{#alert-message type="danger" closeable=false}}
+                        {{t (concat "serverError.codes." error.code) defaultText=error.detail}}
+                    {{/alert-message}}
+                {{/each}}
+                {{#if errorPageContent}}
+                    <div>{{render-html errorPageContent}}</div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="space80"></div>
+{{/page-section}}

@@ -1,0 +1,76 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern">
+        <div class="container text-center">
+            <h1>{{t "admin.ungradedAssessments"}}</h1>
+        </div>
+    </div>
+    <div class="space40"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3">
+                <p><strong>{{t "admin.categories.label"}}</strong></p>
+                <div class="margin-btm-20">
+                    {{#affixed-block tagName="ul" class="nav nav-pills nav-boxed nav-stacked margin-btm-20"}}
+                        {{#each categorySummaries as |cat|}}
+                            <li role="presentation">
+                                <div class="nav-static-content">
+                                    <div class="text-skin">
+                                        {{daacs-icon icon=cat.icon}}
+                                        &nbsp;{{cat.label}}
+                                    </div>
+                                    <small>
+                                        <span class="text-muted">{{t cat.scoringTypeLabel}}</span>
+                                        &middot; <span class="text-skin">{{t "admin.numUngraded" count=cat.numUngraded}}</span>
+                                    </small>
+                                </div>
+                            </li>
+                        {{/each}}
+                    {{/affixed-block}}
+                    {{#loading-button clicked=(action "exportAll") disabled=disableExportAll class="btn-border-skin" title=(t "admin.exportAllManualGrade")}}
+                        {{fa-icon icon="download"}} {{t "admin.exportAll"}}
+                    {{/loading-button}}
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-9 margin-btm-30">
+                <p>{{t "admin.ungradedAssessmentsDescription"}}</p>
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 col-xs-10">
+                        <p>
+                            {{#power-select
+                                selected=scoringMethodFilter
+                                options=scoringMethods
+                                searchEnabled=false
+                                allowClear=true
+                                placeholder=(t "admin.scoring.filterBy")
+                                onchange=(action "onScoringMethodChange")
+                                as |method|
+                            }}
+                                {{method.label}}
+                            {{/power-select}}
+                        </p>
+                    </div>
+                    <div class="col-xs-2">
+                        <p>
+                            {{#loading-button clicked=(action "reloadModels") isSpinning=isBusy title=(t "admin.reload") class="btn-lg btn-border-skin"}}
+                                {{fa-icon icon="refresh"}}
+                            {{/loading-button}}
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                {{responsive-table
+                    models=model
+                    columns=columns
+                    isLoading=isBusy
+                    canLoadMore=hasMore
+                    noResultsText=(t "admin.noAssessmentsFound")
+                    fetchRecords=(action "loadMoreModels")
+                    tableActions=(hash
+                        exportAssessment=(action "exportAssessment")
+                        retryGrading=(action "retryGrading")
+                    )
+                }}
+            </div>
+        </div>
+    </div>
+{{/page-section}}

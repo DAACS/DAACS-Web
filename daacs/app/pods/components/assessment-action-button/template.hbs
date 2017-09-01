@@ -1,0 +1,39 @@
+{{#if fastboot.isFastBoot}}
+    <a class="btn btn-xl btn-block btn-border-theme widget-btn"></a>
+{{else}}
+    {{#if isFinished}}
+        {{#link-to
+            "assessments.index"
+            assessmentCategory
+            class="btn btn-xl btn-block btn-border-theme widget-btn"
+        }}
+            {{t "assessment.completed"}}
+            {{fa-icon icon="check-square-o" class="text-success assessment-action-button-icon"}}
+        {{/link-to}}
+    {{else if isInProgress}}
+        {{#progress-button
+            progressLinkRoute
+            assessmentCategory
+            progress=percentComplete
+            class="btn-xl btn-block btn-border-theme widget-btn"
+        }}
+            {{progressText}}
+            {{#unless hideProgress}}
+                ({{format-percentage percentComplete}})
+            {{/unless}}
+        {{/progress-button}}
+    {{else}}
+        {{#link-to
+            startLinkRoute
+            assessmentCategory
+            class="btn btn-xl btn-block btn-border-theme widget-btn"
+            disabled=disableStart
+            title=disabledReasonsTitle
+        }}
+            {{#if hasActivePrereqs}}
+                {{fa-icon icon="lock" class="assessment-action-button-icon"}}
+            {{/if}}
+            {{startText}}
+        {{/link-to}}
+    {{/if}}
+{{/if}}

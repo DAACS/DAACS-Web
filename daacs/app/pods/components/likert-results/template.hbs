@@ -1,0 +1,14 @@
+<table class="table">
+    <tbody>
+        {{#each questionGroups as |group|}}
+            {{#each group.items as |questionItem|}}
+                {{#if (or media.isMobile media.isTablet)}}
+                    <tr class="likert-results-question-text-row">
+                        <td colspan={{numAnswerCols}}>{{questionItem.question}}</td>
+                    </tr>
+                {{/if}}
+                {{likert-result-item questionItem=questionItem}}
+            {{/each}}
+        {{/each}}
+    </tbody>
+</table>

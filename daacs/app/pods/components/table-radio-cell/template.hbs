@@ -1,0 +1,7 @@
+{{radio-button
+    name=radioName
+    value=radioValue
+    aria-label=column.label
+    groupValue=(get row.content column.radioGroupValuePath)
+    onChange=(action tableActions.onRadioChange radioValue row.content value)
+}}

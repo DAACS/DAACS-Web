@@ -1,0 +1,16 @@
+.logo-light {
+    display: block;
+    width: 200px;
+    height: 60px;
+    background: url('/assets/images/daacs-logo-light.png') 0 0 no-repeat;
+    background-size: contain;
+}
+
+.logo-widget {
+    float: left;
+    margin-right: 20px;
+    width: 100px;
+    height: 3em;
+    background: url('/assets/images/logo-widget.png') 0 50% no-repeat;
+    background-size: contain;
+}

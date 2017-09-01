@@ -1,0 +1,36 @@
+{{#nested-form-validator parent=parent-form-validator errors=errors as |formSubmit nestedFormValidator|}}
+    {{#input-validator text=(t "admin.editAssessment.questions.text") target="item.question" targetObject=nestedFormValidator}}
+        {{input value=item.question class="form-control"}}
+    {{/input-validator}}
+    {{#if assessment.isMultipleChoice}}
+        {{#if item.itemContent.question}}
+            {{#input-validator
+                target="itemQuestionContent"
+                text=(concat (t "admin.editAssessment.questions.content") " (" (t (concat "admin.editAssessment.questions." item.itemContent.question.itemContentType)) ")")
+                targetObject=nestedFormValidator
+            }}
+                {{textarea value=item.itemContent.question.content class="form-control" rows="5"}}
+            {{/input-validator}}
+        {{/if}}
+        {{#if item.itemContent.feedback}}
+            {{#input-validator
+                target="itemFeedbackContent"
+                text=(t "admin.editAssessment.questions.feedback")
+                targetObject=nestedFormValidator
+            }}
+                {{textarea value=item.itemContent.feedback.content class="form-control" rows="5"}}
+            {{/input-validator}}
+        {{/if}}
+    {{/if}}
+    {{#input-validator
+        target="itemAnswerContents"
+        text=(t "admin.editAssessment.questions.answers")
+        targetObject=nestedFormValidator
+    }}
+        {{#each item.possibleItemAnswers as |answer|}}
+            <div class="form-group">
+                {{input value=answer.content class="form-control"}}
+            </div>
+        {{/each}}
+    {{/input-validator}}
+{{/nested-form-validator}}

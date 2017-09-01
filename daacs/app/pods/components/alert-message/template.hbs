@@ -1,0 +1,13 @@
+{{#if closeable}}
+    <button type="button" class="close" data-dismiss="alert" aria-label={{t "alert.close"}}>
+        <span aria-hidden="true">&times;</span>
+    </button>
+{{/if}}
+{{#if hasBlock}}
+    {{yield}}
+{{else}}
+    {{#if title}}
+        <strong>{{title}}</strong>
+    {{/if}}
+    {{text}}
+{{/if}}

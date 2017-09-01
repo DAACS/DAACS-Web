@@ -1,0 +1,5 @@
+{{file-upload onChange=(action "onFileChange") accept=accept multiple=allowMultiple id=fileInputId class="file-upload-input-control"}}
+<span class="file-upload-input-display">
+    <span class="file-upload-input-text">{{or selectedFileText (t "fileUpload.noneChosen")}}</span>
+    <span class="file-upload-input-btn">{{t "fileUpload.select"}}</span>
+</span>

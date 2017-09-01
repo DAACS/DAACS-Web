@@ -1,0 +1,9 @@
+{{#unless row.content.scoreIsSubDomainAverage}}
+    {{radio-button
+        name=radioName
+        value=radioValue
+        aria-label=column.label
+        groupValue=row.content.selectedDomainScore
+        onChange=(action tableActions.onRadioChange radioValue row.content value)
+    }}
+{{/unless}}

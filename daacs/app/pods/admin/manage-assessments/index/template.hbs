@@ -1,0 +1,75 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern margin-btm-30">
+        <div class="container text-center">
+            {{#if (can "assessments.import")}}
+                <button class="btn btn-border-white pull-right" {{action "openImportModal"}}>
+                    {{fa-icon icon="upload"}}
+                    {{t "admin.import.label"}}
+                </button>
+            {{/if}}
+            <h1>{{t "admin.manageAssessments"}}</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3">
+                <p><strong>{{t "admin.activeAssessments"}}</strong></p>
+                <div class="margin-btm-20">
+                    {{#if activeAssessments}}
+                        {{#affixed-block tagName="ul" class="nav nav-pills nav-boxed nav-stacked"}}
+                            {{#each activeAssessments as |assessment|}}
+                                <li role="presentation">
+                                    {{#link-to "admin.manage-assessments.assessment" assessment.id}}
+                                        <div>
+                                            {{daacs-icon icon=assessment.dasherizedCategory}}
+                                            &nbsp;{{assessment.label}}
+                                        </div>
+                                        <small>
+                                            <span class="text-muted">{{moment-format assessment.createdDate "MM/DD/YYYY h:mm A"}}</span>
+                                            &middot; {{assessment.numUserCompletionsText}}
+                                        </small>
+                                    {{/link-to}}
+                                </li>
+                            {{/each}}
+                        {{/affixed-block}}
+                    {{else}}
+                        <p class="text-muted">{{t "admin.noActiveAssessmentsFound"}}</p>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-9 margin-btm-30">
+                <h2>{{t "admin.allAssessments"}}</h2>
+                <p>{{t "admin.manageAssessmentsDescription"}}</p>
+                <div class="row">
+                    <div class="col-lg-5 col-md-6">
+                        <p>
+                            {{#power-select
+                                selected=categoryFilter
+                                options=categoryFilterOptions
+                                renderInPlace=false
+                                searchEnabled=false
+                                allowClear=true
+                                placeholder=(t "admin.categories.filterBy")
+                                onchange=(action (mut categoryFilter))
+                                as |category|
+                            }}
+                                {{category.label}}
+                            {{/power-select}}
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                {{responsive-table
+                    models=sortedAssessments
+                    columns=revisionColumns
+                    canLoadMore=false
+                    noResultsText=(t "admin.noAssessmentsFound")
+                    rowComponent=(component "active-table-row")
+                    tableActions=(hash
+                        toggleAssessment=(action "toggleAssessment")
+                    )
+                }}
+            </div>
+        </div>
+    </div>
+{{/page-section}}

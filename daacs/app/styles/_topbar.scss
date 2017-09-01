@@ -1,0 +1,63 @@
+/*
+Top bar style
+*/
+.top-bar {
+    min-height: 10px;
+    background-color: $themecolor;
+    color: white;
+    font-size: 1em;
+    line-height: 3em;
+
+    span {
+        i {
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            background: $skincolor;
+            text-align: center;
+            display: inline-block;
+            border-radius: 3px;
+            margin-right: 5px;
+            color: #fff;
+        }
+    }
+
+    .list-inline {
+        li {
+            padding: 0px;
+            a {
+                width: 32px;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                display: block;
+                background: #f5f5f5;
+                font-size: 20px;
+                color: #999;
+                border-radius: 4px;
+
+                &:hover {
+                    color: $skincolor;
+                    background: #333;
+                }
+            }
+        }
+    }
+
+    .btn {
+        margin: 7px 0;
+        text-transform: none;
+    }
+
+    .top-bar-static-text {
+        font-size: 13px;
+        font-weight: 700;
+    }
+}
+
+@media(max-width: $screen-xs-max) {
+    .top-bar .text-right {
+        text-align: left;
+        margin-top: 20px;
+    }
+}

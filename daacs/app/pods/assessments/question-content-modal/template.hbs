@@ -1,0 +1,14 @@
+{{#modal-dialog title=(t model.modalTitle) cancel="cancel" size=model.modalSize}}
+    <div class="modal-body">
+        {{#if (eq model.itemContent.itemContentType "IMAGE")}}
+            <img src={{model.itemContent.content}} class="img-responsive center-block">
+        {{else}}
+            {{question-content itemContent=model.itemContent}}
+        {{/if}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" {{action "cancel"}}>
+            {{t "dialog.close"}}
+        </button>
+    </div>
+{{/modal-dialog}}

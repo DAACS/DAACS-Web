@@ -1,0 +1,65 @@
+/*
+Template variables
+*/
+$skincolor: #edac15;
+$base-font:'Open Sans', sans-serif;
+$title-font:'Roboto', sans-serif;
+
+$themecolor: #54075B;
+$themecoloralpha: rgb(84,7,91);
+
+$themesecondarycolor: $skincolor;
+$spinner-color: $themecolor;
+$spinner-background-color: $themesecondarycolor;
+$spinner-background-color: $themesecondarycolor;
+
+$form-input-border-width: 2px;
+$form-input-border-color: #e1e1e1;
+$form-input-focus-border-color: $skincolor;
+
+/*
+Bootstrap variables
+*/
+$brand-primary: $themecolor;
+$border-radius-base: 3px;
+$border-radius-large: 4px;
+$border-radius-small: 2px;
+$text-color: #555;
+$link-hover-color: #aeaeae;
+$hr-border: desaturate(lighten($skincolor, 35%), 10%);
+
+/*
+Font Awesome variables
+*/
+$fa-font-path: "fonts";
+
+/*
+ember-power-select variables
+*/
+// Backgrounds
+$ember-power-select-highlighted-background: #eee;
+$ember-power-select-selected-background: $themecolor;
+// Texts
+$ember-power-select-highlighted-color: $text-color;
+// Borders
+$ember-power-select-border-color: $form-input-border-color;
+$ember-power-select-focus-border-color: $form-input-focus-border-color;
+$ember-power-select-default-border: $form-input-border-width solid $ember-power-select-border-color;
+$ember-power-select-default-focus-border: $form-input-border-width solid $ember-power-select-focus-border-color;
+$ember-power-select-search-field-focus-border: $form-input-border-width solid $form-input-focus-border-color;
+
+// Borders radius
+$ember-power-select-default-border-radius: 0;
+// Other
+$ember-power-select-line-height: 26px;
+$ember-power-select-option-padding: 8px;
+$ember-power-select-trigger-ltr-padding: 8px 20px 7px 0;
+$ember-power-select-trigger-rtl-padding: 8px 0 7px 16px;
+$ember-power-select-multiple-option-padding: 0 4px;
+$ember-power-select-focus-outline: 0;
+$ember-power-select-number-of-visible-options: 10;
+
+
+$tablet-width: 768px;
+$desktop-width: 992px;
+$jumbo-width: 1201px;

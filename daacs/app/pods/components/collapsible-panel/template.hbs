@@ -1,0 +1,19 @@
+<div class="panel-heading" role="tab">
+    <h4 class="panel-title">
+        <a
+            role="button"
+            data-toggle="collapse"
+            data-parent={{parent}}
+            href="#{{target}}"
+            class="collapsed"
+            aria-expanded="false"
+            aria-controls={{target}}>
+            {{fa-icon icon="chevron-down" fixedWidth=true class="collapsible-icon"}} {{heading}}
+        </a>
+    </h4>
+</div>
+<div id={{target}} class="panel-collapse collapse" role="tabpanel" aria-labelledby={{target}}>
+    <div class="panel-body">
+        {{yield}}
+    </div>
+</div>

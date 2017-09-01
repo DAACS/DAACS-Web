@@ -1,0 +1,24 @@
+
+/*
+    tabs
+*/
+.tab-content{
+    padding-top: 30px;
+}
+.nav-tabs>li>a{
+    border:0px;
+    color:#333;
+    border-radius: 0px;
+    border-bottom: 2px solid transparent;
+    font-family: $title-font;
+    &:hover{
+        color:$skincolor;
+        border-bottom-color: $skincolor;
+        background-color: transparent;
+    }
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    border:0px;
+    color:$skincolor;
+    border-bottom:2px solid $skincolor;
+}

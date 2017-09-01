@@ -1,0 +1,20 @@
+<h2 id="title">Welcome to Ember Test</h2>
+{{#input-validator target="test" text="test input" targetObject=this}}
+    {{input type="text" value=test}}
+{{/input-validator}}
+{{#input-validator target="test2" text="test input #2" targetObject=this}}
+    {{input type="text" value=test2}}
+{{/input-validator}}
+{{#input-validator target="test3" text="test textarea" targetObject=this}}
+    {{textarea value=test3}}
+{{/input-validator}}
+{{#input-validator target="test4" text="test select" targetObject=this}}
+    <select onchange={{action (mut test4) value="target.value"}} id="test-select">
+        <option value="">Select a fruit</option>
+        <option value="apple">apple</option>
+        <option value="banana">banana</option>
+        <option value="pear">pear</option>
+    </select>
+{{/input-validator}}
+<button {{action "showValidationFields"}}>Test</button>
+{{outlet}}

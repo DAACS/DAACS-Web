@@ -1,0 +1,67 @@
+<div class="margin-btm-20">
+    <p><strong>{{t "assessment.showResultsFrom"}}</strong></p>
+    {{#power-select
+        selected=selectedTakenDate
+        options=takenDateOptions
+        renderInPlace=false
+        searchEnabled=false
+        placeholder=(t "assessment.selectCompletionDate")
+        noMatchesMessage=(t "assessment.noCompletionsFound")
+        onchange=(action "onTakenDateChange")
+        as |takenDate|
+    }}
+        {{moment-format takenDate "LLL"}}
+    {{/power-select}}
+</div>
+{{#if (and canRetake (can "assessments.take") (or media.isDesktop media.isJumbo))}}
+    <div class="margin-btm-20">
+        {{#link-to "assessments.start" assessmentContent.lowerCaseCategory class="btn btn-lg btn-block btn-border-skin"}}
+            {{t "assessment.retake"}}
+        {{/link-to}}
+    </div>
+{{/if}}
+{{#if (and canContinue (can "assessments.take") (or media.isDesktop media.isJumbo))}}
+    <div class="margin-btm-20">
+        {{#link-to "assessments.take" assessmentContent.lowerCaseCategory class="btn btn-lg btn-block btn-border-skin"}}
+            {{t "assessment.continueCurrent"}}
+        {{/link-to}}
+    </div>
+{{/if}}
+<div class="margin-btm-20">
+    {{#affixed-block tagName="ul" class="nav nav-pills nav-boxed nav-stacked"}}
+        {{#each sortedDomainScores as |domainScore|}}
+            {{#unless (domain-content "isAnalysisDomain" domainScore.domainId assessmentContent.domains)}}
+                <li role="presentation" class="{{if (eq domainScore.domainId domain.domainId) 'active'}}">
+                    {{#link-to "assessments.domain" assessmentContent.lowerCaseCategory domainScore.domainId (query-params takenDate=selectedTakenDate)}}
+                        {{score-display score=domainScore.rubricScore small=true class="pull-right"}}
+                        <div class="truncated-text">
+                            {{domain-content "label" domainScore.domainId assessmentContent.domains}}
+                        </div>
+                    {{/link-to}}
+                </li>
+                {{#if (and domainScore.subDomainScores showSubDomains)}}
+                    {{#each (sort-by "rawScore" domainScore.subDomainScores) as |subDomainScore|}}
+                        {{#unless (domain-content "isAnalysisDomain" subDomainScore.domainId assessmentContent.domains domainScore.domainId)}}
+                            <li role="presentation" class="child-item {{if (eq subDomainScore.domainId domain.domainId) 'active'}}">
+                                {{#link-to "assessments.domain.subdomain" assessmentContent.lowerCaseCategory domainScore.domainId subDomainScore.domainId (query-params takenDate=selectedTakenDate)}}
+                                    {{score-display score=subDomainScore.rubricScore small=true class="pull-right"}}
+                                    <div class="truncated-text">
+                                        {{domain-content "label" subDomainScore.domainId assessmentContent.domains domainScore.domainId}}
+                                    </div>
+                                {{/link-to}}
+                            </li>
+                        {{/unless}}
+                    {{/each}}
+                {{/if}}
+            {{/unless}}
+        {{/each}}
+        {{#if showBackToOverview}}
+            <li role="presentation">
+                {{#link-to "assessments.index" assessmentContent.lowerCaseCategory (query-params takenDate=selectedTakenDate)}}
+                    {{fa-icon icon="arrow-left" fixedWidth=true}}
+                    {{t "assessment.backToOverview"}}
+                {{/link-to}}
+            </li>
+        {{/if}}
+    {{/affixed-block}}
+</div>

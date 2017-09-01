@@ -1,0 +1,123 @@
+{{#page-section fullWidth=true}}
+    <div class="hero margin-btm-50">
+        <div class="container">
+            {{#if samlAuthFailed}}
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{#alert-message type="danger"}}
+                            <strong>{{t "login.samlAuthFailed"}}</strong>
+                            {{#if errorPageContent}}
+                                <br><br><div>{{render-html errorPageContent}}</div>
+                            {{/if}}
+                        {{/alert-message}}
+                    </div>
+                </div>
+            {{/if}}
+            <div class="row margin-btm-30">
+                <div class="col-xs-12">
+                    <p>{{t "home.slogan"}}</p>
+                </div>
+            </div>
+            <div class="daacs-progress">
+                <p class="daacs-progress-img">
+                    {{daacs-progress}}
+                </p>
+                <div class="row daacs-progress-text hidden-xs">
+                    <div class="col-sm-2">
+                        <p>{{t "home.progress.complete"}}</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <p>{{t "home.progress.feedback"}}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>{{t "home.progress.resources"}}</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <p>{{t "home.progress.success"}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row margin-btm-30">
+            <div class="col-md-4 margin-btm-20 text-center">
+                <div class="center-title margin-btm-20">
+                    <h1 class="text-uppercase">{{t "home.measure.label"}}</h1>
+                    <div class="border-width center-align"></div>
+                </div>
+                <p class="margin-btm-20">{{t "home.measure.content"}}</p>
+                <div class="row">
+                    <div class="col-xs-6 text-center">
+                        <p>{{daacs-icon icon="college-skills" size="lg" class="text-primary"}}</p>
+                        <p><small class="text-primary">{{t "home.measure.srl"}}</small></p>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <p>{{daacs-icon icon="writing" size="lg" class="text-primary"}}</p>
+                        <p><small class="text-primary">{{t "home.measure.writing"}}</small></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 text-center">
+                        <p>{{daacs-icon icon="mathematics" size="lg" class="text-primary"}}</p>
+                        <p><small class="text-primary">{{t "home.measure.mathematics"}}</small></p>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <p>{{daacs-icon icon="reading" size="lg" class="text-primary"}}</p>
+                        <p><small class="text-primary">{{t "home.measure.reading"}}</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 margin-btm-20 text-center">
+                <div class="center-title margin-btm-20">
+                    <h1 class="text-uppercase">{{t "home.learn.label"}}</h1>
+                    <div class="border-width center-align"></div>
+                </div>
+                <p class="margin-btm-20">{{t "home.learn.content"}}</p>
+                <div class="row">
+                    {{fa-icon icon="bar-chart" size="xl" class="text-primary"}}
+                </div>
+            </div>
+            <div class="col-md-4 margin-btm-20 text-center">
+                <div class="center-title margin-btm-20">
+                    <h1 class="text-uppercase">{{t "home.support.label"}}</h1>
+                    <div class="border-width center-align"></div>
+                </div>
+                <p class="margin-btm-20">{{t "home.support.content"}}</p>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p>{{fa-icon icon="file-text-o" size="5x" class="text-primary"}}</p>
+                        <p>{{t "home.support.writingLab"}}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>{{fa-icon icon="user" size="5x" class="text-primary"}}</p>
+                        <p>{{t "home.support.coaches"}}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>{{fa-icon icon="book" size="5x" class="text-primary"}}</p>
+                        <p>{{t "home.support.resources"}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>{{t "home.rethink.label"}}</h1>
+                    <p class="margin-btm-40">{{t "home.rethink.content"}}</p>
+                    <h1>{{t "home.assess.label"}}</h1>
+                    <p class="margin-btm-40">{{t "home.assess.content"}}</p>
+                    <h1>{{t "home.analysis.label"}}</h1>
+                    <p class="margin-btm-40">{{t "home.analysis.content"}}</p>
+                    <p class="text-center">
+                        {{#link-to "login" class="btn btn-xl btn-border-white"}}
+                            {{t "home.signIn"}}
+                        {{/link-to}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/page-section}}

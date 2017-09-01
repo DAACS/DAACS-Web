@@ -1,0 +1,35 @@
+{{#modal-dialog title=(t "assessment.help.request") cancel="cancel" size="modal-md"}}
+    {{#form-validator errors=errors submit=(action "submit") as |formSubmit|}}
+        <div class="modal-body">
+            {{#if submitError}}
+                {{#alert-message type="danger" closeable=false}}
+                    {{#each submitError.errors as |error|}}
+                        <div>{{t error.code defaultText=error.detail}}</div>
+                    {{/each}}
+                {{/alert-message}}
+            {{/if}}
+            {{#if formSubmitted}}
+                {{alert-message type="success" closeable=false title=(t "assessment.help.thanks") text=(t "assessment.help.requestReceived")}}
+            {{/if}}
+            {{#if dialogContent.beforeForm}}
+                <div class="help-block">{{render-html dialogContent.beforeForm}}</div>
+            {{/if}}
+            {{#unless formSubmitted}}
+                {{#input-validator text=(t "assessment.help.body") target="bodyText" labelClass="sr-only"}}
+                    {{textarea value=bodyText rows="10" class="form-control"}}
+                {{/input-validator}}
+            {{/unless}}
+            {{#if dialogContent.afterForm}}
+                <div class="help-block">{{render-html dialogContent.afterForm}}</div>
+            {{/if}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" {{action "cancel"}}>
+                {{t "dialog.close"}}
+            </button>
+            {{#loading-button clicked=formSubmit class="btn-primary" disabled=formSubmitted}}
+                {{t "assessment.help.submit"}}
+            {{/loading-button}}
+        </div>
+    {{/form-validator}}
+{{/modal-dialog}}

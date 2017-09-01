@@ -1,0 +1,48 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-plugin-transform-es2015-template-literals": "^6.3.13",
+    "babel-plugin-transform-es2015-literals": "^6.3.13",
+    "babel-plugin-transform-es2015-function-name": "^6.3.13",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
+    "babel-plugin-transform-es2015-block-scoped-functions": "^6.3.13",
+    "babel-plugin-transform-es2015-object-super": "^6.3.13",
+    "babel-plugin-transform-es2015-shorthand-properties": "^6.3.13",
+    "babel-plugin-transform-es2015-computed-properties": "^6.3.13",
+    "babel-plugin-transform-es2015-for-of": "^6.3.13",
+    "babel-plugin-transform-es2015-sticky-regex": "^6.3.13",
+    "babel-plugin-transform-es2015-unicode-regex": "^6.3.13",
+    "babel-plugin-check-es2015-constants": "^6.3.13",
+    "babel-plugin-transform-es2015-spread": "^6.3.13",
+    "babel-plugin-transform-es2015-parameters": "^6.3.13",
+    "babel-plugin-transform-es2015-destructuring": "^6.3.13",
+    "babel-plugin-transform-es2015-block-scoping": "^6.3.13",
+    "babel-plugin-transform-es2015-typeof-symbol": "^6.3.13",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.3.13",
+    "babel-plugin-transform-regenerator": "^6.3.13",
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.10.4",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "ember-cli-moment-shim": "1.1.0",
+    "ember-moment": "6.0.0",
+    "express": "4.14.0",
+    "fastboot-app-server": "1.0.0-rc.3",
+    "fastboot-fs-notifier": "^0.1.1",
+    "fs-extra": "^0.30.0",
+    "merge": "^1.2.0",
+    "node-fetch": "^1.6.0"
+  },
+  "dependencies": {
+    "fastboot": "1.0.0-rc.0",
+    "fastboot-express-middleware": "1.0.0-rc.3"
+  }
+}

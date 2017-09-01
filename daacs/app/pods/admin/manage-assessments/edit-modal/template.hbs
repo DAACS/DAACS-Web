@@ -1,0 +1,72 @@
+{{#modal-dialog title=(t "admin.editAssessment.label") cancel="cancel" size="modal-lg"}}
+    {{#form-validator errors=errors submit=(action "save") validation-failure=(action "submitError") errors=errors as |formSubmit parentFormValidator|}}
+        <div class="modal-body">
+            {{server-errors errors=model.errors}}
+            {{#collapsible-accordion as |parent|}}
+                {{#collapsible-panel heading=(t "admin.editAssessment.assessmentContent") target="edit-assessment-content" parent=parent}}
+                    {{#input-validator text=(t "admin.editAssessment.landing.label") target="assessmentContentLanding"}}
+                        {{textarea value=model.content.landing rows="5" class="form-control"}}
+                        <span class="help-block text-muted">{{t "admin.editAssessment.landing.description"}}</span>
+                    {{/input-validator}}
+                    {{#input-validator text=(t "admin.editAssessment.start.label") target="assessmentContentStart"}}
+                        {{textarea value=model.content.start rows="5" class="form-control"}}
+                        <span class="help-block text-muted">{{t "admin.editAssessment.start.description"}}</span>
+                    {{/input-validator}}
+                    {{#input-validator text=(t "admin.editAssessment.startTips.label") target="assessmentContentStartTips"}}
+                        {{textarea value=model.content.startTips rows="5" class="form-control"}}
+                        <span class="help-block text-muted">{{t "admin.editAssessment.startTips.description"}}</span>
+                    {{/input-validator}}
+                    {{#input-validator text=(t "admin.editAssessment.helpLabel.label") target="assessmentContentHelpLabel"}}
+                        {{input value=model.content.helpLabel class="form-control" maxlength=50}}
+                        <span class="help-block text-muted">{{t "admin.editAssessment.helpLabel.description"}}</span>
+                    {{/input-validator}}
+                    {{#input-validator text=(t "admin.editAssessment.help.label") target="assessmentContentHelp"}}
+                        {{textarea value=model.content.help rows="5" class="form-control"}}
+                        <span class="help-block text-muted">{{t "admin.editAssessment.help.description"}}</span>
+                    {{/input-validator}}
+                {{/collapsible-panel}}
+                {{#collapsible-panel heading=(t "admin.editAssessment.overallRubric.label") target="edit-assessment-overall-rubric" parent=parent}}
+                    <span class="help-block text-muted">{{t "admin.editAssessment.overallRubric.description"}}</span>
+                    {{#each model.overallRubric.supplementTable as |tableContent|}}
+                        {{#input-validator text=(t (concat "admin.editAssessment.scores." tableContent.completionScore)) target=(concat "overallRubric" tableContent.completionScore)}}
+                            {{textarea value=tableContent.content rows="5" class="form-control"}}
+                        {{/input-validator}}
+                    {{/each}}
+                {{/collapsible-panel}}
+                {{#each model.domains as |domain|}}
+                    {{#unless domain.isAnalysisDomain}}
+                        {{#collapsible-panel heading=(concat (t "admin.editAssessment.domain.label") ": " domain.label) target=(concat "edit-assessment-domain-" domain.id) parent=parent}}
+                            {{edit-assessment-domain domain=domain parent-form-validator=parentFormValidator}}
+                        {{/collapsible-panel}}
+                    {{/unless}}
+                {{/each}}
+                {{#collapsible-panel heading=(t "admin.editAssessment.questions.label") target="edit-assessment-questions" parent=parent}}
+                    {{#if model.isWritingPrompt}}
+                        {{#input-validator text=(t "admin.editAssessment.writingPrompt.label") target="writingPrompt.content"}}
+                            {{textarea value=model.writingPrompt.content.content rows="5" class="form-control"}}
+                            <span class="help-block text-muted">{{t "admin.editAssessment.writingPrompt.description"}}</span>
+                        {{/input-validator}}
+                    {{else}}
+                        {{#collapsible-accordion as |questionsParent|}}
+                            {{#each model.itemGroups as |itemGroup|}}
+                                {{#each itemGroup.items as |item|}}
+                                    {{#collapsible-panel heading=(unbound item.questionNoImages) target=(concat "edit-assessment-question-" item.id) parent=questionsParent}}
+                                        {{edit-assessment-question assessment=model item=item parent-form-validator=parentFormValidator}}
+                                    {{/collapsible-panel}}
+                                {{/each}}
+                            {{/each}}
+                        {{/collapsible-accordion}}
+                    {{/if}}
+                {{/collapsible-panel}}
+            {{/collapsible-accordion}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" {{action "cancel"}}>
+                {{t "dialog.close"}}
+            </button>
+            {{#loading-button clicked=formSubmit class="btn-primary" disabled=formSubmitted}}
+                {{t "admin.editAssessment.save"}}
+            {{/loading-button}}
+        </div>
+    {{/form-validator}}
+{{/modal-dialog}}

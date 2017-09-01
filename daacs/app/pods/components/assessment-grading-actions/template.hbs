@@ -1,0 +1,18 @@
+{{#if row.content.isManuallyScored}}
+    {{#link-to "admin.ungraded-assessments.assessment" row.content.id row.content.userId class="btn btn-table-action btn-border-skin"}}
+        {{fa-icon icon="edit"}} <span class="hidden-xs hidden-sm">{{t "admin.view"}}</span>
+    {{/link-to}}
+    {{#loading-button clicked=(action tableActions.exportAssessment row.content) class="btn-table-action btn-border-skin"}}
+        {{fa-icon icon="download"}} <span class="hidden-xs hidden-sm">{{t "admin.export"}}</span>
+    {{/loading-button}}
+{{else}}
+    {{#loading-button clicked=(action tableActions.retryGrading row.content) disabled=(or row.content.isCompleted row.content.isGraded) class="btn-table-action btn-border-skin"}}
+        {{#if row.content.isGradingFailed}}
+            {{fa-icon icon="repeat" fixedWidth=true}} <span class="hidden-xs hidden-sm">{{t "admin.retryGrading"}}</span>
+        {{else if row.content.isGraded}}
+            {{fa-icon icon="check-square-o"}} <span class="hidden-xs hidden-sm">{{t "admin.graded"}}</span>
+        {{else}}
+            {{loading-spinner}} <span class="hidden-xs hidden-sm">{{t "admin.grading"}}</span>
+        {{/if}}
+    {{/loading-button}}
+{{/if}}

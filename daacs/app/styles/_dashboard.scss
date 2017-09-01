@@ -1,0 +1,142 @@
+$widget-tab-bg: #fff;
+$widget-bg: desaturate(lighten($themecolor, 79%), 70%);
+$widget-active-color: $themecolor;
+$widget-inactive-color: desaturate(lighten($widget-active-color, 30%), 75%);
+$widget-tab-active-border: $skincolor;
+$widget-gutter: 10px;
+
+.assessment-widget {
+    position: relative;
+
+    @include small-screen {
+        margin-bottom: 20px;
+    }
+}
+
+.widget-row {
+    margin-top: 20px;
+}
+
+.widget-tab {
+    position: relative;
+    min-height: 342px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid transparent;
+
+    @include desktop {
+        min-height: 302px;
+    }
+
+    .active & {
+        z-index: 2;
+        border-color: $widget-tab-active-border;
+
+        .widget {
+            color: $widget-active-color;
+        }
+    }
+}
+
+.widget {
+    display: block;
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: $widget-inactive-color;
+    border-radius: $border-radius-large;
+
+    @include small-screen {
+        color: $widget-active-color;
+    }
+
+    .performance-medal {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+
+        @include small-screen {
+            top: -10px;
+            right:  -5px;
+        }
+    }
+
+    .widget-icon {
+        padding: 20px;
+        font-size: 140px;
+
+        @include desktop {
+            font-size: 100px;
+        }
+    }
+
+    .widget-label {
+        min-height: 58px;
+
+        h4 {
+            margin: 0 0 4px 0;
+            padding: 0;
+            font-size: 18px;
+            color: inherit;
+            text-transform: uppercase;
+
+            @include desktop {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+.widget-content-strip {
+    padding: 20px;
+}
+
+.widget-btn-strip,
+.widget-content-strip:nth-child(even) {
+    background-color: #fafafa;
+    background-image: url("/assets/images/pattern.png");
+    background-repeat: repeat;
+}
+
+.widget-tab-content {
+    position: relative;
+    margin-top: -2px;
+    padding: 10px 0 20px 0;
+    border-top: 1px solid #ddd;
+    // min-height: 400px;
+
+    .widget-btn-strip {
+        padding: 20px;
+        margin-bottom: 20px;
+
+        h1 {
+            margin: 0;
+            color: $themecolor;
+        }
+    }
+}
+
+.assessment-action-button {
+    position: relative;
+
+    .performance-stars {
+        position: absolute;
+        top: 50%;
+        margin-top: -12.5px;
+        right: 12px;
+        padding: 0;
+        font-size: 18px;
+        letter-spacing: -1px;
+    }
+}
+
+.assessment-action-button-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    margin-top: -14px;
+    font-size: 28px;
+
+    @include tablet {
+        margin-top: -10px;
+        font-size: 20px;
+    }
+}

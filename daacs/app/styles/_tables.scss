@@ -1,0 +1,105 @@
+.ember-light-table {
+    border: 0;
+
+    .table {
+        margin-bottom: 0;
+
+        > thead > tr > th {
+            border-bottom-width: 1px;
+        }
+
+        > tbody > tr {
+            &.is-active {
+                &:hover {
+                    > td {
+                        background-color: $state-success-bg;
+                    }
+                }
+
+                > td {
+                    background-color: lighten($state-success-bg, 5%);
+                }
+            }
+
+            > td {
+                word-wrap: break-word;
+
+                &.cell-valign-middle {
+                    vertical-align: middle;
+                }
+
+                &.cell-slim {
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+
+                    .table-condensed & {
+                        padding-top: 3px;
+                        padding-bottom: 3px;
+                    }
+                }
+
+                &.cell-bolded {
+                    font-weight: bold;
+                }
+
+                &.cell-radio {
+                    padding: 0;
+                    text-align: center;
+
+                    label {
+                        display: block;
+                        margin: 0;
+                        padding: $table-cell-padding;
+                        cursor: pointer;
+
+                        &:hover {
+                            background: fade-out($skincolor, 0.9);
+                        }
+
+                        input {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        @include mobile {
+            .cell-auto-width-xs {
+                width: auto !important;
+            }
+        }
+
+        @include tablet {
+            .cell-auto-width-sm {
+                width: auto !important;
+            }
+        }
+    }
+
+    .table-clickable-rows {
+        tbody > tr {
+            cursor: pointer;
+        }
+    }
+
+    tr.is-selected {
+        td {
+            background-color: #eaeaea;
+        }
+    }
+
+    .lt-head-wrap {
+        margin-bottom: -1px;
+    }
+
+    .lt-no-data td {
+        text-align: center;
+        padding: 20px;
+        color: $text-muted;
+    }
+
+    .cell-indented {
+        padding-left: 20px;
+    }
+}

@@ -1,0 +1,58 @@
+<div class="top-bar">
+    {{#scroll-to target="#page-content" class="sr-only sr-only-focusable skip-nav-link"}}
+        <div class="container">
+            <span class="skip-nav-text">{{t "skipNavigation.label"}}</span>
+        </div>
+    {{/scroll-to}}
+</div>
+<nav class="navbar navbar-default navbar-static-top {{if (can "assessments.selectUser") "has-student-select"}}">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {{#link-to "home" class="navbar-brand"}}
+                {{brand-logo}}
+            {{/link-to}}
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {{#active-link-container}}
+                    {{#active-link "home"}}{{t "home.label"}}{{/active-link}}
+                {{/active-link-container}}
+                {{#active-link-container}}
+                    {{#active-link "about"}}{{t "about.label"}}{{/active-link}}
+                {{/active-link-container}}
+                {{#active-link-container}}
+                    {{#active-link "dashboard"}}{{t "dashboard.label"}}{{/active-link}}
+                {{/active-link-container}}
+                {{#if (can "admin.view")}}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            {{t "admin.label"}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>{{#link-to "admin.ungraded-assessments"}}{{t "admin.ungradedAssessments"}}{{/link-to}}</li>
+                            <li>{{#link-to "admin.manage-assessments"}}{{t "admin.manageAssessments"}}{{/link-to}}</li>
+                        </ul>
+                    </li>
+                {{/if}}
+                {{#if (and session.isAuthenticated logoutShown)}}
+                    <li><a href="" {{action "logout"}}>{{t "logout.label"}}</a></li>
+                {{/if}}
+                {{#if (and (not session.isAuthenticated) allowAccountCreation)}}
+                    <li><a href="" {{action openCreateAccount}}>{{t "createAccount.label"}}</a></li>
+                {{/if}}
+            </ul>
+        </div>
+        {{#if (can "assessments.selectUser")}}
+            <div class="navbar-student-select">
+                {{student-select onChange=onUserChange selectedUser=selectedUser}}
+            </div>
+        {{/if}}
+    </div>
+</nav>

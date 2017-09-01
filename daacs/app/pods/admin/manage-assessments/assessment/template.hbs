@@ -1,0 +1,93 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern">
+        <div class="container text-center">
+            <h1>{{t "admin.assessmentDetails.label"}}</h1>
+        </div>
+    </div>
+    <div class="space40"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="pull-right">
+                    <button class="btn btn-narrow btn-link" {{action "openEdit"}}>
+                        {{fa-icon icon="edit"}} <span class="hidden-xs">{{t "admin.assessmentDetails.edit"}}</span>
+                    </button>
+                    {{#copy-button clipboardText=cleanedJSON class="btn btn-narrow btn-link" success=(action "copySuccess") error=(action "copyError")}}
+                        {{fa-icon icon="clipboard"}} <span class="hidden-xs">{{t "admin.assessmentDetails.copy"}}</span>
+                    {{/copy-button}}
+                    {{#loading-button clicked=(action "exportAssessment") class="btn-narrow btn-link"}}
+                        {{fa-icon icon="download"}} <span class="hidden-xs">{{t "admin.export"}}</span>
+                    {{/loading-button}}
+                </div>
+                <h2>
+                    {{model.label}}
+                    <div>
+                        <small>{{t "admin.createdOn" date=model.createdDateFormatted}}</small>
+                    </div>
+                </h2>
+                <hr>
+                <pre class="pre-wrap margin-btm-30">{{formattedJSON}}</pre>
+            </div>
+            <div class="col-lg-4">
+                <h4>{{t "admin.assessmentDetails.configuration"}}</h4>
+                {{#affixed-block class="margin-btm-30" affixedMedias=sidebarAffixedMedias}}
+                    {{#form-validator submit=(action "updateConfig") errors=errors as |submit|}}
+                        {{#if (and (can "assessments.edit") model.isWritingPrompt)}}
+                            {{server-errors errors=serverErrors}}
+                            <div class="form-group">
+                                <label for="scoring-method-select">{{t "admin.scoring.method"}}</label>
+                                <select
+                                    onchange={{action (mut selectedScoringType) value="target.value"}}
+                                    id="scoring-method-select"
+                                    class="form-control"
+                                >
+                                    <option value="MANUAL" selected={{eq selectedScoringType "MANUAL"}}>{{t "admin.scoring.manual"}}</option>
+                                    <option value="LIGHTSIDE" selected={{eq selectedScoringType "LIGHTSIDE"}}>{{t "admin.scoring.automatic"}}</option>
+                                </select>
+                            </div>
+                            <fieldset>
+                                <legend>{{t "admin.lightside.modelFiles"}}</legend>
+                                {{#each model.domains as |domain|}}
+                                    {{#unless domain.scoreIsSubDomainAverage}}
+                                        <div class="form-group">
+                                            <label for="lightside-model-file-{{domain.id}}">{{domain.label}}</label>
+                                            {{file-upload-input
+                                                onChange=(action "onFileChange" (concat "lightside_" domain.id))
+                                                accept="text/xml"
+                                                fileInputId=(concat "lightside-model-file-" domain.id)
+                                            }}
+                                        </div>
+                                    {{/unless}}
+                                    {{#if domain.subDomains}}
+                                        {{#each domain.subDomains as |subDomain|}}
+                                            <div class="form-group">
+                                                <label for="lightside-model-file-{{subDomain.id}}">{{domain.label}} - {{subDomain.label}}</label>
+                                                {{file-upload-input
+                                                    onChange=(action "onFileChange" (concat "lightside_" subDomain.id))
+                                                    accept="text/xml"
+                                                    fileInputId=(concat "lightside-model-file-" subDomain.id)
+                                                }}
+                                            </div>
+                                        {{/each}}
+                                    {{/if}}
+                                {{/each}}
+                            </fieldset>
+                        {{else}}
+                            <p class="text-muted">{{t "admin.assessmentDetails.notConfigurable"}}</p>
+                        {{/if}}
+                        <div class="clearfix margin-btm-30">
+                            {{#if (and (can "assessments.edit") model.isWritingPrompt)}}
+                                {{#loading-button clicked=submit class="btn-lg btn-border-theme pull-right"}}
+                                    {{t "admin.assessmentDetails.save"}}
+                                {{/loading-button}}
+                            {{/if}}
+                            {{#link-to "admin.manage-assessments" class="btn btn-lg btn-link pull-right"}}
+                                &laquo; {{t "admin.assessmentDetails.back"}}
+                            {{/link-to}}
+                        </div>
+                    {{/form-validator}}
+                {{/affixed-block}}
+            </div>
+        </div>
+    </div>
+{{/page-section}}

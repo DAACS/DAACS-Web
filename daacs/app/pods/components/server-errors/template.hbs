@@ -1,0 +1,7 @@
+{{#if errors.errors}}
+    {{#alert-message type="danger" closeable=false}}
+        {{#each errors.errors as |error|}}
+            <div>{{t (or error.message.code error.code) defaultText=(or error.message.detail error.detail)}}</div>
+        {{/each}}
+    {{/alert-message}}
+{{/if}}

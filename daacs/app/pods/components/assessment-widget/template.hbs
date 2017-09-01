@@ -1,0 +1,31 @@
+<div class="widget">
+    <div class="widget-icon">
+        {{daacs-icon icon=category}}
+    </div>
+    <div class="widget-label">
+        <h4>{{label}}</h4>
+        {{#if hasScore}}
+            {{score-display score=score}}
+        {{/if}}
+    </div>
+</div>
+{{assessment-action-button
+    assessmentId=assessmentId
+    assessmentCategory=lowerCaseCategory
+    isInProgress=isInProgress
+    isFinished=isFinished
+    isGraded=isGraded
+    takenDateISO=takenDateISO
+    percentComplete=percentComplete
+    hideProgress=hideProgress
+    canStart=canStart
+    disabledReasons=disabledReasons
+    showDisabledReasons=showDisabledReasons
+}}
+{{#if (and userHasTakenCategory (not isFinished))}}
+    <small>
+        {{#link-to "assessments.index" lowerCaseCategory}}
+            {{t "assessment.viewPreviousResults"}} &raquo;
+        {{/link-to}}
+    </small>
+{{/if}}

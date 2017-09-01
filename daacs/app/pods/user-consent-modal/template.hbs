@@ -1,0 +1,43 @@
+{{#modal-dialog title=(t "userConsent.label") cancel="cancel" size="modal-md" backdrop="static" closeOnEsc=false closeButton=false}}
+        <div class="modal-body">
+            <p>
+                You have been randomly selected as one of the first Excelsior College students and advisors to receive access to a new tool, DAACS (<a href="http://www.daacs.net">www.daacs.net</a>). The Diagnostic Assessment of Achievement and College Skills (DAACS) features self-assessments in academic areas and college skills, as well as individualized feedback reports with direct links to resources available through the college to support your success. DAACS is being developed with funding from the US Department of Education’s First in the World Program for Postsecondary Education (FIPSE).
+            </p>
+            <p>
+                The US Department of Education requires DAACS to undergo testing to document its quality and potential impact among students who use the tool. As part of the DAACS test group, external evaluators would like to ask you a few short questions about what it’s like to use DAACS. These questions will either be embedded directly into the tool or emailed to you later on as an online survey.<br>
+                If you choose to share your feedback, evaluators will de-identify your responses, keep them confidential, and report findings only in aggregate without the possibility for re-identification. There are no consequences for choosing not to participate in the study.
+            </p>
+            <p>
+                Excelsior College is excited to offer you the first opportunity to use DAACS and appreciates your help with making the tool as useful as it can be for all students.
+            </p>
+            <p>
+                I you have any questions about DAACS or this study, please feel free to email me directly at <a href="mailto:daacs@excelsior.edu">daacs@excelsior.edu</a>.
+            </p>
+            <p>
+            Sincerely,
+            </p>
+            <p>
+                Barbara C. Storandt, MS Ed, MS<br>
+                External Evaluator, DAACS<br>
+                ALTA Solutions Group, LLC<br>
+                1182 Cumberland Head Rd.<br>
+                Plattsburgh, NY 12901<br>
+                607-279-4179<br>
+                <a href="http://www.altasolutionsgroup.com">www.altasolutionsgroup.com</a>
+            </p>
+        </div>
+        <div class="modal-footer">
+            {{#loading-button clicked=(action "submit" true) class="btn-primary btn-block"}}
+                {{t "userConsent.consent"}}
+            {{/loading-button}}
+            <p class="help-block text-left margin-btm-20">
+                <small>{{t "userConsent.consentDescription"}}</small>
+            </p>
+            {{#loading-button clicked=(action "submit" false) class="btn-default btn-block"}}
+                {{t "userConsent.dontConsent"}}
+            {{/loading-button}}
+            <p class="help-block text-left">
+                <small>{{t "userConsent.dontConsentDescription"}}</small>
+            </p>
+        </div>
+{{/modal-dialog}}

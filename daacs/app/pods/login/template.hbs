@@ -1,0 +1,36 @@
+{{#page-section}}
+    <div class="space80"></div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary margin-btm-50">
+                <div class="panel-heading">{{t "login.label"}}</div>
+                <div class="panel-body">
+                    {{#if authError}}
+                        {{alert-message type="danger" closeable=false text=(t "login.authFailed")}}
+                    {{/if}}
+                    {{#if accountCreated}}
+                        {{alert-message type="success" closeable=false text=(t "createAccount.success")}}
+                    {{/if}}
+                    {{#if passwordReset}}
+                        {{alert-message type="success" closeable=false text=(t "password.resetSuccess")}}
+                    {{/if}}
+                    {{#form-validator submit=(action 'authenticate') class="form account-form" errors=errors as |submit|}}
+                        {{#input-validator target="identification" text=(t "login.email") labelClass="sr-only"}}
+                            {{input value=identification type="text" class="form-control" placeholder=(t "login.email") maxlength="128"}}
+                        {{/input-validator}}
+                        {{#input-validator target="password" text=(t "login.password") labelClass="sr-only"}}
+                            {{input value=password type="password" class="form-control" placeholder=(t "login.password") maxlength="128"}}
+                            <div>{{#link-to "password.forgot"}}{{t "login.forgotPassword"}}{{/link-to}}</div>
+                        {{/input-validator}}
+                        <div class="form-group">
+                            {{#loading-button clicked=submit class="login-button full-size btn btn-border-theme btn-block btn-lg"}}
+                                {{t "login.label"}}
+                                {{fa-icon icon="arrow-circle-o-right"}}
+                            {{/loading-button}}
+                        </div>
+                    {{/form-validator}}
+                </div>
+            </div>
+        </div>
+    </div>
+{{/page-section}}

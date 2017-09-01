@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="question-writing-prompt-inner">
+                {{assessment-submit-error hasSubmitError=hasSubmitError requestHelp=requestHelp}}
+                <h4 class="question" id="writing-prompt-question-text">
+                    {{render-html questionText}}
+                    {{#if minWords}}
+                        <small>({{t "assessment.writingPrompt.minWords" count=minWords}})</small>
+                    {{/if}}
+                </h4>
+                {{writing-prompt-textarea
+                    value=response
+                    aria-labelledby="writing-prompt-question-text"
+                    class="form-control writing-prompt-textarea"
+                    placeholder=(t "assessment.writingPrompt.placeholder")
+                    style=(render-html textAreaStyle)
+                }}
+                <div class="writing-prompt-footer">
+                    {{#if saveText}}
+                        <span class="text-muted pull-left">{{saveText}}</span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

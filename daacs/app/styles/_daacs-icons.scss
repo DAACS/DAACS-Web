@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'DaacsIcons';
+    src: url('fonts/DaacsIcons.eot?ng0zg2');
+    src: url('fonts/DaacsIcons.eot?ng0zg2#iefix') format('embedded-opentype'),
+        url('fonts/DaacsIcons.ttf?ng0zg2') format('truetype'),
+        url('fonts/DaacsIcons.woff?ng0zg2') format('woff'),
+        url('fonts/DaacsIcons.svg?ng0zg2#DaacsIcons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.daacs-icon {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'DaacsIcons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &-lg {
+        font-size: 80px;
+    }
+}
+
+.daacs-icon-mathematics:before {
+    content: "\e900";
+}
+.daacs-icon-reading:before {
+    content: "\e901";
+}
+.daacs-icon-college-skills:before {
+    content: "\e902";
+}
+.daacs-icon-writing:before {
+    content: "\e903";
+}

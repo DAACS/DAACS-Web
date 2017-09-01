@@ -1,0 +1,147 @@
+/*
+Buttons style
+*/
+.buttons {
+    a {
+        margin: 5px;
+    }
+}
+
+.btn {
+    border: 0px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-family: $title-font;
+}
+
+.btn-lg {
+    padding: 12px 25px;
+}
+
+.btn-xl {
+    padding: 16px 25px;
+}
+
+.btn-wide {
+    min-width: 140px;
+}
+
+.btn-narrow {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.btn-link{
+    color: $themecolor;
+}
+
+//allow pointer events for disabled links so that the 'not-allowed' cursor is displayed on hover
+//pointer-events: none is not really needed for ember {{link-to}} links, since disabled=true
+//already takes care of preventing the click action/navigation
+a.btn.disabled,
+fieldset[disabled] a.btn {
+    pointer-events: initial;
+}
+
+.btn-default {
+    @include custom-button-variant(#333, #eee, $skincolor, #fff);
+}
+
+.btn-skin {
+    @include custom-button-variant(#fff, $themecolor, darken($themecolor, 10%), #fff);
+    text-shadow: 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.btn-dark {
+    @include custom-button-variant(#fff, #333, $skincolor, #222);
+    text-shadow: 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.btn-white {
+    @include custom-button-variant(#333, #fff, #f3f3f3, #333);
+}
+
+//outline style buttons
+.btn-border-dark {
+    @include outline-button-variant(#333, #333, #333, #fff);
+}
+
+.btn-border-skin {
+    @include outline-button-variant($themecolor, $themecolor, $themecolor, #fff);
+}
+
+.btn-border-white {
+    @include outline-button-variant(#fff, #fff, #fff, #333);
+}
+
+.btn-border-theme {
+    @include outline-button-variant($themecolor, $themecolor, $themecolor, #fff);
+}
+
+.btn-border-danger {
+    @include outline-button-variant($alert-danger-text, $alert-danger-text, $alert-danger-text, #fff);
+}
+
+.btn-border-success {
+    @include outline-button-variant($alert-success-text, $alert-success-text, $alert-success-text, #fff);
+}
+
+.btn-border-form {
+    @include outline-button-variant($form-input-border-color, $skincolor, $form-input-border-color, #fff);
+}
+
+.btn-table-action {
+    padding: 6px;
+    border: 0;
+}
+
+//Progress bar button
+.progress-btn {
+    position: relative;
+
+    .progress-btn-bar {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-color: $skincolor;
+        transition: all 0.3s;
+    }
+
+    .progress-btn-text {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: $padding-base-vertical $padding-base-horizontal;
+
+    }
+
+    &.btn-lg .progress-btn-text {
+        padding: 12px 25px;
+    }
+
+    &.btn-xl .progress-btn-text {
+        padding: 16px 25px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        .progress-btn-bar {
+            background-color: $themecolor;
+        }
+    }
+}
+
+.btn-row {
+    @include make-row(5px);
+
+    .btn-col-xs-6 {
+        @include make-xs-column(6, 5px);
+    }
+}

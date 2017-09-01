@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            {{assessment-submit-error hasSubmitError=hasSubmitError requestHelp=requestHelp}}
+            {{#if questions}}
+                {{responsive-table
+                    models=tableRows
+                    columns=tableColumns
+                    canLoadMore=false
+                    fixedHeader=true
+                    fixedTarget=".assessment-question-container"
+                    fixedTopOffset=-60
+                    hoverableRows=false
+                    stripedRows=true
+                    tableClasses="likert-table"
+                    tableActions=(hash
+                        onRadioChange=(action "onSelectAnswer")
+                    )
+                }}
+            {{/if}}
+        </div>
+    </div>
+</div>

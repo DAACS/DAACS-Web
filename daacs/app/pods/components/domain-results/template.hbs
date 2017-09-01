@@ -1,0 +1,43 @@
+<h2>
+    {{#unless media.isMobile}}
+        {{#if parentDomainScore}}
+            {{#link-to "assessments.domain.subdomain" assessmentCategory parentDomainScore.domainId domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-border-skin pull-right"}}
+                {{t "assessment.domain.moreInfo"}}
+            {{/link-to}}
+        {{else}}
+            {{#link-to "assessments.domain" assessmentCategory domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-border-skin pull-right"}}
+                {{t "assessment.domain.moreInfo"}}
+            {{/link-to}}
+        {{/if}}
+    {{/unless}}
+    {{score-display score=domainScore.rubricScore class="pull-left"}}
+    {{domain-content "label" domainScore.domainId domains parentDomainScore.domainId}}
+</h2>
+{{#track-link-clicks class="margin-btm-20"}}
+    {{mathjax-content content=feedbackContent}}
+{{/track-link-clicks}}
+{{#if domainScore.subDomainScores}}
+    <ul class="nav nav-pills nav-boxed nav-stacked margin-btm-20">
+        {{#each (sort-by "rawScore" domainScore.subDomainScores) as |subDomainScore|}}
+            {{#unless (domain-content "isAnalysisDomain" subDomainScore.domainId domains domainScore.domainId)}}
+                <li role="presentation">
+                    {{#link-to "assessments.domain.subdomain" assessmentCategory domainScore.domainId subDomainScore.domainId (query-params takenDate=takenDate)}}
+                        {{score-display score=subDomainScore.rubricScore small=true class="pull-right"}}
+                        {{domain-content "label" subDomainScore.domainId domains domainScore.domainId}}
+                    {{/link-to}}
+                </li>
+            {{/unless}}
+        {{/each}}
+    </ul>
+{{/if}}
+{{#if media.isMobile}}
+    {{#if parentDomainScore}}
+        {{#link-to "assessments.domain.subdomain" assessmentCategory parentDomainScore.domainId domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-block btn-border-skin"}}
+            {{t "assessment.domain.moreInfo"}}
+        {{/link-to}}
+    {{else}}
+        {{#link-to "assessments.domain.subdomain" assessmentCategory domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-block btn-border-skin"}}
+            {{t "assessment.domain.moreInfo"}}
+        {{/link-to}}
+    {{/if}}
+{{/if}}

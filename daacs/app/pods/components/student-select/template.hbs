@@ -1,0 +1,19 @@
+{{#power-select
+    selected=selectedUser
+    renderInPlace=false
+    allowClear=true
+    selectedItemComponent="student-select/selected-option"
+    searchPlaceholder=(t "student.search")
+    placeholder=(t "student.select")
+    noMatchesMessage=(t "student.noneFound")
+    loadingMessage=(t "select.loading")
+    searchMessage=""
+    search=(action "searchUsers")
+    onchange=(action "onSelectionChange")
+    as |user|
+}}
+    <div class="truncated-select-option">
+        <div>{{user.fullName}}</div>
+        <small class="text-muted">{{user.username}}</small>
+    </div>
+{{/power-select}}

@@ -1,0 +1,14 @@
+/**social**/
+.social {
+    li {
+        padding: 0px;
+        a {
+            margin: 5px;
+            color: #aeaeae;
+            font-size: 35px;
+            &:hover {
+                color: $skincolor;
+            }
+        }
+    }
+}

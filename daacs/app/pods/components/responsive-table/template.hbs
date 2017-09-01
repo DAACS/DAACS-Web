@@ -1,0 +1,66 @@
+{{#light-table
+    table
+    tableActions
+    height=height
+    tableClassNames=tableClassNames
+    as |t|
+}}
+    {{#if showHeader}}
+        {{#if fixedHeader}}
+            <div class="affixed-table-header-container">
+                {{#affixed-block targetElement=fixedTarget topOffsetAdjustment=fixedTopOffset}}
+                    {{t.head
+                        onColumnClick=(action "columnClick")
+                        iconAscending="fa fa-sort-asc"
+                        iconDescending="fa fa-sort-desc"
+                        sortOnClick=sortColumnOnClick
+                        multiColumnSort=multiColumnSort
+                        tableActions=tableActions
+                        renderInPlace=true
+                    }}
+                {{/affixed-block}}
+            </div>
+        {{else}}
+            {{t.head
+                onColumnClick=(action "columnClick")
+                iconAscending="fa fa-sort-asc"
+                iconDescending="fa fa-sort-desc"
+                sortOnClick=sortColumnOnClick
+                multiColumnSort=multiColumnSort
+                tableActions=tableActions
+                renderInPlace=true
+            }}
+        {{/if}}
+    {{/if}}
+    {{#t.body
+        canSelect=canSelect
+        multiSelect=multiSelect
+        canExpand=canExpand
+        expandOnClick=expandOnClick
+        multiRowExpansion=multiRowExpansion
+        tableActions=tableActions
+        rowComponent=rowComponent
+        spannedRowComponent=spannedRowComponent
+        infinityComponent=infinityComponent
+        scrollBuffer=100
+        _prevSelectedIndex=prevSelectedRowIndex
+        onRowClick=(action "rowClick")
+        onRowDoubleClick=(action "rowDoubleClick")
+        onScrolledToBottom=(action "scrolledToBottom")
+        as |body|
+    }}
+        {{#if isLoading}}
+            {{#body.loader}}
+                <div class="loading-spinner active"></div>
+            {{/body.loader}}
+        {{/if}}
+        {{#if (and table.isEmpty notLoading)}}
+            {{#body.no-data}}
+                {{noResultsText}}
+            {{/body.no-data}}
+        {{/if}}
+    {{/t.body}}
+    {{#if showFooter}}
+        {{t.foot fixed=fixedFooter}}
+    {{/if}}
+{{/light-table}}

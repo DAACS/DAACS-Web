@@ -1,0 +1,55 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern">
+        <div class="container text-center">
+            <h1>{{t "admin.manualGrade.assessment"}}</h1>
+        </div>
+    </div>
+    <div class="space40"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h2>
+                    {{#loading-button clicked=(action "exportAssessment") class="btn-narrow btn-link pull-right"}}
+                        {{fa-icon icon="download"}} <span class="hidden-xs">{{t "admin.export"}}</span>
+                    {{/loading-button}}
+                    {{model.userFullName}}
+                    <small>{{model.completionDateFormatted}}</small>
+                </h2>
+                <hr>
+                <h4>
+                    {{render-html model.writingPrompt.content.content}}
+                    {{#if model.writingPrompt.minWords}}
+                        <small>({{t "assessment.writingPrompt.minWords" count=model.writingPrompt.minWords}})</small>
+                    {{/if}}
+                </h4>
+                <div class="margin-btm-30">{{newline-to-break model.writingPrompt.sample}}</div>
+            </div>
+            <div class="col-md-5">
+                <h4>{{t "admin.manualGrade.domainScores"}}</h4>
+                {{#affixed-block class="margin-btm-30"}}
+                    {{server-errors errors=model.errors}}
+                    {{responsive-table
+                        models=assessmentDomains
+                        columns=domainColumns
+                        canLoadMore=false
+                        hoverableRows=false
+                        stripedRows=true
+                        tableClasses="scoring-table"
+                        class="margin-btm-20"
+                        tableActions=(hash
+                            onRadioChange=(action "onSelectScore")
+                        )
+                    }}
+                    <div class="clearfix">
+                        {{#loading-button clicked=(action "submitScores") class="btn-lg btn-border-theme pull-right"}}
+                            {{t "admin.manualGrade.submit"}}
+                        {{/loading-button}}
+                        {{#link-to "admin.ungraded-assessments" class="btn btn-lg btn-link pull-right"}}
+                            &laquo; {{t "admin.manualGrade.back"}}
+                        {{/link-to}}
+                    </div>
+                {{/affixed-block}}
+            </div>
+        </div>
+    </div>
+{{/page-section}}

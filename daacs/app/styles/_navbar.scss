@@ -1,0 +1,174 @@
+/*
+    Navbar css
+*/
+
+.navbar-default {
+    background-color: #fff;
+    border: 0px;
+    margin: 0px;
+    border-bottom: 2px solid $themesecondarycolor;
+    box-shadow: 0 10px 20px fade-out(#EEEEEE, 0.25);
+
+    .application-container.home & {
+        box-shadow: 0 10px 20px fade-out(#000, 0.91);
+    }
+
+    .navbar-nav {
+        & > li {
+            padding-top: 0;
+            padding-bottom: 0;
+
+            & > a {
+                line-height: 100px;
+            }
+        }
+    }
+
+    .navbar-nav > li > a {
+        color: #333;
+        font-family: $title-font;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 14px;
+
+        &:hover {
+            color: $themecolor;
+            background-color: transparent;
+        }
+    }
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover {
+    color: $themecolor;
+    background-color: transparent;
+    border-bottom-color: $themecolor;
+}
+
+.brand-logo-svg {
+    height: 80px;
+}
+
+.brand-logo-color {
+    fill: $themecolor;
+}
+
+.brand-logo-text {
+    fill: #231f20;
+}
+
+.brand-logo-bg {
+    fill: #fff;
+}
+
+.navbar-brand {
+    float: none;
+    display: block;
+    height: auto;
+    padding: 24px 15px;
+
+    > img {
+        display: block;
+        margin-top: 0;
+    }
+
+    @include tablet {
+        .brand-logo-svg {
+            width: 200px;
+            height: auto;
+        }
+    }
+
+    @include mobile {
+        padding: 6px 15px;
+        float: left;
+
+        .brand-logo-svg {
+            max-height: 40px;
+        }
+    }
+}
+
+.navbar.has-student-select {
+    .container {
+        position: relative;
+    }
+
+    .navbar-nav > li > a {
+        line-height: 34px;
+
+        .media-tablet & {
+            line-height: 20px;
+        }
+    }
+
+    @include mobile {
+        padding-bottom: 70px;
+    }
+}
+
+.navbar-student-select {
+    position: absolute;
+    right: 0;
+    bottom: 18px;
+    width: 330px;
+    padding: 0 15px;
+
+    .media-tablet & {
+        bottom: 10px;
+    }
+
+    @include mobile {
+        left: 0;
+        width: 95%;
+        bottom: -62px;
+        margin: 0 auto;
+        padding: 0;
+    }
+}
+
+@include mobile {
+    .navbar .navbar-nav > li > a {
+        line-height: 26px;
+    }
+}
+
+/**search form**/
+.search-toggle {
+    position: relative;
+}
+
+.search-form {
+    position: absolute;
+    right: 0;
+    width: 250px;
+    top: 100%;
+    padding: 5px;
+    background-color: #e1e1e1;
+    display: none;
+
+    .form-control {
+        border: 0px;
+    }
+}
+
+@media(max-width: $screen-xs-max) {
+    .search-form {
+        padding: 0px 15px;
+        background-color: transparent;
+        width: 100%;
+    }
+}
+
+.skip-nav-link {
+    display: block;
+    color: #fff;
+
+    .assessment-header & {
+        margin-right: 20px;
+    }
+}

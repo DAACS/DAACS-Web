@@ -1,0 +1,66 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern margin-btm-30">
+        <div class="container text-center">
+            <h1>
+                {{#if model.isGraded}}
+                    {{score-display score=domain.rubricScore class="pull-left"}}
+                {{/if}}
+                {{domainContent.label}}
+            </h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3">
+                {{partial "assessments/results-sidebar"}}
+            </div>
+            <div class="col-md-8 col-lg-9 margin-btm-20">
+                <p>
+                    {{link-to (t "dashboard.label") "dashboard"}}
+                    &nbsp;&raquo;&nbsp; {{link-to assessmentContent.label "assessments.index" assessmentContent.lowerCaseCategory (query-params takenDate=selectedTakenDate)}}
+                    &nbsp;&raquo;&nbsp; {{domainContent.label}}
+                </p>
+                {{#track-link-clicks class="margin-btm-10"}}
+                    {{mathjax-content content=domainPerformanceContent}}
+                {{/track-link-clicks}}
+                {{#if (and model.isMultipleChoice hasQuestions)}}
+                    <hr>
+                    {{#each questionGroups as |group|}}
+                        {{#each group.items as |questionItem|}}
+                            {{question-result
+                                questionItem=questionItem
+                                onImageLinkClick=(action "onImageLinkClick")
+                            }}
+                        {{/each}}
+                    {{/each}}
+                {{/if}}
+                {{#if (and model.isLikert hasQuestions)}}
+                    <hr>
+                    {{likert-results questionGroups=questionGroups}}
+                {{/if}}
+                {{#if model.isWritingPrompt}}
+                    <hr>
+                    {{truncate-text text=writingSample.sample}}
+                {{/if}}
+                <hr>
+                {{#track-link-clicks}}
+                    {{mathjax-content content=domainContent.content}}
+                {{/track-link-clicks}}
+                {{#if domain.subDomainScores}}
+                    {{#each (sort-by "rawScore" domain.subDomainScores) as |subDomainScore|}}
+                        <hr>
+                        {{domain-results
+                            id=(concat "domain-" subDomainScore.domainId)
+                            assessmentId=model.assessmentId
+                            assessmentCategory=assessmentContent.lowerCaseCategory
+                            takenDate=selectedTakenDate
+                            parentDomainScore=domain
+                            domainScore=subDomainScore
+                            domains=assessmentContent.domains
+                        }}
+                    {{/each}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{/page-section}}

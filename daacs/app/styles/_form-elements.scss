@@ -1,0 +1,163 @@
+/*
+form-elements style
+*/
+.form-control,
+input,
+select,
+textarea {
+    border-radius: 0;
+    min-height: 45px;
+    box-shadow: none;
+    border: $form-input-border-width solid $form-input-border-color;
+    &:focus{
+        box-shadow: none;
+        border-color: $form-input-focus-border-color;
+    }
+}
+
+select.form-control {
+    //min-height is not respected for <select> in webkit
+    height: 45px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    //tweak radio/checkbox positioning to accound for template's custom line-height
+    margin: 7px 0 0;
+    margin-top: 1px \9; // IE8-9
+    //remove the custom input styles applied above, since they shouldn't include checkboxes/radios
+    min-height: 0;
+    border: 0;
+}
+
+.monospaced-control {
+    font-family: $font-family-monospace;
+}
+
+//file-upload-input
+.file-upload-input {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    max-width: 100%;
+    height: 45px;
+    margin: 0;
+
+    .file-upload-input-control {
+        width: 100%;
+        max-width: 100%;
+        opacity: 0;
+        margin: 0;
+    }
+
+    .file-upload-input-display {
+        user-select: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 45px;
+        z-index: 5;
+        border: $form-input-border-width solid $form-input-border-color;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .file-upload-input-text {
+        display: inline-block;
+        overflow: hidden;
+        max-width: 740px;
+        padding: 6px 12px;
+        font-weight: normal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        @include tablet {
+            & {
+                max-width: 500px;
+            }
+        }
+
+        @include mobile {
+            & {
+                max-width: 130px;
+            }
+        }
+
+        @include jumbo {
+            .col-lg-4 & {
+                max-width: 170px;
+            }
+        }
+    }
+
+    .file-upload-input-btn {
+        @include custom-button-variant(#333, #eee, $skincolor, #fff);
+
+        display: inline-block;
+        float: right;
+        padding: 12px 25px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 13px;
+        line-height: 1.33333;
+        font-family: $title-font;
+        border: 0;
+        border-left: $form-input-border-width solid $form-input-border-color;
+    }
+}
+
+//fieldsets and legends
+fieldset {
+    border: 2px solid #e1e1e1;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+legend {
+    width: auto;
+    font-size: inherit;
+    border: 0;
+    margin: 0;
+    color: $text-color;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+//ember-power-select
+.ember-power-select-trigger {
+    min-width: 200px;
+}
+
+.ember-basic-dropdown-content {
+    z-index: $zindex-navbar + 1;
+}
+
+.ember-power-select-clear-btn {
+    top: 0;
+    bottom: 0;
+    line-height: 42px;
+    color: #aaa;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.ember-power-select-option[aria-selected="true"] {
+    color: #fff;
+
+    &[aria-current="true"] {
+        color: $text-color;
+    }
+
+    .text-muted {
+        color: #ccc;
+    }
+}
+
+.truncated-select-option {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

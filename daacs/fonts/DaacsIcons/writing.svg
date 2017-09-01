@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400.06" height="375" viewBox="0 0 400.06 375">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #54075b;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="writing.png_writing.svg" data-name="writing.png, writing.svg" class="cls-1" d="M1521.93,4510.88l72.53,63.83-160.74,182.62-72.54-63.86ZM1425.4,4766.8l-72.52-63.8-23.41,93.36,3.67,3.3Zm207.91-236.18c4.92-5.59,3.47-14.97-3.19-20.78l-48.3-42.58c-6.67-5.83-16.13-6.05-21.06-.48l-30.75,34.9,72.56,63.84Zm-388.35,277.07h400.08v30.06H1244.96v-30.06Z" transform="translate(-1244.97 -4462.75)"/>
+</svg>

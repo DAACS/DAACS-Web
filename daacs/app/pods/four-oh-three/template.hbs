@@ -1,0 +1,22 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern">
+        <div class="container text-center">
+            <h1>{{t "fourOhThree.forbidden"}}</h1>
+        </div>
+    </div>
+    <div class="space80"></div>
+    <div class="container">
+        {{#if errorPageContent}}
+            <div class="error-digit text-center">
+                {{fa-icon icon="exclamation-triangle"}}
+            </div>
+            <div>{{render-html errorPageContent}}</div>
+        {{else}}
+            <div class="error-digit text-center">
+                {{fa-icon icon="exclamation-triangle"}}
+                <h3>{{t "fourOhThree.message"}}</h3>
+            </div>
+        {{/if}}
+    </div>
+    <div class="space80"></div>
+{{/page-section}}

@@ -1,0 +1,43 @@
+.assessment-header {
+    .progress {
+        margin: 0;
+        border-radius: 0;
+
+        .progress-bar {
+            font-size: 16px;
+        }
+    }
+}
+
+.user-name-text {
+    max-width: 200px;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.assessment-question-container {
+    flex: 1;
+    padding: 40px 0;
+    background-image: linear-gradient(to bottom, #fff 50%, fade-out($skincolor, 0.8) 100%), url("/assets/images/pattern.png");
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .jumbotron {
+        margin-bottom: 0;
+    }
+}
+
+.assessment-tips {
+    ul {
+        padding-left: 20px;
+    }
+}
+
+.domain-results {
+    h2 {
+        margin-bottom: 30px;
+    }
+}

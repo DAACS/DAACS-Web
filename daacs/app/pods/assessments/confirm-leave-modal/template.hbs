@@ -1,0 +1,13 @@
+{{#modal-dialog title=(t "assessment.unsavedWork") cancel="cancel" size="modal-sm"}}
+    <div class="modal-body">
+        {{t "assessment.confirmLeave"}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" {{action "cancel"}}>
+            {{t "dialog.cancel"}}
+        </button>
+        <button type="button" class="btn btn-primary" {{action "confirmLeave"}}>
+            {{t "dialog.ok"}}
+        </button>
+    </div>
+{{/modal-dialog}}

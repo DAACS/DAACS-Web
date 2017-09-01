@@ -1,0 +1,365 @@
+/**
+ * CSS override styles template
+ *
+ * Use this as a guide for your own CSS overrides file which is specified by the CLIENT_CSS_PATH environment variable
+ * The CSS values listed below match the application's default values. To change them, replace every instance of each
+ * value with the same new value. Replacing a default value with different new values in the various CSS rules may
+ * lead to undesirable results.
+ *
+ * Main Brand Color: #54075B
+ * Accent Color: #edac15
+ * Link Hover Color: #aeaeae
+ * Primary/Accent Button Active State Color: #28032c
+ * Inactive Widget Icon/Text Color: #89708b
+ * Horizontal Rule Color: #f6e5be
+ * Assessment Question Page Gradient Color: rgba(237, 172, 21, 0.2)
+ * Radio Grid Cell Hover Color: rgba(237, 172, 21, 0.1)
+ * Homepage Jumbotron Gradient Bottom Color: #120214 (top color is the Main Brand Color)
+ * Score Display Filled Dot Gradient Colors: #f1bd44 (top left) #fae7bb (bottom right)
+ * Page Title Bar Score Display Dot Border/Path Color: #f1bd44
+ */
+
+/************************************************
+ * TEXT COLORS
+ ***********************************************/
+
+/* links */
+a,
+/* link button */
+.btn-link,
+/* main navigation bar link active/hover  */
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > li > a:hover,
+/* content headings */
+.testi-slider h5,
+/* person box title */
+.person-col span,
+/* accent border button */
+.btn-border-skin,
+/* accent text */
+.text-skin {
+    color: #54075B;
+}
+
+/* color on dark background */
+.bottom-bar .btn-link {
+    color: #edac15;
+}
+
+/* dropdown menu link hover */
+.dropdown-menu > li > a:hover {
+    color: #edac15;
+}
+
+/* assessment dashboard widget */
+.widget {
+    color: #89708b;
+}
+
+/* assessment dashboard widget active */
+.active .widget-tab .widget,
+/* primary border button */
+.btn-border-theme,
+/* primary text */
+.text-primary {
+    color: #54075B;
+}
+
+/* link hover */
+a:hover,
+.media-heading a:hover,
+.media-heading a:focus {
+    color: #aeaeae;
+}
+
+@media (max-width: 991px) {
+    /* dashboard widget small screens */
+    .widget {
+        color: #54075B;
+    }
+}
+
+/************************************************
+ * BACKGROUND COLORS
+ ***********************************************/
+
+/* DAACS navbar logo */
+.brand-logo-color {
+    fill: #54075B;
+}
+
+/* DAACS progress jumbotron image */
+.daacs-progress-outline {
+    fill: #edac15;
+}
+
+/* page top bar/strip */
+.top-bar,
+/* testimonals page content */
+.testimonials,
+/* panel heading */
+.panel-primary > .panel-heading,
+/* primary button */
+.btn-primary,
+/* primary border button */
+.btn-border-theme:hover,
+.btn-border-theme:active,
+.btn-border-theme.active,
+.btn-border-theme:focus,
+.btn-border-theme.focus,
+.btn-border-theme:active:hover,
+.btn-border-theme:active:focus,
+.btn-border-theme:active.focus,
+.btn-border-theme.active:hover,
+.btn-border-theme.active:focus,
+.btn-border-theme.active.focus,
+.open > .btn-border-theme.dropdown-toggle,
+.open > .btn-border-theme.dropdown-toggle:hover,
+.open > .btn-border-theme.dropdown-toggle:focus,
+.open > .btn-border-theme.dropdown-toggle.focus,
+/* sidebar stacked navigation pills active */
+.nav-boxed > li.active > a,
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus,
+/* dashboard widget button progress bar hover/active/focus */
+.progress-btn:hover .progress-btn-bar,
+.progress-btn:focus .progress-btn-bar,
+.progress-btn:active .progress-btn-bar,
+/* dropdown menu selected item */
+.ember-power-select-option[aria-selected="true"]  {
+    background-color: #54075B;
+}
+
+/* primary button hover/focus/active */
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary:active:hover,
+.btn-primary:active:focus,
+.btn-primary:active.focus,
+.btn-primary.active:hover,
+.btn-primary.active:focus,
+.btn-primary.active.focus,
+.open > .btn-primary.dropdown-toggle,
+.open > .btn-primary.dropdown-toggle:hover,
+.open > .btn-primary.dropdown-toggle:focus,
+.open > .btn-primary.dropdown-toggle.focus {
+   background-color: #28032c;
+}
+
+/* page title bar */
+.page-title.pattern,
+/* headings bottom border accent */
+.border-width,
+/* default button hover/focus/active */
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.btn-default:active:hover,
+.btn-default:active:focus,
+.btn-default:active.focus,
+.btn-default.active:hover,
+.btn-default.active:focus,
+.btn-default.active.focus,
+.open > .btn-default.dropdown-toggle,
+.open > .btn-default.dropdown-toggle:hover,
+.open > .btn-default.dropdown-toggle:focus,
+.open > .btn-default.dropdown-toggle.focus,
+/* accent button */
+.btn-skin,
+.btn-skin.disabled:hover,
+.btn-skin.disabled:focus,
+.btn-skin.disabled.focus,
+.btn-skin[disabled]:hover,
+.btn-skin[disabled]:focus,
+.btn-skin[disabled].focus,
+fieldset[disabled] .btn-skin:hover,
+fieldset[disabled] .btn-skin:focus,
+fieldset[disabled] .btn-skin.focus,
+/* accent border button hover/focus/active */
+.btn-border-skin:hover,
+.btn-border-skin:focus,
+.btn-border-skin.focus,
+.btn-border-skin:active,
+.btn-border-skin.active,
+.btn-border-skin:active:hover,
+.btn-border-skin:active:focus,
+.btn-border-skin:active.focus,
+.btn-border-skin.active:hover,
+.btn-border-skin.active:focus,
+.btn-border-skin.active.focus,
+.open > .btn-border-skin.dropdown-toggle,
+.open > .btn-border-skin.dropdown-toggle:hover,
+.open > .btn-border-skin.dropdown-toggle:focus,
+.open > .btn-border-skin.dropdown-toggle.focus {
+    background-color: #54075B;
+}
+
+/* assessment progress bar */
+.progress-bar-skin,
+/* dashboard widget button progress bar */
+.progress-btn .progress-btn-bar,
+/* likert question results chart line */
+.likert-results .table > tbody > tr > td.likert-results-answer-col-cell.is-filled:before,
+.likert-results .table > tbody > tr > td.likert-results-answer-col-cell.is-chosen-answer:after,
+/* score display filled dot and path */
+.score-display-dot-path .dot.filled,
+.score-display-dot-path .dot.filled:after {
+    background-color: #edac15;
+}
+
+/* accent button hover/focus/active */
+.btn-skin:hover,
+.btn-skin:focus,
+.btn-skin.focus,
+.btn-skin:active,
+.btn-skin.active,
+.btn-skin:active:hover,
+.btn-skin:active:focus,
+.btn-skin:active.focus,
+.btn-skin.active:hover,
+.btn-skin.active:focus,
+.btn-skin.active.focus,
+.open > .btn-skin.dropdown-toggle,
+.open > .btn-skin.dropdown-toggle:hover,
+.open > .btn-skin.dropdown-toggle:focus,
+.open > .btn-skin.dropdown-toggle.focus {
+    background-color: #28032c;
+}
+
+/* assessment background gradient */
+/* (adjust the rgba() color value only) */
+.assessment-question-container {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #fff), to(rgba(237, 172, 21, 0.2))), url("/assets/images/pattern.png");
+    background-image: -webkit-linear-gradient(top, #fff 50%, rgba(237, 172, 21, 0.2) 100%), url("/assets/images/pattern.png");
+    background-image: -o-linear-gradient(top, #fff 50%, rgba(237, 172, 21, 0.2) 100%), url("/assets/images/pattern.png");
+    background-image: linear-gradient(to bottom, #fff 50%, rgba(237, 172, 21, 0.2) 100%), url("/assets/images/pattern.png");
+}
+
+/* table/grid radio cell hover */
+.ember-light-table .table > tbody > tr > td.cell-radio label:hover {
+    background-color: rgba(237, 172, 21, 0.1);
+}
+
+/* homepage jumbotron gradient */
+.hero {
+    background: url("/assets/images/pattern.png"), -webkit-gradient(linear, left top, left bottom, from(#54075B), to(#120214));
+    background: url("/assets/images/pattern.png"), -webkit-linear-gradient(top, #54075B 0%, #120214 100%);
+    background: url("/assets/images/pattern.png"), -o-linear-gradient(top, #54075B 0%, #120214 100%);
+    background: url("/assets/images/pattern.png"), linear-gradient(to bottom, #54075B 0%, #120214 100%);
+}
+
+/* score display filled dot gradient */
+.score-display-dot-path .dot.filled {
+    background-image: -webkit-linear-gradient(top left, #f1bd44 0%, #fae7bb 100%);
+    background-image: -o-linear-gradient(top left, #f1bd44 0%, #fae7bb 100%);
+    background-image: linear-gradient(to bottom right, #f1bd44 0%, #fae7bb 100%);
+}
+
+/* page title bar score display path */
+.page-title .score-display-dot-path .dot.filled:after {
+    background-color: #f1bd44;
+}
+
+/************************************************
+ * BORDER COLORS
+ ***********************************************/
+
+/* main navigation bar bottom border */
+.navbar-default {
+    border-bottom-color: #edac15;
+}
+
+/* dashboard widget tab border active */
+.active .widget-tab,
+/* form control focus */
+.form-control:focus,
+input:focus,
+select:focus,
+textarea:focus,
+/* dropdown menu search box focus */
+.ember-power-select-search-input:focus,
+/* score display highlighted/filled dot */
+.score-display-dot-path .dot.filled,
+.score-display-dot-path .dot.highlighted,
+.page-title .score-display-dot-path .dot.filled,
+.page-title .score-display-dot-path .dot.highlighted,
+/* ember power select box */
+.ember-power-select-trigger--active,
+.ember-power-select-trigger:focus,
+.ember-power-select-dropdown,
+.ember-power-select-dropdown.ember-basic-dropdown-content--below,
+.ember-power-select-dropdown.ember-basic-dropdown-content--in-place {
+    border-color: #edac15;
+}
+
+/* panel */
+.panel-primary,
+/* panel heading */
+.panel-primary > .panel-heading,
+/* primary border button */
+.btn-border-theme,
+.btn-border-theme:hover,
+.btn-border-theme:active,
+.btn-border-theme.active,
+.btn-border-theme:focus,
+.btn-border-theme.focus,
+.btn-border-theme:active:hover,
+.btn-border-theme:active:focus,
+.btn-border-theme:active.focus,
+.btn-border-theme.active:hover,
+.btn-border-theme.active:focus,
+.btn-border-theme.active.focus,
+.open > .btn-border-theme.dropdown-toggle,
+.open > .btn-border-theme.dropdown-toggle:hover,
+.open > .btn-border-theme.dropdown-toggle:focus,
+.open > .btn-border-theme.dropdown-toggle.focus,
+/* accent border button */
+.btn-border-skin,
+.btn-border-skin:hover,
+.btn-border-skin:focus,
+.btn-border-skin.focus,
+.btn-border-skin:active,
+.btn-border-skin.active,
+.btn-border-skin:active:hover,
+.btn-border-skin:active:focus,
+.btn-border-skin:active.focus,
+.btn-border-skin.active:hover,
+.btn-border-skin.active:focus,
+.btn-border-skin.active.focus,
+.open > .btn-border-skin.dropdown-toggle,
+.open > .btn-border-skin.dropdown-toggle:hover,
+.open > .btn-border-skin.dropdown-toggle:focus,
+.open > .btn-border-skin.dropdown-toggle.focus,
+/* sidebar stacked navigation pills active */
+.nav-boxed > li.active > a,
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus  {
+    border-color: #54075B;
+}
+
+/* loading spinner */
+.loading-spinner {
+    border-color: #54075B #edac15 #edac15;
+}
+
+/* horizontal rule */
+hr {
+    border-top-color: #f6e5be;
+}
+
+/* page title bar score display dot border */
+.page-title .score-display-dot-path .dot.filled {
+    border-color: #f1bd44;
+}

@@ -1,0 +1,35 @@
+{{#modal-dialog title=(t "assessment.domain.questionDetails") cancel="cancel" size="modal-xl"}}
+    <div class="modal-body">
+        {{#if hasReadingPassage}}
+            {{question-content itemContent=model.itemContent.question truncateContent=true}}
+            <h4 class="question-text">{{render-html model.question}}</h4>
+        {{else}}
+            <h4 class="question-text">{{render-html model.question}}</h4>
+            {{question-content itemContent=model.itemContent.question}}
+        {{/if}}
+        <hr>
+        <ul class="list-unstyled">
+            {{#each model.possibleItemAnswers as |answer|}}
+                <li class="question-answer-text {{if (eq answer.score 1) 'text-success' 'text-danger'}}">
+                    {{fa-icon icon=(if (eq answer.score 1) "check" "times") fixedWidth=true}}
+                    {{#if (eq answer.id model.chosenItemAnswerId)}}
+                        <strong>{{render-html answer.content}}</strong>
+                        <em>({{t "assessment.domain.yourAnswer"}})</em>
+                    {{else}}
+                        {{render-html answer.content}}
+                    {{/if}}
+                </li>
+            {{/each}}
+        </ul>
+        {{#if model.itemContent.feedback.content}}
+            <hr>
+            <h4>{{t "assessment.domain.feedback"}}</h4>
+            {{render-html model.itemContent.feedback.content}}
+        {{/if}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" {{action "cancel"}}>
+            {{t "dialog.close"}}
+        </button>
+    </div>
+{{/modal-dialog}}

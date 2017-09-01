@@ -1,0 +1,10 @@
+{{#modal-dialog title=model.content.helpLabel cancel="cancel" size="modal-lg"}}
+    {{#track-link-clicks}}
+        <div class="modal-body">
+            {{mathjax-content content=model.content.help}}
+        </div>
+    {{/track-link-clicks}}
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" {{action "cancel"}}>{{t "dialog.close"}}</button>
+    </div>
+{{/modal-dialog}}

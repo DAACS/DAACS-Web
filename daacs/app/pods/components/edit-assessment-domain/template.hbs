@@ -1,0 +1,23 @@
+{{#nested-form-validator parent=parent-form-validator errors=errors as |formSubmit nestedFormValidator|}}
+    {{#input-validator text=(t "admin.editAssessment.domain.info") target="domain.content" targetObject=nestedFormValidator}}
+        {{textarea value=domain.content rows="5" class="form-control"}}
+        <span class="help-block text-muted">{{t "admin.editAssessment.domain.description"}}</span>
+    {{/input-validator}}
+    {{#each domain.rubric.supplementTable as |tableContent|}}
+        {{#input-validator text=(t (concat "admin.editAssessment.scores." tableContent.completionScore)) target=(concat "domainContent" tableContent.completionScore) targetObject=nestedFormValidator}}
+            {{textarea value=tableContent.content rows="5" class="form-control"}}
+        {{/input-validator}}
+        {{#input-validator text=(t (concat "admin.editAssessment.scores.summary." tableContent.completionScore)) target=(concat "domainContentSummary" tableContent.completionScore) targetObject=nestedFormValidator}}
+            {{textarea value=tableContent.contentSummary rows="5" class="form-control"}}
+        {{/input-validator}}
+    {{/each}}
+    {{#if domain.subDomains}}
+        {{#collapsible-accordion as |subDomainsParent|}}
+            {{#each domain.subDomains as |subDomain|}}
+                {{#collapsible-panel heading=(concat (t "admin.editAssessment.domain.label") ": " subDomain.label) target=(concat "edit-assessment-subdomain-" subDomain.id) parent=subDomainsParent}}
+                    {{edit-assessment-domain domain=subDomain parent-form-validator=parent-form-validator}}
+                {{/collapsible-panel}}
+            {{/each}}
+        {{/collapsible-accordion}}
+    {{/if}}
+{{/nested-form-validator}}

@@ -1,0 +1,24 @@
+<div class="fixed-width" style={{style}}>
+    {{#if isSpinning}}
+        <span class="loading-spinner active"></span>
+    {{else}}
+        {{yield}}
+    {{/if}}
+</div>
+<div class="confirmation save-confirmation">
+    <p>
+        {{#if confirmationText}}
+            {{confirmationText}}
+        {{else}}
+            {{t "confirmation.continue"}}
+        {{/if}}
+    </p>
+    <div>
+        <button class="btn btn-border-success {{buttonSize}}" {{action "confirm"}}>
+            {{t "confirmation.yes"}}
+        </button>
+        <button class="btn btn-border-danger {{buttonSize}}" {{action "cancel"}}>
+            {{t "confirmation.no"}}
+        </button>
+    </div>
+</div>

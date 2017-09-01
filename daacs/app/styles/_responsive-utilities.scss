@@ -1,0 +1,7 @@
+@media (max-width: $screen-sm-max) {
+  @include responsive-invisibility('.hidden-small-screen');
+}
+
+@media (min-width: $screen-md-min) {
+  @include responsive-invisibility('.hidden-large-screen');
+}
