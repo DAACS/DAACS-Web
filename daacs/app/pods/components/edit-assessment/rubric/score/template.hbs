@@ -1,0 +1,43 @@
+<div class="form-inline">
+    <div class="form-group">
+        <input
+            type="text"
+            value={{parsedScore.lowerValue}}
+            oninput={{action "updateLowerValue" value="target.value"}}
+            class="form-control form-control-sm"
+            maxlength="128"
+        >
+    </div>
+    <div class="form-group">
+        <select onchange={{action "updateLowerBoundType" value="target.value"}} class="form-control">
+            <option value="[" selected={{eq parsedScore.lowerBoundType "["}}>
+                {{t "admin.editAssessment.rubric.inclusive"}}
+            </option>
+            <option value="(" selected={{eq parsedScore.lowerBoundType "("}}>
+                {{t "admin.editAssessment.rubric.exclusive"}}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <p class="form-control-static text-center pad-left-10 pad-right-10">{{t "admin.editAssessment.rubric.scoreTo"}}</p>
+    </div>
+    <div class="form-group">
+        <input
+            type="text"
+            value={{parsedScore.upperValue}}
+            oninput={{action "updateUpperValue" value="target.value"}}
+            class="form-control form-control-sm"
+            maxlength="128"
+        >
+    </div>
+    <div class="form-group">
+        <select onchange={{action "updateUpperBoundType" value="target.value"}} class="form-control">
+            <option value="]" selected={{eq parsedScore.upperBoundType "]"}}>
+                {{t "admin.editAssessment.rubric.inclusive"}}
+            </option>
+            <option value=")" selected={{eq parsedScore.upperBoundType ")"}}>
+                {{t "admin.editAssessment.rubric.exclusive"}}
+            </option>
+        </select>
+    </div>
+</div>

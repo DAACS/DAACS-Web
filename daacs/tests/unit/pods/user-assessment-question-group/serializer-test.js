@@ -4,7 +4,9 @@ moduleForModel('user-assessment-question-group', 'Unit | Serializer | user asses
   // Specify the other units that are required for this test.
   needs: [
       'serializer:user-assessment-question-group',
-      'model:question-group-item'
+      'model:question-group-item',
+      'model:question-group-possible-answer',
+      'transform:fragment-array'
   ]
 });
 

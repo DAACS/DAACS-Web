@@ -4,7 +4,7 @@ import Authentication from 'daacs/mixins/authentication';
 import PageLayout from 'daacs/mixins/page-layout';
 import Config from 'daacs/config/environment';
 
-const { isEmpty } = Ember;
+const { isEmpty, tryInvoke } = Ember;
 
 export default Ember.Route.extend(ApplicationRouteMixin, Authentication, PageLayout, {
     advisor: Ember.inject.service(),
@@ -145,7 +145,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, Authentication, PageLay
             this.get('session').invalidate();
         },
 
-        openModal(templateName, model, controller) {
+        openModal(templateName, model, controller, setupParams) {
             this.render(templateName, {
                 into: 'application',
                 outlet: 'modal',
@@ -153,6 +153,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, Authentication, PageLay
                 controller: controller || null,
                 model
             });
+
+            const ctrlr = this.controllerFor(controller);
+            tryInvoke(ctrlr, 'setupModal', setupParams);
 
             this.get('userEvents').logEvent('PAGE_VIEW', {
                 url: `${this.get('router.url')}#${templateName}`,

@@ -5,6 +5,9 @@ export default ApplicationSerializer.extend(DS.EmbeddedRecordsMixin, {
     attrs: {
         items: {
             embedded: 'always'
+        },
+        possibleItemAnswers: {
+            embedded: 'always'
         }
     }
 });

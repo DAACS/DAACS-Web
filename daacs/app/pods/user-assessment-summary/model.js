@@ -7,8 +7,10 @@ import momentComputed from 'ember-moment/computeds/moment';
 import format from 'ember-moment/computeds/format';
 import lowerCase from 'daacs/macros/lower-case';
 import dasherized from 'daacs/macros/dasherized';
+import { TYPE_MULTIPLE_CHOICE, TYPE_CAT, TYPE_LIKERT, TYPE_WRITING_PROMPT } from 'daacs/constants/assessment/types';
 
 const {
+    get,
     computed,
     computed: {
         or,
@@ -35,9 +37,11 @@ export default Model.extend({
     takenDate: attr('date'),
     userId: attr('string'),
     username: attr('string'),
-    isMultipleChoice: equal('assessmentType', 'CAT'),
-    isLikert: equal('assessmentType', 'LIKERT'),
-    isWritingPrompt: equal('assessmentType', 'WRITING_PROMPT'),
+    isMultipleChoice: equal('assessmentType', get(TYPE_MULTIPLE_CHOICE, 'value')),
+    isCat: equal('assessmentType', get(TYPE_CAT, 'value')),
+    isLikert: equal('assessmentType', get(TYPE_LIKERT, 'value')),
+    isWritingPrompt: equal('assessmentType', get(TYPE_WRITING_PROMPT, 'value')),
+    isMultipleChoiceLike: or('isMultipleChoice', 'isCat'),
     isInProgress: equal('status', 'IN_PROGRESS'),
     isCompleted: equal('status', 'COMPLETED'),
     isGraded: equal('status', 'GRADED'),

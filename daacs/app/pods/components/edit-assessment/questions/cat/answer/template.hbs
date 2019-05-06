@@ -1,0 +1,35 @@
+<div class="col-xs-10">
+    <div class="form-group">
+        <span class="sortable-drag-handle sortable-drag-handle-multiline sortable-drag-handle-answer">
+            {{fa-icon icon="bars"}}
+        </span>
+        <div class="sortable-drag-label">
+            <h5>
+                <span class="pull-right font-weight-normal">
+                    <a href="" {{action "toggleEditor"}}>{{t "admin.editAssessment.questions.answers.toggleEditor"}}</a>
+                </span>
+                <label>
+                    {{t "admin.editAssessment.questions.answers.label"}}
+                    <span class="font-weight-normal">
+                        (<a href="" {{action "remove"}}>{{t "admin.editAssessment.questions.answers.remove"}}</a>)
+                    </span>
+                </label>
+            </h5>
+            {{#if showEditor}}
+                {{wysiwyg-editor
+                    allowFullscreen=false
+                    content=(readonly answer.content)
+                    onChange=(action (mut answer.content))
+                }}
+            {{else}}
+                {{input value=answer.content class="form-control"}}
+            {{/if}}
+        </div>
+    </div>
+</div>
+<div class="col-xs-2">
+    <div class="form-group">
+        <h5><label>{{t "admin.editAssessment.questions.answers.points"}}</label></h5>
+        {{input value=answer.score type="number" class="form-control"}}
+    </div>
+</div>

@@ -103,6 +103,9 @@ blockquote{
 }
 
 /**margins**/
+.margin-btm-0 {
+    margin-bottom: 0;
+}
 .margin-btm-10{
     margin-bottom: 10px;
 }
@@ -121,6 +124,20 @@ blockquote{
 .margin-top-30 {
     margin-top: 30px;
 }
+/**paddings**/
+.pad-btm-20 {
+    padding-bottom: 20px;
+}
+.pad-top-20 {
+    padding-top: 20px;
+}
+.pad-left-10 {
+    padding-left: 10px;
+}
+.pad-right-10 {
+    padding-right: 10px;
+}
+
 .border-width{
     width: 60px;
     height: 3px;
@@ -251,4 +268,10 @@ blockquote{
 
 .fa-xl {
     font-size: 8em;
+}
+
+/**wells**/
+.well {
+    border: 0;
+    box-shadow: none;
 }

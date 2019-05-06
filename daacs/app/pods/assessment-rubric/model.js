@@ -1,8 +1,7 @@
-import attr from 'ember-data/attr';
 import Fragment from 'model-fragments/fragment';
-import { fragmentArray } from 'model-fragments/attributes';
+import { fragment, fragmentArray } from 'model-fragments/attributes';
 
 export default Fragment.extend({
-    completionScoreMap: attr(),
+    completionScoreMap: fragment('completion-score-map'),
     supplementTable: fragmentArray('assessment-supplement-table')
 });

@@ -9,7 +9,8 @@ export default AuthenticatedRoute.extend(CanMixin, ScrollReset, {
     titleToken: t('dashboard.label'),
     modelName: 'assessment-category-summary',
     // // We can turn this off here since there is no loading route. There is also an issue with serialization of shoebox html content - https://github.com/ember-fastboot/fastboot/pull/79
-    // shouldLoadFromShoebox: false,
+    shouldLoadFromShoebox: false,
+
     model() {
         let query = {};
         let userId = this.get('advisor.selectedUserId');

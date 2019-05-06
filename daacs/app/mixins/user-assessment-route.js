@@ -13,7 +13,7 @@ export default Ember.Mixin.create({
     },
 
     async model(params, transition) {
-        let query = {assessmentCategory: transition.params.assessments.assessment_category.toUpperCase()};
+        let query = {assessmentCategoryGroupId: transition.params.assessments.assessment_category};
         let userId = this.get('advisor.selectedUserId');
 
         //get the most recent completed assessment if a specific taken date is not provided
@@ -47,7 +47,7 @@ export default Ember.Mixin.create({
         //to determine if the user is allowed to retake the assessment or not
         if(!isEmpty(transition.queryParams.takenDate)) {
             let query = {
-                assessmentCategory: this.get('assessmentContent.assessmentCategory'),
+                assessmentCategoryGroupId: this.get('assessmentContent.assessmentCategoryGroup.id'),
                 limit: 1
             };
 
@@ -84,7 +84,7 @@ export default Ember.Mixin.create({
     setupController(controller, model) {
         this._super(...arguments);
         let assessmentContent = this.get('assessmentContent');
-        let takenDatesQuery = assessmentContent.getProperties('assessmentCategory');
+        let takenDatesQuery = {assessmentCategoryGroupId: assessmentContent.get('assessmentCategoryGroup.id')};
         let userId = this.get('advisor.selectedUserId');
 
         if(!isEmpty(userId) && this.can('assessments.selectUser')) {

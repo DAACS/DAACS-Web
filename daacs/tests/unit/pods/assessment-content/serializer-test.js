@@ -5,7 +5,8 @@ moduleForModel('assessment-content', 'Unit | Serializer | assessment content', {
   needs: [
       'serializer:assessment-content',
       'transform:fragment',
-      'model:assessment-domain'
+      'model:assessment-domain',
+      'model:assessment-category-group'
   ]
 });
 

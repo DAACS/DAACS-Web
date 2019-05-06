@@ -1,0 +1,16 @@
+<h5><label>{{t "admin.editAssessment.questions.writingPrompt.label"}}</label></h5>
+{{wysiwyg-editor
+    content=(readonly model.writingPrompt.content.content)
+    onChange=(action (mut model.writingPrompt.content.content))
+}}
+<small class="help-block text-muted">{{t "admin.editAssessment.questions.writingPrompt.description"}}</small>
+<div class="row">
+    <div class="col-md-4">
+        <h5><label>{{t "admin.editAssessment.questions.writingPrompt.minWords"}}</label></h5>
+        {{input
+            value=model.writingPrompt.minWords
+            type="number"
+            class="form-control"
+        }}
+    </div>
+</div>

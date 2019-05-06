@@ -1,40 +1,62 @@
 {{#page-section fullWidth=true}}
     <div class="page-title pattern margin-btm-30">
         <div class="container text-center">
-            {{#if (can "assessments.import")}}
-                <button class="btn btn-border-white pull-right" {{action "openImportModal"}}>
-                    {{fa-icon icon="upload"}}
-                    {{t "admin.import.label"}}
-                </button>
-            {{/if}}
+            <div class="pull-right">
+                {{#if (can "assessments.import")}}
+                    <button class="btn btn-border-white" {{action "openImportModal"}}>
+                        {{fa-icon icon="upload"}}
+                        {{t "admin.import.label"}}
+                    </button>
+                {{/if}}
+                &nbsp;
+                {{#if (can "assessments.create")}}
+                    {{#link-to "admin.manage-assessments.new" class="btn btn-border-white"}}
+                        {{fa-icon icon="plus"}}
+                        {{t "admin.createAssessment.create"}}
+                    {{/link-to}}
+                {{/if}}
+            </div>
             <h1>{{t "admin.manageAssessments"}}</h1>
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-lg-3">
-                <p><strong>{{t "admin.activeAssessments"}}</strong></p>
+                <p><strong>{{t "admin.category.label"}}</strong></p>
                 <div class="margin-btm-20">
-                    {{#if activeAssessments}}
-                        {{#affixed-block tagName="ul" class="nav nav-pills nav-boxed nav-stacked"}}
-                            {{#each activeAssessments as |assessment|}}
+                    {{#affixed-block}}
+                        <ul class="nav nav-pils nav-boxed nav-stacked margin-btm-10">
+                            {{#each categoryGroupsWithStats as |categoryGroup|}}
                                 <li role="presentation">
-                                    {{#link-to "admin.manage-assessments.assessment" assessment.id}}
-                                        <div>
-                                            {{daacs-icon icon=assessment.dasherizedCategory}}
-                                            &nbsp;{{assessment.label}}
+                                    <div class="nav-static-content">
+                                        <div class={{if categoryGroups.assessments "margin-btm-10"}}>
+                                            <a href="" class="d-block" {{action "openEditCategoryGroup" categoryGroup.group}}>
+                                                {{daacs-icon icon=categoryGroup.group.dasherizedCategory}}
+                                                &nbsp;{{categoryGroup.group.label}}
+                                            </a>
                                         </div>
-                                        <small>
-                                            <span class="text-muted">{{moment-format assessment.createdDate "MM/DD/YYYY h:mm A"}}</span>
-                                            &middot; {{assessment.numUserCompletionsText}}
-                                        </small>
-                                    {{/link-to}}
+                                        <div class="line-height-sm">
+                                            {{#each categoryGroup.assessments as |assessment|}}
+                                                <small>
+                                                    {{#link-to "admin.manage-assessments.assessment" assessment.id}}
+                                                        <span class="text-muted">
+                                                            {{moment-format assessment.createdDate "MM/DD/YYYY h:mm A"}}
+                                                        </span>
+                                                        &middot; {{assessment.numUserCompletionsText}}
+                                                    {{/link-to}}
+                                                </small>
+                                            {{/each}}
+                                        </div>
+                                    </div>
+                                </li>
+                            {{else}}
+                                <li role="presentation">
+                                    <div class="well text-muted margin-btm-0">{{t "admin.category.none"}}</div>
                                 </li>
                             {{/each}}
-                        {{/affixed-block}}
-                    {{else}}
-                        <p class="text-muted">{{t "admin.noActiveAssessmentsFound"}}</p>
-                    {{/if}}
+                        </ul>
+                        <a href="" {{action "openAddCategoryGroup"}}>{{t "admin.category.add"}}&hellip;</a>
+                    {{/affixed-block}}
                 </div>
             </div>
             <div class="col-md-8 col-lg-9 margin-btm-30">
@@ -45,7 +67,7 @@
                         <p>
                             {{#power-select
                                 selected=categoryFilter
-                                options=categoryFilterOptions
+                                options=sortedCategoryGroups
                                 renderInPlace=false
                                 searchEnabled=false
                                 allowClear=true

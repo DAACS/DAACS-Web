@@ -1,6 +1,14 @@
 .ember-light-table {
     border: 0;
 
+    &.auto-height {
+        overflow: hidden;
+    }
+
+    &.sortable-table {
+        overflow: visible;
+    }
+
     .table {
         margin-bottom: 0;
 
@@ -8,56 +16,74 @@
             border-bottom-width: 1px;
         }
 
-        > tbody > tr {
-            &.is-active {
-                &:hover {
+        > tbody {
+            + tbody {
+                border-top: 0;
+            }
+
+            > tr {
+                &.is-active {
+                    &:hover {
+                        > td {
+                            background-color: $state-success-bg;
+                        }
+                    }
+
                     > td {
-                        background-color: $state-success-bg;
+                        background-color: lighten($state-success-bg, 5%);
                     }
                 }
 
                 > td {
-                    background-color: lighten($state-success-bg, 5%);
-                }
-            }
+                    word-wrap: break-word;
 
-            > td {
-                word-wrap: break-word;
+                    &.cell-valign-middle {
+                        vertical-align: middle;
+                    }
 
-                &.cell-valign-middle {
-                    vertical-align: middle;
-                }
+                    &.cell-slim {
+                        padding-top: 5px;
+                        padding-bottom: 5px;
 
-                &.cell-slim {
-                    padding-top: 5px;
-                    padding-bottom: 5px;
+                        .table-condensed & {
+                            padding-top: 3px;
+                            padding-bottom: 3px;
+                        }
+                    }
 
-                    .table-condensed & {
-                        padding-top: 3px;
-                        padding-bottom: 3px;
+                    &.cell-bolded {
+                        font-weight: bold;
+                    }
+
+                    &.cell-radio {
+                        padding: 0;
+                        text-align: center;
+
+                        label {
+                            display: block;
+                            margin: 0;
+                            padding: $table-cell-padding;
+                            cursor: pointer;
+
+                            &:hover {
+                                background: fade-out($skincolor, 0.9);
+                            }
+
+                            input {
+                                margin: 0;
+                            }
+                        }
                     }
                 }
 
-                &.cell-bolded {
-                    font-weight: bold;
-                }
+                &.nested-table-row {
+                    > td {
+                        padding: 0;
 
-                &.cell-radio {
-                    padding: 0;
-                    text-align: center;
-
-                    label {
-                        display: block;
-                        margin: 0;
-                        padding: $table-cell-padding;
-                        cursor: pointer;
-
-                        &:hover {
-                            background: fade-out($skincolor, 0.9);
-                        }
-
-                        input {
-                            margin: 0;
+                        > .table {
+                            td:first-child {
+                                padding-left: 30px;
+                            }
                         }
                     }
                 }

@@ -1,5 +1,14 @@
 import Ember from 'ember';
 
+const {
+    get,
+    on,
+    observer,
+    computed,
+    computed: { reads, alias },
+    run: { scheduleOnce }
+} = Ember;
+
 export default Ember.Component.extend({
     tagName: 'li',
     classNames: ['tab-item'],
@@ -11,63 +20,63 @@ export default Ember.Component.extend({
         'aria-expanded'
     ],
 
-    tabView: Ember.computed.alias('parentView.parentView'),
-    activationEvent: Ember.computed.alias('tabView.tabActivationEvent'),
+    tabView: reads('parentView.parentView'),
+    activationEvent: alias('tabView.tabActivationEvent'),
 
     role: 'tab',
-    'aria-controls': Ember.computed.alias('assocTabPanel.elementId'),
-    'aria-expanded': Ember.computed.alias('aria-selected'),
-    'aria-selected': Ember.computed('active', function() {
-        return this.get('active') ? 'true' : 'false';
+    'aria-controls': alias('assocTabPanel.elementId'),
+    'aria-expanded': alias('aria-selected'),
+    'aria-selected': computed('active', function() {
+        return get(this, 'active') ? 'true' : 'false';
     }),
 
-    index: Ember.computed('tabView.tabItems.[]', function() {
-        return this.get('tabView.tabItems').indexOf(this);
+    index: computed('tabView.tabItems.[]', function() {
+        return get(this, 'tabView.tabItems').indexOf(this);
     }),
 
-    assocTabPanel: Ember.computed('index', 'tabView.tabPanels.[]', function() {
-        return this.get('tabView.tabPanels').objectAt(this.get('index'));
+    assocTabPanel: computed('index', 'tabView.tabPanels.[]', function() {
+        return get(this, 'tabView.tabPanels').objectAt(get(this, 'index'));
     }),
 
-    onInsertElement: Ember.on('didInsertElement', function() {
-        Ember.run.scheduleOnce('afterRender', this, function() {
-            this.get('tabView').registerTabItem(this);
+    onInsertElement: on('didInsertElement', function() {
+        scheduleOnce('afterRender', this, function() {
+            get(this, 'tabView').registerTabItem(this);
         })
     }),
 
-    onDestroyElement: Ember.on('willDestroyElement', function() {
-        this.get('tabView').deregisterTabItem(this);
+    onDestroyElement: on('willDestroyElement', function() {
+        get(this, 'tabView').deregisterTabItem(this);
     }),
 
-    onActiveTabIndexChange: Ember.observer('tabView.activeTabIndex', function() {
-        let activeTabItem = this.get('tabView.activeTabItem');
+    onActiveTabIndexChange: observer('tabView.activeTabIndex', function() {
+        let activeTabItem = get(this, 'tabView.activeTabItem');
 
         if(activeTabItem === this) {
             return;
         }
 
-        if(this.get('index') === this.get('activeTabIndex')) {
+        if(get(this, 'index') === get(this, 'activeTabIndex')) {
             this.activate();
         }
     }),
 
-    active: Ember.computed('tabView.activeTabItem', function() {
-        return this.get('tabView.activeTabItem') === this;
+    active: computed('tabView.activeTabItem', function() {
+        return get(this, 'tabView.activeTabItem') === this;
     }),
 
     activate() {
-        this.get('tabView').activateTab(this);
+        get(this, 'tabView').activateTab(this);
     },
 
-    onClick: Ember.on('click', function() {
-        const evt = this.get('activationEvent');
+    onClick: on('click', function() {
+        const evt = get(this, 'activationEvent');
         if(evt === 'click' || evt === 'all') {
             this.activate();
         }
     }),
 
-    onMouseEnter: Ember.on('mouseEnter', function() {
-        const evt = this.get('activationEvent');
+    onMouseEnter: on('mouseEnter', function() {
+        const evt = get(this, 'activationEvent');
         if(evt === 'mouseEnter' || evt === 'all') {
             this.activate();
         }

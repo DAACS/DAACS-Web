@@ -1,0 +1,38 @@
+.sortable {
+    &-drag-handle {
+        display: inline-block;
+        width: 20px;
+        vertical-align: middle;
+        text-align: center;
+        color: #dedede;
+        cursor: move;
+        cursor: hand;
+        cursor: grab;
+        user-select: none;
+
+        &-multiline {
+            display: block;
+            float: left;
+            line-height: 1.6;
+        }
+
+        i.fa {
+            width: 12px;
+            font-size: 18px;
+            line-height: 16px;
+            overflow: hidden;
+            text-overflow: clip;
+        }
+
+        .dnd-disabled & {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    }
+
+    &-drag-label {
+        display: block;
+        margin-left: 22px;
+    }
+}

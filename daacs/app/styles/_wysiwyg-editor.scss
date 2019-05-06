@@ -1,0 +1,11 @@
+.wysiwyg-editor {
+    .jodit_container > .jodit_toolbar {
+        z-index: auto;
+    }
+}
+
+.jodit_fullsize_box {
+    .navbar-static-top {
+        z-index: 1;
+    }
+}

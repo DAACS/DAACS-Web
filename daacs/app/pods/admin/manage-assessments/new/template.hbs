@@ -1,0 +1,85 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern">
+        <div class="container text-center">
+            <h1>{{t "admin.createAssessment.label"}}</h1>
+        </div>
+    </div>
+    <div class="space40"></div>
+    {{#form-validator
+        errors=errors
+        submit=(action "save")
+        validation-failure=(action "submitError")
+        onInit=(action "registerValidator")
+        as |formSubmit parentFormValidator|
+    }}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="margin-btm-20">
+                        {{#affixed-block tagName="ul" class="nav nav-pills nav-boxed nav-stacked"}}
+                            {{#active-link-container}}
+                                {{#active-link "admin.manage-assessments.new.general"}}
+                                    {{#if (and submitValidationFailed generalHasErrors)}}
+                                        {{fa-icon icon="exclamation-circle" size="lg" class="pull-right"}}
+                                    {{/if}}
+                                    {{t "admin.editAssessment.general.label"}}
+                                {{/active-link}}
+                            {{/active-link-container}}
+                            {{#active-link-container}}
+                                {{#active-link "admin.manage-assessments.new.content"}}
+                                    {{#if (and submitValidationFailed contentHasErrors)}}
+                                        {{fa-icon icon="exclamation-circle" size="lg" class="pull-right"}}
+                                    {{/if}}
+                                    {{t "admin.editAssessment.content.label"}}
+                                {{/active-link}}
+                            {{/active-link-container}}
+                            {{#active-link-container}}
+                                {{#active-link "admin.manage-assessments.new.rubric"}}
+                                    {{#if (and submitValidationFailed rubricHasErrors)}}
+                                        {{fa-icon icon="exclamation-circle" size="lg" class="pull-right"}}
+                                    {{/if}}
+                                    {{t "admin.editAssessment.rubric.label"}}
+                                {{/active-link}}
+                            {{/active-link-container}}
+                            {{#active-link-container}}
+                                {{#active-link "admin.manage-assessments.new.domains"}}
+                                    {{#if (and submitValidationFailed domainsHasErrors)}}
+                                        {{fa-icon icon="exclamation-circle" size="lg" class="pull-right"}}
+                                    {{/if}}
+                                    {{t "admin.editAssessment.domains.label"}}
+                                {{/active-link}}
+                            {{/active-link-container}}
+                            {{#active-link-container}}
+                                {{#active-link "admin.manage-assessments.new.questions"}}
+                                    {{#if (and submitValidationFailed questionsHasErrors)}}
+                                        {{fa-icon icon="exclamation-circle" size="lg" class="pull-right"}}
+                                    {{/if}}
+                                    {{t "admin.editAssessment.questions.label"}}
+                                {{/active-link}}
+                            {{/active-link-container}}
+                            <li>
+                                {{#link-to "admin.manage-assessments"}}
+                                    {{fa-icon icon="arrow-left" fixedWidth=true}}
+                                    {{t "admin.assessmentDetails.back"}}
+                                {{/link-to}}
+                            </li>
+                        {{/affixed-block}}
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    {{outlet}}
+                    <div class="space40"></div>
+                    <div class="text-right">
+                        {{#link-to "admin.manage-assessments" class="btn btn-lg btn-link"}}
+                            &laquo; {{t "admin.assessmentDetails.back"}}
+                        {{/link-to}}
+                        {{#loading-button clicked=formSubmit class="btn-border-theme btn-lg full-size"}}
+                            {{t "admin.editAssessment.save"}}
+                        {{/loading-button}}
+                    </div>
+                    <div class="space40"></div>
+                </div>
+            </div>
+        </div>
+    {{/form-validator}}
+{{/page-section}}

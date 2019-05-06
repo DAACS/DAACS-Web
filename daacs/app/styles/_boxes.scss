@@ -196,6 +196,10 @@ button.list-group-item-heading {
             border-radius: 0;
             border: 1px solid $form-input-border-color;
             margin-bottom: -3px;
+
+            .fa.pull-right {
+                margin-top: 5px;
+            }
         }
 
         > .nav-static-content {

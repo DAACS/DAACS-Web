@@ -8,7 +8,8 @@ moduleForModel('assessment-summary', 'Unit | Serializer | assessment summary', {
     'transform:fragment',
     'transform:fragment-array',
     'model:assessment-prerequisite',
-    'model:user-assessment-summary'
+    'model:user-assessment-summary',
+    'model:assessment-category-group'
  ]
 });
 

@@ -17,5 +17,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{edit-assessment-domain domain=domain parent-form-validator=parent-form-validator}}`);
 
-  assert.equal(this.$().text().trim().replace(/\s+/g, ' '), 'General Information HTML content that is displayed at the top of the domain results page, no matter what score was given.');
+  assert.equal(this.$().text().trim().replace(/\s+/g, ' '), 'Missing translation: admin.editAssessment.domain.info Missing translation: admin.editAssessment.domain.description');
 });

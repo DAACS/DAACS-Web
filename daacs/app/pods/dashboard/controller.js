@@ -3,6 +3,7 @@ import Config from 'daacs/config/environment';
 
 const {
     computed,
+    isEmpty,
     inject: { service }
 } = Ember;
 
@@ -10,12 +11,12 @@ export default Ember.Controller.extend({
     fastboot: service(),
     categoryOrder: Config.dashboardCategoryOrder,
 
-    sortedSummaries: computed('model.@each.id', 'categoryOrder.[]', function() {
+    sortedSummaries: computed('model.@each.assessmentCategory', 'categoryOrder.[]', function() {
         const summaries = Ember.A();
         this.get('categoryOrder').forEach((category) => {
-            let summary = this.get('model').findBy('id', category);
-            if(summary) {
-                summaries.pushObject(summary);
+            let catSummaries = this.get('model').filterBy('assessmentCategory', category);
+            if(!isEmpty(catSummaries)) {
+                summaries.pushObjects(catSummaries);
             }
         });
 

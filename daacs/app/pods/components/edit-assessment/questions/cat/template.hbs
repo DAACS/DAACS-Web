@@ -1,0 +1,102 @@
+<div class="text-right margin-btm-20">
+    <a href="" {{action "importQuestions"}}>
+        {{fa-icon icon="upload"}}
+        {{t "admin.editAssessment.questions.import.action"}}
+    </a>
+</div>
+{{#tab-view as |tabs|}}
+    {{#tabs.list class="nav nav-tabs"}}
+        {{#each model.itemGroupTransitions as |groupTransition|}}
+            {{tabs.item text=groupTransition.transitionType.label}}
+        {{/each}}
+    {{/tabs.list}}
+    {{#tabs.panels class="widget-tab-content"}}
+        {{#each model.itemGroupTransitions as |groupTransition|}}
+            {{#tabs.panel}}
+                {{edit-assessment/questions/cat/transitions groupTransition=groupTransition}}
+                {{#sortable-group onChange=(action "reorderGroups") as |group|}}
+                    {{#each (filter-by "difficulty" groupTransition.groupDifficulty model.itemGroups) as |itemGroup itemGroupIndex|}}
+                        {{#sortable-item model=itemGroup group=group handle=".sortable-drag-handle-group"}}
+                            <div class="margin-btm-20">
+                                <div class="ember-light-table sortable-table margin-btm-10">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <span class="sortable-drag-handle sortable-drag-handle-group">{{fa-icon icon="bars"}}</span>
+                                                    {{t "admin.editAssessment.questions.cat.group.label" num=(inc itemGroupIndex)}}
+                                                </th>
+                                                <th class="cell-valign-middle cell-slim text-center" width="50">
+                                                    {{#confirmation-save-button
+                                                        submit=(action "removeGroup" itemGroup)
+                                                        confirmationText=(t "admin.editAssessment.questions.cat.group.remove.confirm")
+                                                        confirmButtonText=(t "admin.editAssessment.questions.cat.group.remove.label")
+                                                        cancelButtonText=(t "admin.editAssessment.questions.cat.group.remove.cancel")
+                                                        placement="left"
+                                                        class="btn btn-table-action btn-border-skin"
+                                                    }}
+                                                        {{fa-icon icon="trash-o"}}
+                                                    {{/confirmation-save-button}}
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        {{#sortable-group tagName="tbody" onChange=(action "reorderQuestions" itemGroup) as |questionGroup|}}
+                                            {{#each itemGroup.items as |item itemIndex|}}
+                                                {{#sortable-item tagName="tr" model=item group=questionGroup handle=".sortable-drag-handle-question"}}
+                                                    <td class="cell-valign-middle">
+                                                        <span class="sortable-drag-handle sortable-drag-handle-multiline sortable-drag-handle-question">{{fa-icon icon="bars"}}</span>
+                                                        <a href="" class="sortable-drag-label" {{action "openQuestionDetails" item itemGroup}}>
+                                                            {{#if item.questionNoImages}}
+                                                                {{mathjax-content content=item.questionNoImages}}
+                                                            {{else}}
+                                                                {{t "admin.editAssessment.questions.questionNum" num=(inc itemIndex)}}
+                                                                <span class="font-italic">({{t "admin.editAssessment.questions.noText"}})</span>
+                                                            {{/if}}
+                                                        </a>
+                                                    </td>
+                                                    <td class="cell-valign-middle cell-slim text-center" width="50">
+                                                        {{#confirmation-save-button
+                                                            submit=(action "removeQuestion" itemGroup item)
+                                                            confirmationText=(t "admin.editAssessment.questions.remove.confirm")
+                                                            confirmButtonText=(t "admin.editAssessment.questions.remove.label")
+                                                            cancelButtonText=(t "admin.editAssessment.questions.remove.cancel")
+                                                            placement="left"
+                                                            class="btn btn-table-action btn-border-skin"
+                                                        }}
+                                                            {{fa-icon icon="trash-o"}}
+                                                        {{/confirmation-save-button}}
+                                                    </td>
+                                                {{/sortable-item}}
+                                            {{else}}
+                                                <tr>
+                                                    <td class="well" colspan="2">
+                                                        <div class="text-center text-muted pad-top-20 pad-btm-20">{{t "admin.editAssessment.questions.none"}}</div>
+                                                    </td>
+                                                </tr>
+                                            {{/each}}
+                                        {{/sortable-group}}
+                                    </table>
+                                </div>
+                                <a href="" {{action "addQuestion" itemGroup}}>
+                                    {{fa-icon icon="plus-circle"}}
+                                    {{t "admin.editAssessment.questions.add"}}
+                                </a>
+                            </div>
+                            <hr>
+                        {{/sortable-item}}
+                    {{else}}
+                        <div class="well text-center text-muted pad-top-20 pad-btm-20">
+                            {{t "admin.editAssessment.questions.cat.group.none"}}
+                        </div>
+                    {{/each}}
+                {{/sortable-group}}
+                <div>
+                    <a href="" {{action "addGroup" groupTransition.groupDifficulty}}>
+                        {{fa-icon icon="plus-circle"}}
+                        {{t "admin.editAssessment.questions.cat.group.add"}}
+                    </a>
+                </div>
+            {{/tabs.panel}}
+        {{/each}}
+    {{/tabs.panels}}
+{{/tab-view}}

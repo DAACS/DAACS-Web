@@ -1,0 +1,80 @@
+{{#modal-dialog title=(t (if model.isNew "admin.category.add" "admin.category.edit")) cancel="cancel"}}
+    {{#form-validator submit=(action "save") errors=errors as |formSubmit|}}
+        <div class="modal-body">
+            {{server-errors errors=model.errors}}
+            {{#input-validator target="model.label" text=(t "admin.category.groupLabel")}}
+                {{input
+                    value=model.label
+                    type="text"
+                    class="form-control"
+                    maxlength=128
+                }}
+                <span class="small help-block text-muted">{{t "admin.category.labelInstructions"}}</span>
+            {{/input-validator}}
+            {{#input-validator target="model.id" text=(t "admin.category.id")}}
+                {{input
+                    value=model.id
+                    type="text"
+                    class="form-control"
+                    maxlength=128
+                    disabled=(not model.isNew)
+                    focus-out=(action "onIdBlur")
+                }}
+            {{/input-validator}}
+            {{#input-validator target="model.assessmentCategory" text=(t "admin.category.type")}}
+                <select onchange={{action (mut model.assessmentCategory) value="target.value"}} class="form-control">
+                    <option value="">{{t "admin.editAssessment.general.selectCategory"}}</option>
+                    {{#each assessmentCategories as |cat|}}
+                        <option value={{cat.value}} selected={{eq model.assessmentCategory cat.value}}>
+                            {{cat.label}}
+                        </option>
+                    {{/each}}
+                </select>
+            {{/input-validator}}
+            <div class="row">
+                <div class="col-xs-6">
+                    {{#input-validator target="model.samlField" text=(t "admin.category.samlField")}}
+                        {{input
+                            value=model.samlField
+                            type="text"
+                            class="form-control"
+                            maxlength=128
+                        }}
+                    {{/input-validator}}
+                </div>
+                <div class="col-xs-6">
+                    {{#input-validator target="model.samlValue" text=(t "admin.category.samlValue")}}
+                        {{input
+                            value=model.samlValue
+                            type="text"
+                            class="form-control"
+                            maxlength=128
+                        }}
+                    {{/input-validator}}
+                </div>
+            </div>
+            <span class="small help-block text-muted">{{t "admin.category.samlInstructions"}}</span>
+        </div>
+        <div class="modal-footer">
+            {{#unless model.isNew}}
+                {{#confirmation-save-button
+                    submit=(action "remove")
+                    type="button"
+                    confirmationText=(t "admin.category.removeConfirm")
+                    confirmButtonText=(t "admin.category.remove")
+                    cancelButtonText=(t "admin.category.cancel")
+                    placement="right"
+                    class="btn btn-danger pull-left"
+                }}
+                    {{t "admin.category.remove"}}
+                {{/confirmation-save-button}}
+            {{/unless}}
+            <button type="button" class="btn btn-default" {{action "cancel"}}>
+                {{t "dialog.close"}}
+            </button>
+            {{#loading-button clicked=formSubmit class="btn-primary" type="submit"}}
+                {{t "admin.category.save"}}
+            {{/loading-button}}
+        </div>
+    {{/form-validator}}
+{{/modal-dialog}}

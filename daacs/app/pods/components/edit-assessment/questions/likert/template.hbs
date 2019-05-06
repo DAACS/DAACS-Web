@@ -1,0 +1,90 @@
+<div class="text-right margin-btm-20">
+    <a href="" {{action "importQuestions"}}>
+        {{fa-icon icon="upload"}}
+        {{t "admin.editAssessment.questions.import.action"}}
+    </a>
+</div>
+{{#sortable-group onChange=(action "reorderGroups") as |group|}}
+    {{#each model.itemGroups as |itemGroup itemGroupIndex|}}
+        {{#sortable-item model=itemGroup group=group handle=".sortable-drag-handle-group"}}
+            <div class="margin-btm-20">
+                <div class="ember-light-table sortable-table margin-btm-10">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span class="sortable-drag-handle sortable-drag-handle-group">{{fa-icon icon="bars"}}</span>
+                                    {{t "admin.editAssessment.questions.likert.group.label" num=(inc itemGroupIndex)}}
+                                    <span class="font-weight-normal">
+                                        (<a href="" {{action "openGroupDetails" itemGroup}}>{{t "admin.editAssessment.questions.answers.edit"}}</a>)
+                                    </span>
+                                </th>
+                                {{#each itemGroup.possibleItemAnswers as |answer|}}
+                                    <th width="75"><small class="font-weight-normal">{{answer.content}}</small></th>
+                                {{/each}}
+                                <th class="cell-valign-middle cell-slim text-center" width="50">
+                                    {{#confirmation-save-button
+                                        submit=(action "removeGroup" itemGroup)
+                                        confirmationText=(t "admin.editAssessment.questions.likert.group.remove.confirm")
+                                        confirmButtonText=(t "admin.editAssessment.questions.likert.group.remove.label")
+                                        cancelButtonText=(t "admin.editAssessment.questions.likert.group.remove.cancel")
+                                        placement="left"
+                                        class="btn btn-table-action btn-border-skin"
+                                    }}
+                                        {{fa-icon icon="trash-o"}}
+                                    {{/confirmation-save-button}}
+                                </th>
+                            </tr>
+                        </thead>
+                        {{#sortable-group tagName="tbody" onChange=(action "reorderQuestions" itemGroup) as |questionGroup|}}
+                            {{#each itemGroup.items as |item|}}
+                                {{#sortable-item tagName="tr" model=item group=questionGroup handle=".sortable-drag-handle-question"}}
+                                    <td class="cell-valign-middle">
+                                        <span class="sortable-drag-handle sortable-drag-handle-multiline sortable-drag-handle-question">{{fa-icon icon="bars"}}</span>
+                                        <a href="" class="sortable-drag-label" {{action "openQuestionDetails" item itemGroup}}>{{item.question}}</a>
+                                    </td>
+                                    {{#each item.possibleItemAnswers as |answer|}}
+                                        <td width="75" class="cell-valign-middle">{{answer.score}}</td>
+                                    {{/each}}
+                                    <td class="cell-valign-middle cell-slim text-center" width="50">
+                                        {{#confirmation-save-button
+                                            submit=(action "removeQuestion" itemGroup item)
+                                            confirmationText=(t "admin.editAssessment.questions.remove.confirm")
+                                            confirmButtonText=(t "admin.editAssessment.questions.remove.label")
+                                            cancelButtonText=(t "admin.editAssessment.questions.remove.cancel")
+                                            placement="left"
+                                            class="btn btn-table-action btn-border-skin"
+                                        }}
+                                            {{fa-icon icon="trash-o"}}
+                                        {{/confirmation-save-button}}
+                                    </td>
+                                {{/sortable-item}}
+                            {{else}}
+                                <tr>
+                                    <td class="well" colspan={{inc 2 itemGroup.possibleItemAnswers.length}}>
+                                        <div class="text-center text-muted pad-top-20 pad-btm-20">{{t "admin.editAssessment.questions.none"}}</div>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        {{/sortable-group}}
+                    </table>
+                </div>
+                <a href="" {{action "addQuestion" itemGroup}}>
+                    {{fa-icon icon="plus-circle"}}
+                    {{t "admin.editAssessment.questions.add"}}
+                </a>
+            </div>
+            <hr>
+        {{/sortable-item}}
+    {{else}}
+        <div class="well text-center text-muted pad-top-20 pad-btm-20">
+            {{t "admin.editAssessment.questions.likert.group.none"}}
+        </div>
+    {{/each}}
+{{/sortable-group}}
+<div>
+    <a href="" {{action "addGroup"}}>
+        {{fa-icon icon="plus-circle"}}
+        {{t "admin.editAssessment.questions.likert.group.add"}}
+    </a>
+</div>

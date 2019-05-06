@@ -20,6 +20,22 @@ select.form-control {
     height: 45px;
 }
 
+@include non-mobile {
+    .form-inline {
+        .form-control-xs {
+            width: 60px;
+        }
+
+        .form-control-sm {
+            width: 100px;
+        }
+
+        .form-group-double-line-offset {
+            margin-top: -28px;
+        }
+    }
+}
+
 input[type="radio"],
 input[type="checkbox"] {
     //tweak radio/checkbox positioning to accound for template's custom line-height

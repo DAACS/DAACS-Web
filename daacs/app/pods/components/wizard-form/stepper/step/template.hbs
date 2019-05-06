@@ -1,0 +1,15 @@
+<div class="wizard-stepper-step-badge-container">
+    <div class="wizard-stepper-step-badge">
+        {{#if isComplete}}
+            {{fa-icon icon="check"}}
+        {{else}}
+            {{inc index}}
+        {{/if}}
+    </div>
+    <div class="wizard-stepper-step-connector">
+        <div class="wizard-stepper-step-connector-progress"></div>
+    </div>
+</div>
+<div class="wizard-stepper-step-label-container">
+    <div class="wizard-stepper-step-label">{{label}}</div>
+</div>

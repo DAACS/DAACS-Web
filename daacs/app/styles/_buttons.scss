@@ -17,6 +17,11 @@ Buttons style
 
 .btn-lg {
     padding: 12px 25px;
+
+    .input-group-btn & {
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
 }
 
 .btn-xl {

@@ -8,41 +8,65 @@ import format from 'ember-moment/computeds/format';
 import { translationMacro as t } from 'ember-i18n';
 import lowerCase from 'daacs/macros/lower-case';
 import dasherized from 'daacs/macros/dasherized';
+import { SCORING_MANUAL, SCORING_LIGHTSIDE } from 'daacs/constants/assessment/scoring-types';
+import AssessmentTypes, { TYPE_MULTIPLE_CHOICE, TYPE_CAT, TYPE_LIKERT, TYPE_WRITING_PROMPT } from 'daacs/constants/assessment/types';
 
 const {
+    get,
+    computed,
     computed: {
         alias,
-        equal
+        equal,
+        and,
+        or
     }
 } = Ember;
 
 export default Model.extend({
+    //attributes
     assessmentCategory: attr('string'),
     assessmentType: attr('string'),
-    content: fragment('assessment-content-map'),
     createdDate: attr('date'),
-    domains: hasMany('assessment-domain'),
     domainLabels: attr(),
     enabled: attr('boolean'),
-    itemGroupTransitions: attr(),
-    itemGroups: hasMany('user-assessment-question-group'),
+    isValid: attr('boolean'),
     label: attr('string'),
-    lightSideConfig: fragment('lightside-config'),
     maxTakenGroups: attr('number'),
     minTakenGroups: attr('number'),
     numQuestionsPerGroup: attr('number'),
-    prerequisites: fragmentArray('assessment-prerequisite'),
-    overallRubric: fragment('assessment-rubric'),
     scoringType: attr('string'),
     startingDifficulty: attr('string'),
+
+    //relationships
+    assessmentCategoryGroup: belongsTo('assessment-category-group'),
+    content: fragment('assessment-content-map'),
+    domains: hasMany('assessment-domain'),
+    itemGroups: hasMany('user-assessment-question-group'),
+    itemGroupTransitions: fragmentArray('item-group-transition'),
+    lightSideConfig: fragment('lightside-config'),
+    overallRubric: fragment('assessment-rubric'),
+    prerequisites: fragmentArray('assessment-prerequisite'),
     writingPrompt: belongsTo('user-assessment-writing-sample'),
-    numUserCompletionsText: t('admin.numCompletions', {count: 'numCompletions'}),
-    isMultipleChoice: equal('assessmentType', 'CAT'),
-    isLikert: equal('assessmentType', 'LIKERT'),
-    isWritingPrompt: equal('assessmentType', 'WRITING_PROMPT'),
-    isManuallyScored: equal('scoringType', 'MANUAL'),
-    rowIsActive: alias('enabled'),
+
+    //computeds
     createdDateFormatted: format(momentComputed('createdDate'), 'MM/DD/YYYY h:mm A'),
     dasherizedCategory: dasherized('assessmentCategory'),
-    lowerCaseCategory: lowerCase('assessmentCategory')
+    isCat: equal('assessmentType', get(TYPE_CAT, 'value')),
+    isLightSideScored: equal('scoringType', get(SCORING_LIGHTSIDE, 'value')),
+    isLikert: equal('assessmentType', get(TYPE_LIKERT, 'value')),
+    isManuallyScored: equal('scoringType', get(SCORING_MANUAL, 'value')),
+    isMultipleChoice: equal('assessmentType', get(TYPE_MULTIPLE_CHOICE, 'value')),
+    isMultipleChoiceLike: or('isMultipleChoice', 'isCat'),
+    isWritingPrompt: equal('assessmentType', get(TYPE_WRITING_PROMPT, 'value')),
+    isWritingAutoGrading: and('isWritingPrompt', 'isLightSideScored'),
+    largestItemGroup: computed('itemGroups.@each.items.length', function() {
+        const sortedGroups = get(this, 'itemGroups').toArray().sortBy('items.length');
+        return get(sortedGroups, 'lastObject');
+    }),
+    lowerCaseCategory: lowerCase('assessmentCategory'),
+    numUserCompletionsText: t('admin.numCompletions', {count: 'numCompletions'}),
+    rowIsActive: alias('enabled'),
+    typeInfo: computed('assessmentType', function() {
+        return AssessmentTypes.findBy('value', get(this, 'assessmentType'));
+    })
 });

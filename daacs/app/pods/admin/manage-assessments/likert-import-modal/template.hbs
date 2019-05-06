@@ -1,0 +1,110 @@
+{{#modal-dialog
+    title=(t "admin.editAssessment.questions.import.label")
+    cancel="cancel"
+    size="modal-lg"
+}}
+    <div class="modal-body">
+        {{#tab-view activeTabIndex=activeStepIndex tabActivationEvent=null class="wizard-form"}}
+            {{#wizard-form/stepper}}
+                {{wizard-form/stepper/step
+                    index=0
+                    label=(t "admin.editAssessment.questions.import.selectAssessment")
+                    isComplete=(gt activeStepIndex 0)
+                }}
+                {{wizard-form/stepper/step
+                    index=1
+                    label=(t "admin.editAssessment.questions.import.selectQuestions")
+                    isComplete=(gt activeStepIndex 1)
+                }}
+            {{/wizard-form/stepper}}
+            {{#tab-panels}}
+                {{#tab-panel}}
+                    {{#if isLoading}}
+                        {{loading-page}}
+                    {{else}}
+                        <p>{{t "admin.editAssessment.questions.import.likertAssessmentInstructions"}}</p>
+                        {{#each likertAssessments as |assessment|}}
+                            <div class="radio">
+                                <label>
+                                    {{radio-button
+                                        name="import-questions-assessment"
+                                        value=assessment.id
+                                        aria-label=assessment.label
+                                        groupValue=selectedAssessment.id
+                                        onChange=(action "selectAssessment" assessment)
+                                    }}
+                                    {{assessment.label}}
+                                    <span class="text-muted">({{moment-format assessment.createdDate "M/D/YY"}})</span>
+                                </label>
+                            </div>
+                        {{else}}
+                            <div class="well text-center text-muted pad-top-20 pad-btm-20">{{t "admin.noAssessmentsFound"}}</div>
+                        {{/each}}
+                    {{/if}}
+                {{/tab-panel}}
+                {{#tab-panel}}
+                    <p>{{t "admin.editAssessment.questions.import.questionsInstructions" label=selectedAssessment.label date=(moment-format selectedAssessment.createdDate "M/D/YY")}}</p>
+                    {{#each selectedAssessment.itemGroups as |itemGroup itemGroupIndex|}}
+                        <div class="margin-btm-20">
+                            <div class="ember-light-table sortable-table margin-btm-10">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="checkbox-inline">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={{contains itemGroup selectedGroups}}
+                                                        onclick={{action "toggleGroup" itemGroup}}
+                                                    >
+                                                    <strong>{{t "admin.editAssessment.questions.likert.group.label" num=(inc itemGroupIndex)}}</strong>
+                                                </label>
+                                            </th>
+                                            {{#each itemGroup.possibleItemAnswers as |answer|}}
+                                                <th width="75"><small class="font-weight-normal">{{answer.content}}</small></th>
+                                            {{/each}}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each itemGroup.items as |item|}}
+                                            <tr>
+                                                <td class="cell-valign-middle">
+                                                    {{item.question}}
+                                                </td>
+                                                {{#each item.possibleItemAnswers as |answer|}}
+                                                    <td width="75" class="cell-valign-middle">{{answer.score}}</td>
+                                                {{/each}}
+                                            </tr>
+                                        {{else}}
+                                            <tr>
+                                                <td class="well" colspan={{inc itemGroup.possibleItemAnswers.length}}>
+                                                    <div class="text-center text-muted pad-top-20 pad-btm-20">{{t "admin.editAssessment.questions.none"}}</div>
+                                                </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {{#if (not-eq itemGroup selectedAssessment.itemGroups.lastObject)}}
+                            <hr>
+                        {{/if}}
+                    {{/each}}
+                {{/tab-panel}}
+            {{/tab-panels}}
+        {{/tab-view}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" {{action "cancel"}}>
+            {{t "dialog.cancel"}}
+        </button>
+        {{#unless isFirstStep}}
+            <button type="button" class="btn btn-default" {{action "previousStep"}}>
+                {{t "dialog.back"}}
+            </button>
+        {{/unless}}
+        <button type="button" class="btn btn-primary" disabled={{stepIsInvalid}} {{action "nextStep"}}>
+            {{t (if isLastStep "dialog.finish" "dialog.next")}}
+        </button>
+    </div>
+{{/modal-dialog}}

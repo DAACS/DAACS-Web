@@ -1,57 +1,21 @@
 {{#page-section fullWidth=true}}
-    <div class="hidden-md hidden-lg">
-        {{!-- mobile/small screen view - stacked --}}
-        {{#each model as |assessmentCategory|}}
-            <div class="widget-content-strip">
-                <div class="container">
-                        {{assessment-widget
-                            assessmentId=assessmentCategory.enabledAssessmentSummary.id
-                            category=assessmentCategory.enabledAssessmentSummary.dasherizedCategory
-                            lowerCaseCategory=assessmentCategory.enabledAssessmentSummary.lowerCaseCategory
-                            label=assessmentCategory.enabledAssessmentSummary.label
-                            hideProgress=assessmentCategory.enabledAssessmentSummary.isWritingPrompt
-                            canStart=assessmentCategory.enabledAssessmentSummary.userPassesPrerequisites
-                            disabledReasons=assessmentCategory.assessmentCategory.prerequisitesFailReasons
-                            isInProgress=assessmentCategory.latestUserAssessmentSummary.isInProgress
-                            isFinished=assessmentCategory.latestUserAssessmentSummary.isFinished
-                            isGraded=assessmentCategory.latestUserAssessmentSummary.isGraded
-                            percentComplete=assessmentCategory.latestUserAssessmentSummary.progressPercentage
-                            score=assessmentCategory.latestUserAssessmentSummary.overallScore
-                            takenDateISO=assessmentCategory.latestUserAssessmentSummary.takenDateISO
-                            userHasTakenCategory=assessmentCategory.userHasTakenCategory
-                        }}
-                    {{#if assessmentCategory.enabledAssessmentSummary.showPrerequisiteFailReasons}}
-                        {{#alert-message type="warning" closeable=false}}
-                            <h4>{{fa-icon icon="lock"}} {{t "assessment.prerequisites"}}</h4>
-                            {{#each assessmentSummary.prerequisitesFailReasons as |reason|}}
-                                <div>{{reason}}</div>
-                            {{/each}}
-                        {{/alert-message}}
-                    {{/if}}
-                    {{#track-link-clicks}}
-                        {{render-html assessmentCategory.enabledAssessmentSummary.content.content.landing}}
-                    {{/track-link-clicks}}
-                </div>
-            </div>
-        {{/each}}
-    </div>
-
-    {{!- desktop/large screen view - tabs --}}
-    <div class="hidden-xs hidden-sm container">
-        {{#each assessmentRows as |row|}}
-            {{#tab-view tabActivationEvent="all"}}
-                {{#tab-list class="row widget-row" tagName="div"}}
-                    {{#each row as |assessmentCategory|}}
-                        {{#tab-item tagName="div" class="col-sm-3"}}
+    {{#if fastboot.isFastBoot}}
+        {{loading-page}}
+    {{else}}
+        <div class="hidden-md hidden-lg">
+            {{!-- mobile/small screen view - stacked --}}
+            {{#each model as |assessmentCategory|}}
+                <div class="widget-content-strip">
+                    <div class="container">
                             {{assessment-widget
-                                class="widget-tab"
                                 assessmentId=assessmentCategory.enabledAssessmentSummary.id
                                 category=assessmentCategory.enabledAssessmentSummary.dasherizedCategory
                                 lowerCaseCategory=assessmentCategory.enabledAssessmentSummary.lowerCaseCategory
+                                categoryGroup=assessmentCategory.enabledAssessmentSummary.assessmentCategoryGroup
                                 label=assessmentCategory.enabledAssessmentSummary.label
                                 hideProgress=assessmentCategory.enabledAssessmentSummary.isWritingPrompt
                                 canStart=assessmentCategory.enabledAssessmentSummary.userPassesPrerequisites
-                                disabledReasons=assessmentCategory.enabledAssessmentSummary.prerequisitesFailReasons
+                                disabledReasons=assessmentCategory.assessmentCategory.prerequisitesFailReasons
                                 isInProgress=assessmentCategory.latestUserAssessmentSummary.isInProgress
                                 isFinished=assessmentCategory.latestUserAssessmentSummary.isFinished
                                 isGraded=assessmentCategory.latestUserAssessmentSummary.isGraded
@@ -60,13 +24,51 @@
                                 takenDateISO=assessmentCategory.latestUserAssessmentSummary.takenDateISO
                                 userHasTakenCategory=assessmentCategory.userHasTakenCategory
                             }}
-                        {{/tab-item}}
-                    {{/each}}
-                {{/tab-list}}
-                {{#tab-panels class="widget-tab-content"}}
-                    {{#if fastboot.isFastBoot}}
-                        {{loading-page}}
-                    {{else}}
+                        {{#if assessmentCategory.enabledAssessmentSummary.showPrerequisiteFailReasons}}
+                            {{#alert-message type="warning" closeable=false}}
+                                <h4>{{fa-icon icon="lock"}} {{t "assessment.prerequisites"}}</h4>
+                                {{#each assessmentSummary.prerequisitesFailReasons as |reason|}}
+                                    <div>{{reason}}</div>
+                                {{/each}}
+                            {{/alert-message}}
+                        {{/if}}
+                        {{#track-link-clicks}}
+                            {{render-html assessmentCategory.enabledAssessmentSummary.content.content.landing}}
+                        {{/track-link-clicks}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+
+        {{!- desktop/large screen view - tabs --}}
+        <div class="hidden-xs hidden-sm container">
+            {{#each assessmentRows as |row|}}
+                {{#tab-view tabActivationEvent="all"}}
+                    {{#tab-list class="row widget-row" tagName="div"}}
+                        {{#each row as |assessmentCategory|}}
+                            {{#tab-item tagName="div" class="col-sm-3"}}
+                                {{assessment-widget
+                                    class="widget-tab"
+                                    assessmentId=assessmentCategory.enabledAssessmentSummary.id
+                                    category=assessmentCategory.enabledAssessmentSummary.dasherizedCategory
+                                    lowerCaseCategory=assessmentCategory.enabledAssessmentSummary.lowerCaseCategory
+                                    categoryGroup=assessmentCategory.enabledAssessmentSummary.assessmentCategoryGroup
+                                    label=assessmentCategory.enabledAssessmentSummary.label
+                                    hideProgress=assessmentCategory.enabledAssessmentSummary.isWritingPrompt
+                                    canStart=assessmentCategory.enabledAssessmentSummary.userPassesPrerequisites
+                                    disabledReasons=assessmentCategory.enabledAssessmentSummary.prerequisitesFailReasons
+                                    isInProgress=assessmentCategory.latestUserAssessmentSummary.isInProgress
+                                    isFinished=assessmentCategory.latestUserAssessmentSummary.isFinished
+                                    isGraded=assessmentCategory.latestUserAssessmentSummary.isGraded
+                                    percentComplete=assessmentCategory.latestUserAssessmentSummary.progressPercentage
+                                    score=assessmentCategory.latestUserAssessmentSummary.overallScore
+                                    takenDateISO=assessmentCategory.latestUserAssessmentSummary.takenDateISO
+                                    userHasTakenCategory=assessmentCategory.userHasTakenCategory
+                                }}
+                            {{/tab-item}}
+                        {{/each}}
+                    {{/tab-list}}
+                    {{#tab-panels class="widget-tab-content clearfix"}}
                         {{#each row as |assessmentCategory|}}
                             {{#tab-panel}}
                                 {{#if assessmentCategory.enabledAssessmentSummary.showPrerequisiteFailReasons}}
@@ -82,9 +84,9 @@
                                 {{/track-link-clicks}}
                             {{/tab-panel}}
                         {{/each}}
-                    {{/if}}
-                {{/tab-panels}}
-            {{/tab-view}}
-        {{/each}}
-    </div>
+                    {{/tab-panels}}
+                {{/tab-view}}
+            {{/each}}
+        </div>
+    {{/if}}
 {{/page-section}}

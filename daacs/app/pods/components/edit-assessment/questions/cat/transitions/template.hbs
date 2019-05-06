@@ -1,0 +1,11 @@
+<h5>
+    <label>{{t "admin.editAssessment.questions.cat.transitions.label"}}</label>
+</h5>
+{{#each groupTransition.transitionType.transitionDifficulties as |difficulty|}}
+    {{edit-assessment/questions/cat/transitions/transition
+        groupTransition=groupTransition
+        difficulty=difficulty
+        isFirstDifficulty=(eq difficulty groupTransition.transitionType.transitionDifficulties.firstObject)
+        isLastDifficulty=(eq difficulty groupTransition.transitionType.transitionDifficulties.lastObject)
+    }}
+{{/each}}

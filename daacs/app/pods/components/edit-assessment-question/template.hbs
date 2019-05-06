@@ -2,7 +2,7 @@
     {{#input-validator text=(t "admin.editAssessment.questions.text") target="item.question" targetObject=nestedFormValidator}}
         {{input value=item.question class="form-control"}}
     {{/input-validator}}
-    {{#if assessment.isMultipleChoice}}
+    {{#if assessment.isMultipleChoiceLike}}
         {{#if item.itemContent.question}}
             {{#input-validator
                 target="itemQuestionContent"

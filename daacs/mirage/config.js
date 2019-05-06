@@ -109,5 +109,33 @@ export default function() {
 
     //all other AJAX requests not matched by the route handlers defined above
     //will pass through as real network requests to the live API
+    // this.get('/assessment-category-groups', () => {
+    //     return {
+    //         data: [{
+    //             id: 1,
+    //             label: 'My Math Category',
+    //             assessmentCategory: 'MATHEMATICS',
+    //             samlField: 'foobar',
+    //             samlValue: '123abc'
+    //         }, {
+    //             id: 2,
+    //             label: 'My Writing Category',
+    //             assessmentCategory: 'WRITING',
+    //             samlField: '',
+    //             samlValue: ''
+    //         }, {
+    //             id: 3,
+    //             label: 'SRL Assessment Label',
+    //             assessmentCategory: 'COLLEGE_SKILLS',
+    //             samlField: '',
+    //             samlValue: ''
+    //         }]
+    //     };
+    // });
+
+    // this.delete('/assessment-category-groups/:id', () => {
+    //     return {};
+    // });
+
     this.passthrough();
 }

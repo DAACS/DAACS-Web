@@ -1,0 +1,107 @@
+{{#modal-dialog
+    title=(t (if isNew "admin.editAssessment.domains.add" "admin.editAssessment.domains.edit"))
+    cancel="cancel"
+    size="modal-lg"
+    closeButton=false
+    closeOnEsc=false
+    backdrop="static"
+}}
+    {{#form-validator submit=(action "save") errors=errors as |formSubmit parentFormValidator|}}
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-8">
+                    {{#input-validator target="model.label" text=(t "admin.editAssessment.domains.name")}}
+                        {{input
+                            value=model.label
+                            type="text"
+                            class="form-control"
+                            maxlength=128
+                        }}
+                    {{/input-validator}}
+
+                    {{#input-validator target="model.id" text=(t "admin.editAssessment.domains.id")}}
+                        {{input
+                            value=model.id
+                            type="text"
+                            class="form-control"
+                            maxlength=128
+                            disabled=(not isNew)
+                        }}
+                    {{/input-validator}}
+
+                    {{#input-validator target="model.parentDomain" text=(t "admin.editAssessment.domains.parent")}}
+                        <select onchange={{action "updateParent" value="target.value"}} class="form-control" disabled={{model.hasSubDomains}}>
+                            <option value="">{{t "admin.editAssessment.domains.noParent"}}</option>
+                            {{#each parentDomains as |domain|}}
+                                <option value={{domain.id}} selected={{eq domain newParentDomain}}>
+                                    {{domain.label}}
+                                </option>
+                            {{/each}}
+                        </select>
+                        {{#if model.hasSubDomains}}
+                            <span class="help-block text-muted">{{t "admin.editAssessment.domains.cannotBeSubdomain"}}</span>
+                        {{/if}}
+                    {{/input-validator}}
+
+                    {{#input-validator target="model.domainType" text=(t "admin.editAssessment.domains.type")}}
+                        <select onchange={{action (mut model.domainType) value="target.value"}} class="form-control">
+                            {{#each domainTypes as |type|}}
+                                <option value={{type.value}} selected={{eq model.domainType type.value}}>
+                                    {{type.label}}
+                                </option>
+                            {{/each}}
+                        </select>
+                    {{/input-validator}}
+
+                    {{#if model.hasSubDomains}}
+                        <div class="form-group">
+                            <label class="checkbox-inline">
+                                {{input type="checkbox" checked=model.scoreIsSubDomainAverage}}
+                                {{t "admin.editAssessment.domains.scoreIsAvg"}}
+                            </label>
+                        </div>
+                    {{/if}}
+
+                    {{#if (and assessment.isWritingAutoGrading (not model.scoreIsSubDomainAverage))}}
+                        <div class="form-group">
+                            <h5><label for="lightside-model-file-{{model.id}}">
+                                {{t "admin.lightside.modelFile"}}
+                            </label></h5>
+                            {{file-upload-input
+                                filename=model.lightsideModelFilename
+                                onChange=(action "onFileChange")
+                                isUploading=isUploading
+                                accept="text/xml"
+                                fileInputId="lightside-model-file"
+                            }}
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+            <h5><label>{{t "admin.editAssessment.domains.domain.info"}}</label></h5>
+            {{wysiwyg-editor
+                class="margin-btm-20"
+                allowFullscreen=false
+                content=(readonly model.content)
+                onChange=(action (mut model.content))
+            }}
+
+            {{edit-assessment/rubric
+                model=model.rubric
+                allowFullscreen=false
+                showScoreMap=(not assessment.isWritingPrompt)
+                parentValidator=parentFormValidator
+            }}
+        </div>
+        <div class="modal-footer">
+            {{#if isNew}}
+                <button type="button" class="btn btn-default" disabled={{isUploading}} {{action "cancelAdd"}}>
+                    {{t "dialog.cancel"}}
+                </button>
+            {{/if}}
+            <button type="submit" class="btn btn-primary btn-wide" disabled={{isUploading}} {{action formSubmit}}>
+                {{t (if isNew "admin.editAssessment.domains.add" "dialog.done")}}
+            </button>
+        </div>
+    {{/form-validator}}
+{{/modal-dialog}}

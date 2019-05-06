@@ -21,6 +21,8 @@ module.exports = {
         'window': true,
         'd3': true,
         'Modernizr': true,
-        'MathJax': true
+        'MathJax': true,
+        'Jodit': true,
+        'ace': true
     }
 };

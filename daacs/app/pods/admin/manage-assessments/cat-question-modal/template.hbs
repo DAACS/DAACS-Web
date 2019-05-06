@@ -1,0 +1,91 @@
+{{#modal-dialog
+    title=(t (if isNew "admin.editAssessment.questions.add" "admin.editAssessment.questions.edit"))
+    cancel="cancel"
+    size="modal-lg"
+    closeButton=false
+    closeOnEsc=false
+    backdrop="static"
+}}
+    {{#form-validator submit=(action "save") errors=errors as |formSubmit parentFormValidator|}}
+        <div class="modal-body">
+            <div class="margin-btm-30">
+                {{#input-validator target="model.question" text=(t "admin.editAssessment.questions.text")}}
+                    {{wysiwyg-editor
+                        content=(readonly model.question)
+                        onChange=(action (mut model.question))
+                    }}
+                {{/input-validator}}
+                <div class="row">
+                    <div class="col-md-8">
+                        {{#input-validator target="model.domainId" text=(t "admin.editAssessment.questions.domain")}}
+                            <select onchange={{action (mut model.domainId) value="target.value"}} class="form-control">
+                                <option value="">{{t "admin.editAssessment.questions.selectDomain"}}</option>
+                                {{#each assessment.domains as |domain|}}
+                                    <option value={{domain.id}} selected={{eq model.domainId domain.id}}>
+                                        {{domain.label}}
+                                    </option>
+                                    {{#if domain.subDomains}}
+                                        <optgroup label={{concat "-- " (t "admin.editAssessment.questions.subdomains") " --"}}>
+                                            {{#each domain.subDomains as |subdomain|}}
+                                                <option value={{subdomain.id}} selected={{eq model.domainId subdomain.id}}>
+                                                    {{subdomain.label}}
+                                                </option>
+                                            {{/each}}
+                                        </optgroup>
+                                    {{/if}}
+                                {{/each}}
+                            </select>
+                        {{/input-validator}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group margin-btm-30">
+                {{#input-validator target="hasAnswerWithNoScoreOrText" text=(t "admin.editAssessment.questions.answers.answers")}}
+                    {{#sortable-group onChange=(action "reorderAnswers") as |answerGroup|}}
+                        {{#each model.possibleItemAnswers as |answer|}}
+                            {{#sortable-item model=answer group=answerGroup handle=".sortable-drag-handle-answer"}}
+                                {{edit-assessment/questions/cat/answer
+                                    answer=answer
+                                    removeAnswer=(action "removeAnswer")
+                                }}
+                            {{/sortable-item}}
+                        {{else}}
+                            <div class="well text-center text-muted pad-top-20 pad-btm-20">
+                                {{t "admin.editAssessment.questions.answers.none"}}
+                            </div>
+                        {{/each}}
+                    {{/sortable-group}}
+                    <div>
+                        <a href="" {{action "addAnswer"}}>
+                            {{fa-icon icon="plus-circle"}}
+                            {{t "admin.editAssessment.questions.answers.addAnswer"}}
+                        </a>
+                    </div>
+                {{/input-validator}}
+            </div>
+            <div class="form-group">
+                <h5><label>{{t "admin.editAssessment.questions.supplement.label"}}</label></h5>
+                {{edit-assessment/questions/content
+                    model=model.itemContent.question
+                }}
+            </div>
+            <div class="form-group">
+                <h5><label>{{t "admin.editAssessment.questions.feedback.supplement"}}</label></h5>
+                {{edit-assessment/questions/content
+                    model=model.itemContent.feedback
+                    wordOnly=true
+                }}
+            </div>
+        </div>
+        <div class="modal-footer">
+            {{#if isNew}}
+                <button type="button" class="btn btn-default" {{action "cancelAdd"}}>
+                    {{t "dialog.cancel"}}
+                </button>
+            {{/if}}
+            <button type="submit" class="btn btn-primary btn-wide" {{action formSubmit}}>
+                {{t (if isNew "admin.editAssessment.questions.add" "dialog.done")}}
+            </button>
+        </div>
+    {{/form-validator}}
+{{/modal-dialog}}

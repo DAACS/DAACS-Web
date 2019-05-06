@@ -85,7 +85,11 @@ export default {
     dialog: {
         close: "Close",
         cancel: "Cancel",
-        ok: "OK"
+        ok: "OK",
+        done: "Done",
+        next: "Next",
+        back: "Back",
+        finish: "Finish"
     },
     fourOhFour: {
         pageNotFound: "404 Page not found",
@@ -135,7 +139,7 @@ export default {
         deactivate: "Deactivate",
         activated: "The assessment has been activated",
         deactivated: "The assessment has been deactivated",
-        activateError: "An error occurred while attempting to update the assessment",
+        activateError: "Unable to update the assessment. Please correct any errors and try again.",
         numUngraded: {
             one: "1 ungraded",
             other: "{{count}} ungraded"
@@ -188,56 +192,16 @@ export default {
             configUpdated: "The assessment configuration has been updated",
             notConfigurable: "This assessment type is set up for automatic grading and is not configurable."
         },
+        createAssessment: {
+            label: "Create Assessment",
+            create: "Create"
+        },
         editAssessment: {
             label: "Edit Assessment",
             save: "Save",
             submitSuccess: "Changes have been saved.",
             submitError: "Please correct the errors in the form and resubmit.",
             assessmentContent: "Assessment Content",
-            landing: {
-                label: "Dashboard Tab",
-                description: "HTML content displayed in the myDAACS dashboard tab for the currently highlighted assessment."
-            },
-            start: {
-                label: "Start Page",
-                description: "HTML content displayed in the left-hand column of the \"splash\" screen that is displayed when the student starts a new assessment."
-            },
-            startTips: {
-                label: "Start Page Tips",
-                description: "HTML content displayed in the right-hand sidebar column of the \"splash\" screen that is displayed when the student starts a new assessment."
-            },
-            helpLabel: {
-                label: "Help Menu Text",
-                description: "Text that is displayed for the option in the \"Help\" menu that will open the help content dialog."
-            },
-            help: {
-                label: "Help Dialog",
-                description: "HTML content displayed in the overlay dialog that can be accessed by the student while taking the assessment via the \"Help\" menu."
-            },
-            overallRubric: {
-                label: "Overall Rubric",
-                description: "HTML content that is displayed in the assessment results index page, based on the stuent's overall score."
-            },
-            domain: {
-                label: "Domain",
-                info: "General Information",
-                description: "HTML content that is displayed at the top of the domain results page, no matter what score was given."
-            },
-            questions: {
-                label: "Questions and Answers",
-                text: "Question Text",
-                content: "Question Content",
-                feedback: "Feedback",
-                answers: "Answers",
-                answer: "Answer",
-                FORMULA: "Formula",
-                PASSAGE: "Passage",
-                WORD: "Word Problem"
-            },
-            writingPrompt: {
-                label: "Writing Prompt",
-                description: "HTML content that is displayed above the text input for Writing assessments."
-            },
             scores: {
                 LOW: "Low Score",
                 MEDIUM: "Medium Score",
@@ -247,12 +211,188 @@ export default {
                     MEDIUM: "Medium Score Summary",
                     HIGH: "High Score Summary"
                 }
+            },
+            general: {
+                label: "General",
+                name: "Name",
+                category: "Category",
+                selectCategory: "Select a category",
+                type: "Type",
+                selectType: "Select a type",
+                selectTypeFirst: "Please select an assessment type first",
+                scoring: "Scoring",
+                selectScoringType: "Select a scoring type",
+                startingDifficulty: "Starting Difficulty",
+                selectDifficulty: "Select a difficulty",
+                minTakenGroups: "Min Taken Groups",
+                maxTakenGroups: "Max Taken Groups",
+                prereq: {
+                    label: "Prerequisites",
+                    add: "Add prerequisite",
+                    remove: "Remove prerequisite",
+                    category: "Category",
+                    statuses: "Statuses",
+                    reason: "Reason",
+                    none: "No prerequisites"
+                }
+            },
+            content: {
+                label: "Content",
+                landing: {
+                    label: "Dashboard Tab",
+                    description: "HTML content displayed in the myDAACS dashboard tab for the currently highlighted assessment."
+                },
+                start: {
+                    label: "Start Page",
+                    description: "HTML content displayed in the left-hand column of the \"splash\" screen that is displayed when the student starts a new assessment."
+                },
+                startTips: {
+                    label: "Start Page Tips",
+                    description: "HTML content displayed in the right-hand sidebar column of the \"splash\" screen that is displayed when the student starts a new assessment."
+                },
+                helpLabel: {
+                    label: "Help Menu Text",
+                    description: "Text that is displayed for the option in the \"Help\" menu that will open the help content dialog."
+                },
+                help: {
+                    label: "Help Dialog",
+                    description: "HTML content displayed in the overlay dialog that can be accessed by the student while taking the assessment via the \"Help\" menu."
+                }
+            },
+            rubric: {
+                label: "Rubric",
+                description: "HTML content that is displayed in the assessment results index page, based on the stuent's overall score.",
+                summary: "Summary",
+                content: "Content",
+                scoreTo: "to",
+                inclusive: "Inclusive",
+                exclusive: "Exclusive"
+            },
+            domains: {
+                label: "Domains",
+                add: "Add domain",
+                edit: "Edit domain",
+                type: "Type",
+                name: "Name",
+                noName: "No name provided",
+                id: "ID",
+                parent: "Parent Domain",
+                noParent: "No parent domain",
+                cannotBeSubdomain: "This domain has subdomains, and cannot have a parent domain.",
+                none: "No domains found",
+                scoreIsAvg: "Score is an average of its sub domains",
+                remove: {
+                    label: "Remove",
+                    cancel: "Cancel",
+                    confirm: "Are you sure you want to remove this domain?",
+                    confirmMultiple: "Are you sure you want to remove this domain? Its subdomains will also be removed."
+                },
+                domain: {
+                    label: "Domain",
+                    info: "General Information",
+                    description: "HTML content that is displayed at the top of the domain results page, no matter what score was given."
+                }
+            },
+            questions: {
+                label: "Questions",
+                add: "Add question",
+                edit: "Edit question",
+                none: "No questions found",
+                text: "Question text",
+                noText: "No question text",
+                questionNum: "Question {{num}}",
+                domain: "Domain",
+                selectDomain: "Select a domain",
+                subdomains: "Subdomains",
+                content: "Question content",
+                FORMULA: "Formula",
+                PASSAGE: "Passage",
+                WORD: "Word Problem",
+                selectAssessmentType: "You must select an assessment type first",
+                import: {
+                    label: "Import questions",
+                    action: "Import questions...",
+                    selectAssessment: "Select assessment",
+                    likertAssessmentInstructions: "Select an existing Likert assessment to import questions from.",
+                    catAssessmentInstructions: "Select an existing Multiple Choice or CAT assessment to import questions from.",
+                    selectQuestions: "Select questions",
+                    questionsInstructions: "Select the groups of questions your wish to import from the \"{{label}} <span class=\"text-muted\">({{date}})</span>\" assessment."
+                },
+                supplement: {
+                    label: "Question supplement",
+                    none: "No supplement",
+                    hasContent: "Show supplement content",
+                    imageExample: "https://example.com/image.jpg"
+                },
+                answers: {
+                    label: "Answer",
+                    answers: "Answers",
+                    edit: "Edit answers",
+                    add: "Add",
+                    remove: "Remove",
+                    addAnswer: "Add answer",
+                    none: "No answers found",
+                    points: "Points",
+                    toggleEditor: "Toggle content editor"
+                },
+                feedback: {
+                    label:  "Feedback",
+                    supplement: "Feedback supplement"
+                },
+                writingPrompt: {
+                    label: "Writing prompt",
+                    description: "HTML content that is displayed above the text input for Writing assessments.",
+                    minWords: "Minimum number of words"
+                },
+                likert: {
+                    group: {
+                        label: "Group {{num}}",
+                        none: "No groups found",
+                        add: "Add group",
+                        edit: "Edit group",
+                        options: "This Likert group uses the following answers (5 max):",
+                        pointsDist: "Answer points distribution",
+                        pointsFor: "points for <strong>{{option}}</strong>",
+                        remove: {
+                            label: "Remove",
+                            cancel: "Cancel",
+                            confirm: "Are you sure you want to remove this group?"
+                        }
+                    }
+                },
+                cat: {
+                    group: {
+                        label: "Group {{num}}",
+                        none: "No groups found",
+                        add: "Add group",
+                        remove: {
+                            label: "Remove",
+                            cancel: "Cancel",
+                            confirm: "Are you sure you want to remove this group?"
+                        }
+                    },
+                    transitions: {
+                        label: "Transitions",
+                        transitionTo: "to",
+                        inclusive: "Inclusive",
+                        exclusive: "Exclusive",
+                        infinity: "Infinity",
+                        negInfinity: "-Infinity"
+                    }
+                },
+                remove: {
+                    label: "Remove",
+                    cancel: "Cancel",
+                    confirm: "Are you sure you want to remove this question?"
+                }
             }
         },
         lightside: {
-            modelFiles: "LightSide Model Files",
-            overallModel: "Overall Model",
-            fileInvalid: "The selected file must have a file type of .xml"
+            modelFile: "LightSide model file",
+            modelFiles: "LightSide model files",
+            overallModel: "Overall model",
+            fileInvalid: "The selected file must have a file type of .xml",
+            uploadSuccess: "The LightSide model file was uploaded successfully."
         },
         import: {
             label: "Import",
@@ -265,6 +405,27 @@ export default {
             confirmSave: "Are you sure you want to import this as an active assessment? Remember to disable any currently active assessments as needed.",
             instructions: "Upload your assessment definition or copy/paste its contents into the field below",
             readFileError: "Unable to load the assessment JSON data from the selected file"
+        },
+        category: {
+          label: "Assessment Categories",
+          add: "Add category",
+          edit: "Edit category",
+          none: "No categories found",
+          save: "Save",
+          cancel: "Cancel",
+          groupLabel: "Label",
+          id: "ID",
+          type: "Category Type",
+          samlField: "SAML Field",
+          samlValue: "SAML Value",
+          samlInstructions: "SAML configuration is optional. If you provide a SAML field, you must also provide a value.",
+          labelInstructions: "This label is for internal purposes only, and will not be visible to students.",
+          remove: "Remove",
+          removeConfirm: "Are you sure you want to remove this category?<br><br>Categories cannot be deleted if they have associated assessments.",
+          removeError: "An error occurred while attempting to remove the category. Please make sure no assessments are associated with this category.",
+          removeSuccess: "The assessment category has been removed successfully.",
+          updateSuccess: "The assessment category has been updated successfully.",
+          createSuccess: "The assessment category has been created successfully."
         }
     },
     assessment: {
@@ -375,6 +536,140 @@ export default {
             },
             javaMailSender: {
                 requestFailed: "We're having trouble completing your request...please try again in a moment."
+            },
+            Assessment: {
+                constraintViolation: {
+                    assessmentCategory: {
+                        NotNull: "The assessment category can't be blank.",
+                        ValidBaseAssessment: "The selected category is not compatible with the assessment type."
+                    },
+                    assessmentType: {
+                        NotNull: "The assessment type can't be blank.",
+                        ValidBaseAssessment: "The selected assessment type is not valid."
+                    },
+                    content: {
+                        NotNull: "The assessment content can't be blank."
+                    },
+                    domains: {
+                        content: {
+                            NotNull: "The domain General Information content can't be blank."
+                        },
+                        domainType: {
+                            NotNull: "The domain type can't be blank."
+                        },
+                        id: {
+                            NotNull: "The domain ID can't be blank."
+                        },
+                        label: {
+                            NotNull: "The domain label can't be blank."
+                        },
+                        rubric: {
+                            ValidBaseAssessment: "The rubric score configuration for the domain is not valid."
+                        },
+                        ValidBaseAssessment: "Domain IDs must be unique.",
+                        ValidWritingAssessment: "Domain must contain a rubric if not scored by an average of its sub-domains"
+                    },
+                    itemGroups: {
+                        domainID: {
+                            ValidCATAssessment: "The provided domain for a question group is not valid."
+                        },
+                        ValidCATAssessment: "The question group configuration is not valid. Please make sure there is a correct number of groups per difficulty.",
+                        items: {
+                            itemContent: {
+                                NotNull: "The question content can't be blank."
+                            },
+                            question: {
+                                NotNull: "The question text can't be blank."
+                            },
+                            domainId: {
+                                NotNull: "The question domain can't be blank."
+                            },
+                            possibleItemAnswers: {
+                                content: {
+                                    NotNull: "The question answer content can't be blank."
+                                },
+                                score: {
+                                    NotNull: "The question answer score can't be blank."
+                                }
+                            }
+                        },
+                        possibleItemAnswers: {
+                            content: {
+                                NotNull: "The question group answer content can't be blank."
+                            }
+                        },
+                        Size: "The assessment must have at least 1 question group",
+                        ValidWritingAssessment: "An question group's lowest possible score is same as highest possible score."
+                    },
+                    itemGroupTransitions: {
+                        transitionMap: {
+                            ValidCATAssessment: "The question group transition map has a gap in its coverage."
+                        },
+                        ValidCATAssessment: "All question groups must have the same number of questions."
+                    },
+                    label: {
+                        NotNull: "The assessment label can't be blank."
+                    },
+                    lightSideConfig: {
+                        domainModels: {
+                            ValidWritingAssessment: "A valid lightside configuration file must be provided for each domain."
+                        },
+                        ValidWritingAssessment: "A valid lightside configuration file must be provided for each domain."
+                    },
+                    maxTakenGroups: {
+                        ValidCATAssessment: "Max taken groups must be equal to or larger than the min taken groups."
+                    },
+                    minTakenGroups: {
+                        ValidCATAssessment: "Min taken groups must be larger than 0."
+                    },
+                    numQuestionsPerGroup: {
+                        Min: "All groups must have the same number of questions, and there must be at least one question per group."
+                    },
+                    overallRubric: {
+                        completionScoreMap: {
+                            NotNull: "The rubric score configuration can't be blank.",
+                            ValidWritingAssessment: "Writing assessments cannot have a rubric score configuration."
+                        },
+                        supplementTable: {
+                            completionScore: {
+                                NotNull: "The rubric score configuration can't be blank."
+                            },
+                            content: {
+                                NotNull: "The rubric score content can't be blank."
+                            },
+                            ValidWritingAssessment: "The rubric does not contain score supplement information."
+                        },
+                        ValidBaseAssessment: "The rubric score configuration is not valid.",
+                        ValidWritingAssessment: "The rubric score configuration is not valid."
+                    },
+                    prerequisites: {
+                        assessmentCategory: {
+                            NotNull: "A category must be selected for the assessment prerequisite."
+                        },
+                        prereqType: {
+                            NotNull: "The assessment prerequisite type can't be blank."
+                        },
+                        reason: {
+                            NotNull: "The assessment prerequisite reason can't be blank."
+                        }
+                    },
+                    scoringType: {
+                        ValidWritingAssessment: "The selected scoring type is not compatible with the assessment type.",
+                        NotNull: "The scoring type can't be blank.",
+                        ValidBaseAssessment: "The selected scoring type is not compatible with the assessment type."
+                    },
+                    startingDifficulty: {
+                        NotNull: "The starting difficulty can't be blank."
+                    },
+                    writingPrompt: {
+                        content: {
+                            NotNull: "The writing prompt content can't be blank."
+                        },
+                        minWords: {
+                            NotNull: "The writing prompt minimum words can't be blank."
+                        }
+                    }
+                }
             }
         }
     },
@@ -508,7 +803,8 @@ export default {
     },
     fileUpload: {
         noneChosen: "No file chosen",
-        select: "Select file..."
+        select: "Select file...",
+        uploading: "Uploading, please wait..."
     },
     confirmation: {
         continue: "Are you sure you want to continue?",

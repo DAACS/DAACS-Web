@@ -1,11 +1,11 @@
 <h2>
     {{#unless media.isMobile}}
         {{#if parentDomainScore}}
-            {{#link-to "assessments.domain.subdomain" assessmentCategory parentDomainScore.domainId domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-border-skin pull-right"}}
+            {{#link-to "assessments.domain.subdomain" assessmentCategoryGroup.id parentDomainScore.domainId domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-border-skin pull-right"}}
                 {{t "assessment.domain.moreInfo"}}
             {{/link-to}}
         {{else}}
-            {{#link-to "assessments.domain" assessmentCategory domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-border-skin pull-right"}}
+            {{#link-to "assessments.domain" assessmentCategoryGroup.id domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-border-skin pull-right"}}
                 {{t "assessment.domain.moreInfo"}}
             {{/link-to}}
         {{/if}}
@@ -21,7 +21,7 @@
         {{#each (sort-by "rawScore" domainScore.subDomainScores) as |subDomainScore|}}
             {{#unless (domain-content "isAnalysisDomain" subDomainScore.domainId domains domainScore.domainId)}}
                 <li role="presentation">
-                    {{#link-to "assessments.domain.subdomain" assessmentCategory domainScore.domainId subDomainScore.domainId (query-params takenDate=takenDate)}}
+                    {{#link-to "assessments.domain.subdomain" assessmentCategoryGroup.id domainScore.domainId subDomainScore.domainId (query-params takenDate=takenDate)}}
                         {{score-display score=subDomainScore.rubricScore small=true class="pull-right"}}
                         {{domain-content "label" subDomainScore.domainId domains domainScore.domainId}}
                     {{/link-to}}
@@ -32,11 +32,11 @@
 {{/if}}
 {{#if media.isMobile}}
     {{#if parentDomainScore}}
-        {{#link-to "assessments.domain.subdomain" assessmentCategory parentDomainScore.domainId domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-block btn-border-skin"}}
+        {{#link-to "assessments.domain.subdomain" assessmentCategoryGroup.id parentDomainScore.domainId domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-block btn-border-skin"}}
             {{t "assessment.domain.moreInfo"}}
         {{/link-to}}
     {{else}}
-        {{#link-to "assessments.domain.subdomain" assessmentCategory domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-block btn-border-skin"}}
+        {{#link-to "assessments.domain.subdomain" assessmentCategoryGroup.id domainScore.domainId (query-params takenDate=takenDate) class="btn btn-lg btn-block btn-border-skin"}}
             {{t "assessment.domain.moreInfo"}}
         {{/link-to}}
     {{/if}}

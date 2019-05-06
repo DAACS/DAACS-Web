@@ -1,0 +1,41 @@
+{{server-errors errors=(hash errors=errorMessages)}}
+<h5><label>{{t "admin.editAssessment.content.landing.label"}}</label></h5>
+{{wysiwyg-editor
+    content=(readonly model.content.landing)
+    onChange=(action (mut model.content.landing))
+}}
+<small class="help-block text-muted">{{t "admin.editAssessment.content.landing.description"}}</small>
+
+<h5><label>{{t "admin.editAssessment.content.start.label"}}</label></h5>
+{{wysiwyg-editor
+    content=(readonly model.content.start)
+    onChange=(action (mut model.content.start))
+}}
+<small class="help-block text-muted">{{t "admin.editAssessment.content.start.description"}}</small>
+
+<h5><label>{{t "admin.editAssessment.content.startTips.label"}}</label></h5>
+{{wysiwyg-editor
+    content=(readonly model.content.startTips)
+    onChange=(action (mut model.content.startTips))
+}}
+<small class="help-block text-muted">{{t "admin.editAssessment.content.startTips.description"}}</small>
+
+<div class="row">
+    <div class="col-lg-8">
+        <h5><label>{{t "admin.editAssessment.content.helpLabel.label"}}</label></h5>
+        {{input
+            value=model.content.helpLabel
+            type="text"
+            class="form-control"
+            maxlength=128
+        }}
+        <small class="help-block text-muted">{{t "admin.editAssessment.content.helpLabel.description"}}</small>
+    </div>
+</div>
+
+<h5><label>{{t "admin.editAssessment.content.help.label"}}</label></h5>
+{{wysiwyg-editor
+    content=(readonly model.content.help)
+    onChange=(action (mut model.content.help))
+}}
+<small class="help-block text-muted">{{t "admin.editAssessment.content.help.description"}}</small>

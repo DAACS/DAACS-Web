@@ -21,7 +21,7 @@ export default AuthenticatedRoute.extend(AssessmentRouteMixin, CheckAbilities, {
         try {
             //look for a latest user assessment summary w/a status of IN_PROGRESS
             //if one is found, just redirect to the assessment/take route w/ that model
-            let summary = await this.getExistingUserAssessment(assessmentContent.get('assessmentCategory'));
+            let summary = await this.getExistingUserAssessment(assessmentContent.get('assessmentCategoryGroup.id'));
             transition.abort();
             this.replaceWith('assessments.take', summary.get('lowerCaseCategory'));
         } catch(error) {
@@ -30,10 +30,10 @@ export default AuthenticatedRoute.extend(AssessmentRouteMixin, CheckAbilities, {
         }
     },
 
-    async getExistingUserAssessment(assessmentCategory) {
+    async getExistingUserAssessment(assessmentCategoryGroupId) {
         try {
             let summary = await this.store.queryRecord('user-assessment-summary', {
-                assessmentCategory,
+                assessmentCategoryGroupId,
                 limit: 1
             });
 

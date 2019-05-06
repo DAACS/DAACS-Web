@@ -1,0 +1,32 @@
+{{server-errors errors=(hash errors=errorMessages)}}
+{{#each model.supplementTable as |supplement|}}
+    <div class="margin-btm-40">
+        <div class="row">
+            <div class="col-lg-8 margin-btm-20">
+                <h5><label>{{supplement.scoreType.description}}</label></h5>
+                {{#if showScoreMap}}
+                    {{edit-assessment/rubric/score
+                        scoreType=supplement.scoreType
+                        scoreMap=model.completionScoreMap
+                    }}
+                {{/if}}
+            </div>
+        </div>
+
+        <h5><label>{{t "admin.editAssessment.rubric.summary"}}</label></h5>
+        {{wysiwyg-editor
+            class="margin-btm-20"
+            allowFullscreen=allowFullscreen
+            content=(readonly supplement.contentSummary)
+            onChange=(action (mut supplement.contentSummary))
+        }}
+
+        <h5><label>{{t "admin.editAssessment.rubric.content"}}</label></h5>
+        {{wysiwyg-editor
+            class="margin-btm-20"
+            allowFullscreen=allowFullscreen
+            content=(readonly supplement.content)
+            onChange=(action (mut supplement.content))
+        }}
+    </div>
+{{/each}}

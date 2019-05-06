@@ -1,0 +1,32 @@
+<a href="" class="pull-right" {{action "removePrereq"}}>{{t "admin.editAssessment.general.prereq.remove"}}</a>
+{{#input-validator target="model.assessmentCategory" text=(t "admin.editAssessment.general.category")}}
+    <select onchange={{action "updateCategory" value="target.value"}} class="form-control">
+        <option value="">{{t "admin.editAssessment.general.selectCategory"}}</option>
+        {{#each categories as |cat|}}
+            <option value={{cat.value}} selected={{eq model.assessmentCategory cat.value}}>
+                {{cat.label}}
+            </option>
+        {{/each}}
+    </select>
+{{/input-validator}}
+{{#input-validator target="model.reason" text=(t "admin.editAssessment.general.prereq.reason")}}
+    {{input
+        value=model.reason
+        type="text"
+        class="form-control"
+        placeholder=(t "admin.editAssessment.general.prereq.reason")
+        maxlength=128
+    }}
+{{/input-validator}}
+{{#input-validator target="model.statuses" text=(t "admin.editAssessment.general.prereq.statuses") label=false}}
+    {{#each statuses as |status|}}
+        <label class="checkbox-inline">
+            <input
+                type="checkbox"
+                checked={{contains status.value model.statuses}}
+                onclick={{action "toggleStatus" status.value}}
+            >
+            {{status.label}}
+        </label>
+    {{/each}}
+{{/input-validator}}

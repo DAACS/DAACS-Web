@@ -17,15 +17,15 @@
             <div class="col-md-8 col-lg-9 margin-btm-20">
                 <p>
                     {{link-to (t "dashboard.label") "dashboard"}}
-                    &nbsp;&raquo;&nbsp; {{link-to assessmentContent.label "assessments.index" assessmentContent.lowerCaseCategory (query-params takenDate=selectedTakenDate)}}
-                    &nbsp;&raquo;&nbsp; {{link-to parentDomainContent.label "assessments.domain" assessmentContent.lowerCaseCategory parentDomain.domainId (query-params takenDate=selectedTakenDate)}}
+                    &nbsp;&raquo;&nbsp; {{link-to assessmentContent.label "assessments.index" assessmentContent.assessmentCategoryGroup.id (query-params takenDate=selectedTakenDate)}}
+                    &nbsp;&raquo;&nbsp; {{link-to parentDomainContent.label "assessments.domain" assessmentContent.assessmentCategoryGroup.id parentDomain.domainId (query-params takenDate=selectedTakenDate)}}
                     &nbsp;&raquo;&nbsp; {{domainContent.label}}
                 </p>
                 {{#track-link-clicks class="margin-btm-10"}}
                     {{mathjax-content content=domainPerformanceContent}}
                 {{/track-link-clicks}}
                 <hr>
-                {{#if (and model.isMultipleChoice hasQuestions)}}
+                {{#if (and model.isMultipleChoiceLike hasQuestions)}}
                     {{#each questionGroups as |group|}}
                         {{#each group.items as |questionItem|}}
                             {{question-result

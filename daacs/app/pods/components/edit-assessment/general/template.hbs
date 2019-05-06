@@ -1,0 +1,91 @@
+{{server-errors errors=(hash errors=errorMessages)}}
+<div class="row">
+    <div class="col-lg-8">
+        {{#input-validator target="model.label" text=(t "admin.editAssessment.general.name") targetObject=parentValidator}}
+            {{input
+                value=model.label
+                type="text"
+                class="form-control"
+                maxlength=128
+            }}
+        {{/input-validator}}
+        {{#input-validator target="model.assessmentCategory" text=(t "admin.editAssessment.general.category") targetObject=parentValidator}}
+            <select onchange={{action "updateAssessmentCategory" value="target.value"}} class="form-control">
+                <option value="">{{t "admin.editAssessment.general.selectCategory"}}</option>
+                {{#each sortedCategoryGroups as |group|}}
+                    <option value={{group.id}} selected={{eq model.assessmentCategoryGroup.id group.id}}>
+                        {{group.label}} ({{group.categoryInfo.label}})
+                    </option>
+                {{/each}}
+            </select>
+        {{/input-validator}}
+        {{#input-validator target="model.assessmentType" text=(t "admin.editAssessment.general.type") targetObject=parentValidator}}
+            <select onchange={{action "updateAssessmentType" value="target.value"}} disabled={{not model.isNew}} class="form-control">
+                <option value="">{{t "admin.editAssessment.general.selectType"}}</option>
+                {{#each types as |type|}}
+                    <option value={{type.value}} selected={{eq model.assessmentType type.value}}>
+                        {{type.label}}
+                    </option>
+                {{/each}}
+            </select>
+        {{/input-validator}}
+        {{#input-validator target="model.scoringType" text=(t "admin.editAssessment.general.scoring") targetObject=parentValidator}}
+            <select onchange={{action (mut model.scoringType) value="target.value"}} class="form-control" disabled={{not scoringTypes}}>
+                <option value="">{{t (if scoringTypes "admin.editAssessment.general.selectScoringType" "admin.editAssessment.general.selectTypeFirst")}}</option>
+                {{#each scoringTypes as |type|}}
+                    <option value={{type.value}} selected={{eq model.scoringType type.value}}>
+                        {{type.label}}
+                    </option>
+                {{/each}}
+            </select>
+        {{/input-validator}}
+        {{#if model.isCat}}
+            {{#input-validator target="model.startingDifficulty" text=(t "admin.editAssessment.general.startingDifficulty") targetObject=parentValidator}}
+                <select onchange={{action (mut model.startingDifficulty) value="target.value"}} class="form-control">
+                    <option value="">{{t "admin.editAssessment.general.selectDifficulty"}}</option>
+                    {{#each difficulties as |type|}}
+                        <option value={{type.groupDifficulty}} selected={{eq model.startingDifficulty type.groupDifficulty}}>
+                            {{type.label}}
+                        </option>
+                    {{/each}}
+                </select>
+            {{/input-validator}}
+            <div class="row">
+                <div class="col-sm-6">
+                    {{#input-validator target="model.minTakenGroups" text=(t "admin.editAssessment.general.minTakenGroups") targetObject=parentValidator}}
+                        {{input
+                            value=model.minTakenGroups
+                            type="number"
+                            class="form-control"
+                            maxlength=128
+                        }}
+                    {{/input-validator}}
+                </div>
+                <div class="col-sm-6">
+                    {{#input-validator target="model.maxTakenGroups" text=(t "admin.editAssessment.general.maxTakenGroups") targetObject=parentValidator}}
+                        {{input
+                            value=model.maxTakenGroups
+                            type="number"
+                            class="form-control"
+                            maxlength=128
+                        }}
+                    {{/input-validator}}
+                </div>
+            </div>
+        {{/if}}
+        <div class="space40"></div>
+        <h4>{{t "admin.editAssessment.general.prereq.label"}}</h4>
+        {{#each model.prerequisites as |prereq index|}}
+            {{edit-assessment/general/prerequisite
+                model=prereq
+                remove=(action "removePrereq")
+            }}
+            {{#if (not-eq prereq model.prerequisites.lastObject)}}
+                <hr>
+            {{/if}}
+        {{else}}
+            <div class="well text-center text-muted">{{t "admin.editAssessment.general.prereq.none"}}</div>
+        {{/each}}
+        <a href="" {{action "addPrereq"}}>{{t "admin.editAssessment.general.prereq.add"}}</a>
+    </div>
+</div>

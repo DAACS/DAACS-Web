@@ -41,7 +41,20 @@ Router.map(function() {
             this.route('assessment', {path: '/:user_assessment_id/:user_id'});
         });
         this.route('manage-assessments', function() {
-            this.route('assessment', {path: '/:assessment_id'});
+            this.route('assessment', {path: '/:assessment_id'}, function() {
+                this.route('general');
+                this.route('content');
+                this.route('rubric');
+                this.route('domains');
+                this.route('questions');
+            });
+            this.route('new', function() {
+                this.route('general');
+                this.route('content');
+                this.route('rubric');
+                this.route('domains');
+                this.route('questions');
+            });
         });
     });
     this.route('password', function() {

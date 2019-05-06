@@ -1,45 +1,45 @@
 import Ember from 'ember';
 
+const {
+    A,
+    get,
+    set,
+    computed,
+    on
+} = Ember;
+
 export default Ember.Component.extend({
     classNames: ['tab-view'],
     tabActivationEvent: 'click',
-    activeTabItem: null,
     activeTabIndex: 0,
 
-    onInit: Ember.on('init', function() {
-        this.set('tabItems', Ember.A());
-        this.set('tabPanels', Ember.A());
+    activeTabItem: computed('activeTabIndex', 'tabItems.[]', function() {
+        return get(this, 'tabItems').objectAt(get(this, 'activeTabIndex'));
     }),
 
-    onInsertElement: Ember.on('didInsertElement', function() {
-        Ember.run.scheduleOnce('afterRender', this, function() {
-            const tabItem = this.get('tabItems').objectAt(this.get('activeTabIndex'));
-
-            if(tabItem) {
-                this.activateTab(tabItem);
-            }
-        });
+    onInit: on('init', function() {
+        set(this, 'tabItems', A());
+        set(this, 'tabPanels', A());
     }),
 
     activateTab(tabItem) {
-        const tabIndex = this.get('tabItems').indexOf(tabItem);
-        this.set('activeTabItem', tabItem);
-        this.set('activeTabIndex', tabIndex);
+        const tabIndex = get(this, 'tabItems').indexOf(tabItem);
+        set(this, 'activeTabIndex', tabIndex);
     },
 
     registerTabItem(tabItem) {
-        this.get('tabItems').pushObject(tabItem);
+        get(this, 'tabItems').pushObject(tabItem);
     },
 
     registerTabPanel(tabPanel) {
-        this.get('tabPanels').pushObject(tabPanel);
+        get(this, 'tabPanels').pushObject(tabPanel);
     },
 
     deregisterTabItem(tabItem) {
-        this.get('tabItems').removeObject(tabItem);
+        get(this, 'tabItems').removeObject(tabItem);
     },
 
     deregisterTabPanel(tabPanel) {
-        this.get('tabPanels').removeObject(tabPanel);
+        get(this, 'tabPanels').removeObject(tabPanel);
     }
 });

@@ -34,6 +34,7 @@
                                 id=(concat "domain-" domainScore.domainId)
                                 assessmentId=model.assessmentId
                                 assessmentCategory=assessmentContent.lowerCaseCategory
+                                assessmentCategoryGroup=assessmentContent.assessmentCategoryGroup
                                 takenDate=selectedTakenDate
                                 domainScore=domainScore
                                 domains=assessmentContent.domains
@@ -53,11 +54,11 @@
                         {{else if (can "assessments.take")}}
                             <p>
                                 {{#if model.isInProgress}}
-                                    {{#link-to "assessments.take" assessmentContent.lowerCaseCategory class="btn btn-xl btn-border-theme"}}
+                                    {{#link-to "assessments.take" assessmentContent.assessmentCategoryGroup.id class="btn btn-xl btn-border-theme"}}
                                         {{t "assessment.continueAssessment"}}
                                     {{/link-to}}
                                 {{else}}
-                                    {{#link-to "assessments.start" assessmentContent.lowerCaseCategory class="btn btn-xl btn-border-theme"}}
+                                    {{#link-to "assessments.start" assessmentContent.assessmentCategoryGroup.id class="btn btn-xl btn-border-theme"}}
                                         {{t "assessment.startAssessment"}}
                                     {{/link-to}}
                                 {{/if}}

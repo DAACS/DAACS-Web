@@ -16,6 +16,7 @@ const {
 } = Ember;
 
 export default Model.extend({
+    //attributes
     assessmentCategory: attr('string'),
     assessmentType: attr('string'),
     content: attr(),
@@ -23,15 +24,18 @@ export default Model.extend({
     label: attr('string'),
     userHasTakenAssessment: attr('boolean'),
     userPassesPrerequisites: attr('boolean'),
+
+    //relationships
+    assessmentCategoryGroup: belongsTo('assessment-category-group'),
     prerequisites: fragmentArray('assessment-prerequisite'),
     userAssessmentSummary: belongsTo('user-assessment-summary'),
-    isWritingPrompt: equal('assessmentType', 'WRITING_PROMPT'),
-    dasherizedCategory: dasherized('assessmentCategory'),
-    lowerCaseCategory: lowerCase('assessmentCategory'),
 
+    //computeds
+    dasherizedCategory: dasherized('assessmentCategory'),
+    isWritingPrompt: equal('assessmentType', 'WRITING_PROMPT'),
+    lowerCaseCategory: lowerCase('assessmentCategory'),
+    prerequisitesFailReasons: mapBy('prerequisites', 'reason'),
     showPrerequisiteFailReasons: computed('userPassesPrerequisites', 'prerequisitesFailReasons', function() {
         return !this.get('userPassesPrerequisites') && !isEmpty(this.get('prerequisitesFailReasons'));
-    }),
-
-    prerequisitesFailReasons: mapBy('prerequisites', 'reason')
+    })
 });

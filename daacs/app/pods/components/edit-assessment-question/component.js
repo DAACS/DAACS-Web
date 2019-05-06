@@ -18,7 +18,7 @@ export default Ember.Component.extend(EmberValidations, {
                 'if'(object) {
                     //only add a validation rule for feedback content for multiple choice type assessments
                     //and only if the question already has feedback content defined
-                    return object.get('assessment.isMultipleChoice') && !!object.get('item.itemContent.feedback');
+                    return object.get('assessment.isMultipleChoiceLike') && !!object.get('item.itemContent.feedback');
                 }
             }
         }

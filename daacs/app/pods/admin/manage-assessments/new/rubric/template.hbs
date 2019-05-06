@@ -1,0 +1,6 @@
+{{edit-assessment/rubric
+    model=model.overallRubric
+    showScoreMap=(not model.isWritingPrompt)
+    errorMessages=parentController.rubricApiErrors
+    parentValidator=parentController.validator
+}}

@@ -5,7 +5,8 @@ moduleForModel('assessment', 'Unit | Model | assessment', {
   needs: [
       'model:assessment-domain',
       'model:user-assessment-question-group',
-      'model:user-assessment-writing-sample'
+      'model:user-assessment-writing-sample',
+      'model:assessment-category-group'
   ]
 });
 

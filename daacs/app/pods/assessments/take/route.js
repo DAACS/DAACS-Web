@@ -50,20 +50,20 @@ export default AuthenticatedRoute.extend(AssessmentRouteMixin, CheckAbilities, {
     async getExistingUserAssessment(assessmentContent, transition) {
         try {
             let summary = await this.store.queryRecord('user-assessment-summary', {
-                assessmentCategory: assessmentContent.get('assessmentCategory'),
+                assessmentCategoryGroupId: assessmentContent.get('assessmentCategoryGroup.id'),
                 limit: 1
             });
 
             if(isEmpty(summary) || !summary.get('isInProgress')) {
                 //if no matching in-progress user assessment summary was found, redirect to assessment landing
                 transition.abort();
-                this.replaceWith('assessments.index', assessmentContent.get('lowerCaseCategory'));
+                this.replaceWith('assessments.index', assessmentContent.get('assessmentCategoryGroup.id'));
             } else {
                 return summary;
             }
         } catch(error) {
             transition.abort();
-            return this.replaceWith('assessments.index', assessmentContent.get('lowerCaseCategory'));
+            return this.replaceWith('assessments.index', assessmentContent.get('assessmentCategoryGroup.id'));
         }
     },
 
@@ -114,7 +114,7 @@ export default AuthenticatedRoute.extend(AssessmentRouteMixin, CheckAbilities, {
 
             return resolve(this.replaceWith(
                 'assessments.index',
-                assessmentSummary.get('lowerCaseCategory'),
+                this.get('assessmentContent.assessmentCategoryGroup.id'),
                 {queryParams: {
                     finished: true,
                     takenDate: assessmentSummary.get('takenDateISO')

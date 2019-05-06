@@ -8,7 +8,8 @@ moduleForModel('assessment', 'Unit | Serializer | assessment', {
       'transform:fragment-array',
       'model:assessment-domain',
       'model:user-assessment-question-group',
-      'model:user-assessment-writing-sample'
+      'model:user-assessment-writing-sample',
+      'model:assessment-category-group'
   ]
 });
 

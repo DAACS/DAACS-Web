@@ -57,7 +57,7 @@ export default AuthenticatedRoute.extend(CanMixin, ScrollReset, UserAssessmentRo
             query.userId = userId;
         }
 
-        if(model.get('isMultipleChoice') || model.get('isLikert')) {
+        if(model.get('isMultipleChoiceLike') || model.get('isLikert')) {
             //for CAT/LIKERT type assessments, the questions/answers associated
             //with the domain are displayed in the domain details page
             query.domainId = this.get('domainId');

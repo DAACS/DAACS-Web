@@ -4,7 +4,7 @@
     {{#if isFinished}}
         {{#link-to
             "assessments.index"
-            assessmentCategory
+            assessmentCategoryGroup.id
             class="btn btn-xl btn-block btn-border-theme widget-btn"
         }}
             {{t "assessment.completed"}}
@@ -13,7 +13,7 @@
     {{else if isInProgress}}
         {{#progress-button
             progressLinkRoute
-            assessmentCategory
+            assessmentCategoryGroup.id
             progress=percentComplete
             class="btn-xl btn-block btn-border-theme widget-btn"
         }}
@@ -25,7 +25,7 @@
     {{else}}
         {{#link-to
             startLinkRoute
-            assessmentCategory
+            assessmentCategoryGroup.id
             class="btn btn-xl btn-block btn-border-theme widget-btn"
             disabled=disableStart
             title=disabledReasonsTitle

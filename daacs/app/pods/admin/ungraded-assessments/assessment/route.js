@@ -43,6 +43,7 @@ export default AuthenticatedRoute.extend(DataRoute, CheckAbilities, ScrollReset,
     },
 
     resetController(controller, isExiting) {
+        this._super(...arguments);
         if(isExiting) {
             controller.get('assessmentContent.domains').setEach('selectedDomainScore', null);
         }

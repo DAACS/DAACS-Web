@@ -1,0 +1,99 @@
+{{server-errors errors=(hash errors=errorMessages)}}
+<div class="ember-light-table sortable-table margin-btm-20">
+    {{#sortable-group tagName="table" class="table table-hover" onChange=(action "reorderDomains") as |group|}}
+        <thead>
+            <tr>
+                <th>{{t "admin.editAssessment.domains.name"}}</th>
+                <th width="100">{{t "admin.editAssessment.domains.type"}}</th>
+                {{#unless model.isWritingPrompt}}
+                    {{#each scores as |score|}}
+                        <th width="120" class="hidden-xs hidden-sm hidden-md">{{score.label}}</th>
+                    {{/each}}
+                {{/unless}}
+                <th width="50"></th>
+            </tr>
+        </thead>
+        {{#each model.domains as |domain|}}
+            {{#sortable-item tagName="tbody" model=domain group=group handle=".sortable-drag-handle-domain"}}
+                <tr>
+                    <td class="cell-valign-middle">
+                        <span class="sortable-drag-handle sortable-drag-handle-domain">{{fa-icon icon="bars"}}</span>
+                        <a href="" {{action "openDomainDetails" domain}} class="{{unless domain.label 'font-italic'}}">
+                            {{or domain.label (concat "(" (t "admin.editAssessment.domains.noName") ")")}}
+                        </a>
+                    </td>
+                    <td class="cell-valign-middle" width="100">{{domain.domainTypeInfo.label}}</td>
+                    {{#unless model.isWritingPrompt}}
+                        {{#each scores as |score|}}
+                            <td class="cell-valign-middle hidden-xs hidden-sm hidden-md" width="120">
+                                {{get domain.rubric.completionScoreMap (concat (lower-case score.value) "Formatted")}}
+                            </td>
+                        {{/each}}
+                    {{/unless}}
+                    <td class="cell-valign-middle cell-slim text-center" width="50">
+                        {{#confirmation-save-button
+                            submit=(action "removeDomain" domain)
+                            confirmationText=(t (if domain.subDomains "admin.editAssessment.domains.remove.confirmMultiple" "admin.editAssessment.domains.remove.confirm"))
+                            confirmButtonText=(t "admin.editAssessment.domains.remove.label")
+                            cancelButtonText=(t "admin.editAssessment.domains.remove.cancel")
+                            placement="left"
+                            class="btn btn-table-action btn-border-skin"
+                        }}
+                            {{fa-icon icon="trash-o"}}
+                        {{/confirmation-save-button}}
+                    </td>
+                </tr>
+                {{#if domain.subDomains}}
+                    <tr class="nested-table-row">
+                        <td colspan={{if model.isWritingPrompt numBaseCols (inc numBaseCols scores.length)}}>
+                            <table class="table table-hover">
+                                {{#sortable-group tagName="tbody" class="lt-body" onChange=(action "reorderSubDomains" domain) as |subDomainGroup|}}
+                                    {{#each domain.subDomains as |subdomain|}}
+                                        {{#sortable-item tagName="tr" model=subdomain group=subDomainGroup handle=".sortable-drag-handle-subdomain"}}
+                                            <td class="cell-valign-middle">
+                                                <span class="sortable-drag-handle sortable-drag-handle-subdomain">{{fa-icon icon="bars"}}</span>
+                                                <a href="" {{action "openDomainDetails" subdomain domain}} class="{{unless subdomain.label 'font-italic'}}">
+                                                    {{or subdomain.label (concat "(" (t "admin.editAssessment.domains.noName") ")")}}
+                                                </a>
+                                            </td>
+                                            <td class="cell-valign-middle" width="100">{{subdomain.domainTypeInfo.label}}</td>
+                                            {{#unless model.isWritingPrompt}}
+                                                {{#each scores as |score|}}
+                                                    <td class="cell-valign-middle hidden-xs hidden-sm hidden-md" width="120">
+                                                        {{get subdomain.rubric.completionScoreMap (concat (lower-case score.value) "Formatted")}}
+                                                    </td>
+                                                {{/each}}
+                                            {{/unless}}
+                                            <td class="cell-valign-middle cell-slim text-center" width="50">
+                                                {{#confirmation-save-button
+                                                    submit=(action "removeSubDomain" domain subdomain)
+                                                    confirmationText=(t "admin.editAssessment.domains.remove.confirm")
+                                                    confirmButtonText=(t "admin.editAssessment.domains.remove.label")
+                                                    cancelButtonText=(t "admin.editAssessment.domains.remove.cancel")
+                                                    placement="left"
+                                                    class="btn btn-table-action btn-border-skin"
+                                                }}
+                                                    {{fa-icon icon="trash-o"}}
+                                                {{/confirmation-save-button}}
+                                            </td>
+                                        {{/sortable-item}}
+                                    {{/each}}
+                                {{/sortable-group}}
+                            </table>
+                        </td>
+                    </tr>
+                {{/if}}
+            {{/sortable-item}}
+        {{else}}
+            <tr>
+                <td colspan="6" class="well">
+                    <div class="text-center text-muted pad-top-20 pad-btm-20">{{t "admin.editAssessment.domains.none"}}</div>
+                </td>
+            </tr>
+        {{/each}}
+    {{/sortable-group}}
+</div>
+<a href="" {{action "addDomain"}}>
+    {{fa-icon icon="plus-circle"}}
+    {{t "admin.editAssessment.domains.add"}}
+</a>

@@ -1,0 +1,18 @@
+{{server-errors errors=(hash errors=errorMessages)}}
+{{#if model.assessmentType}}
+    {{component (concat "edit-assessment/questions/" (dasherize (lower-case model.assessmentType)))
+        model=model
+        openEditLikertGroup=openEditLikertGroup
+        openAddLikertGroup=openAddLikertGroup
+        openEditLikertQuestion=openEditLikertQuestion
+        openAddLikertQuestion=openAddLikertQuestion
+        openImportLikertQuestions=openImportLikertQuestions
+        openEditCatQuestion=openEditCatQuestion
+        openAddCatQuestion=openAddCatQuestion
+        openImportCatQuestions=openImportCatQuestions
+    }}
+{{else}}
+    <div class="well text-center text-muted pad-top-20 pad-btm-20">
+        {{t "admin.editAssessment.questions.selectAssessmentType"}}
+    </div>
+{{/if}}

@@ -1,6 +1,11 @@
 .loading-page {
     padding: 100px 20px 400px 20px;
     text-align: center;
+
+    .modal-body & {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
 }
 
 .loading-spinner {

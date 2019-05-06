@@ -1,0 +1,61 @@
+{{#modal-dialog
+    title=(t (if isNew "admin.editAssessment.questions.likert.group.add" "admin.editAssessment.questions.likert.group.edit"))
+    cancel="cancel"
+    size="modal-md"
+    closeButton=false
+    closeOnEsc=false
+    backdrop="static"
+}}
+    <div class="modal-body">
+        <p>{{t "admin.editAssessment.questions.likert.group.options"}}</p>
+        <div class="row">
+            <div class="col-lg-8">
+                {{#sortable-group class="list-group" onChange=(action "reorderAnswers") as |group|}}
+                    {{#each answers as |answer|}}
+                        {{#sortable-item model=answer group=group class="list-group-item" handle=".sortable-drag-handle-answer"}}
+                            <a href="" class="pull-right" {{action "removeAnswer" answer}}>{{fa-icon icon="trash-o"}}</a>
+                            <span class="sortable-drag-handle sortable-drag-handle-answer">{{fa-icon icon="bars"}}</span>
+                            {{answer.content}}
+                        {{/sortable-item}}
+                    {{/each}}
+                {{/sortable-group}}
+            </div>
+        </div>
+        {{#unless answers}}
+            <div class="well text-center text-muted pad-top-20 pad-btm-20">
+                {{t "admin.editAssessment.questions.answers.none"}}
+            </div>
+        {{/unless}}
+        {{#form-validator submit=(action "addAnswer") errors=errors as |formSubmit|}}
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="input-group">
+                        {{input
+                            value=newAnswer
+                            type="text"
+                            class="form-control"
+                            maxlength=128
+                            placeholder=(t "admin.editAssessment.questions.answers.addAnswer")
+                        }}
+                        <span class="input-group-btn">
+                            <button class="btn btn-lg btn-default" type="submit" disabled={{cannotAddAnswers}} {{action formSubmit}}>
+                                {{fa-icon icon="plus-circle"}}
+                                {{t "admin.editAssessment.questions.answers.add"}}
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {{/form-validator}}
+    </div>
+    <div class="modal-footer">
+        {{#if isNew}}
+            <button type="button" class="btn btn-default" {{action "cancelAdd"}}>
+                {{t "dialog.cancel"}}
+            </button>
+        {{/if}}
+        <button type="button" class="btn btn-primary btn-wide" {{action "save"}}>
+            {{t (if isNew "admin.editAssessment.questions.likert.group.add" "dialog.done")}}
+        </button>
+    </div>
+{{/modal-dialog}}

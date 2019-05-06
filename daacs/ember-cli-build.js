@@ -37,8 +37,11 @@ module.exports = function(defaults) {
         ]
       },
       'ember-composable-helpers': {
-          only: ['inc', 'filter-by', 'find-by', 'sort-by']
-      }
+          only: ['inc', 'filter-by', 'find-by', 'sort-by', 'contains']
+      },
+      nodeModulesToVendor: [
+          'node_modules/ace-builds/src-min-noconflict'
+      ]
   });
 
 
@@ -69,6 +72,11 @@ module.exports = function(defaults) {
       app.import('bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js');
       app.import('bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js');
       app.import('bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js');
+      app.import('vendor/ace.js');
+      app.import('vendor/mode-html.js');
+      app.import('vendor/theme-github.js');
+      app.import('vendor/jodit/jodit.min.js');
+      app.import('vendor/jodit/jodit.min.css');
   }
   app.import('bower_components/font-awesome/fonts/fontawesome-webfont.eot', { destDir: "assets/fonts" });
   app.import('bower_components/font-awesome/fonts/fontawesome-webfont.svg', { destDir: "assets/fonts" });
@@ -103,5 +111,5 @@ module.exports = function(defaults) {
       allowEmpty: true
   });
 
-  return app.toTree([openSans,roboto, daacsIcons]);
+  return app.toTree([openSans, roboto, daacsIcons]);
 };

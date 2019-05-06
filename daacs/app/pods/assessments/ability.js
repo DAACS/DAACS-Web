@@ -1,9 +1,17 @@
 import Ember from 'ember';
 import { Ability } from 'ember-can';
 
+const {
+    computed: {
+        or,
+        alias
+    }
+} = Ember;
+
 export default Ability.extend({
-    take: Ember.computed.alias('session.user.isStudent'),
-    selectUser: Ember.computed.or('session.user.isAdvisor', 'session.user.isAdmin'),
-    import: Ember.computed.alias('session.user.isAdmin'),
-    edit: Ember.computed.alias('session.user.isAdmin')
+    take: alias('session.user.isStudent'),
+    selectUser: or('session.user.isAdvisor', 'session.user.isAdmin'),
+    import: alias('session.user.isAdmin'),
+    create: alias('session.user.isAdmin'),
+    edit: alias('session.user.isAdmin')
 });

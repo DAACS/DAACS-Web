@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            {{#if wordOnly}}
+                <label class="checkbox-inline">
+                    <input
+                        type="checkbox"
+                        checked={{hasContent}}
+                        onclick={{action "toggleWordContent"}}
+                    >
+                    {{t "admin.editAssessment.questions.supplement.hasContent"}}
+                </label>
+            {{else}}
+                <select onchange={{action "updateContentType" value="target.value"}} class="form-control">
+                    <option value="">{{t "admin.editAssessment.questions.supplement.none"}}</option>
+                    {{#each contentTypes as |type|}}
+                        <option value={{type.value}} selected={{eq model.itemContentType type.value}}>
+                            {{type.label}}
+                        </option>
+                    {{/each}}
+                </select>
+            {{/if}}
+        </div>
+    </div>
+</div>
+{{#if hasContent}}
+    <div class="form-group">
+        {{#if model.isWord}}
+            {{wysiwyg-editor
+                allowFullscreen=allowFullscreen
+                content=(readonly model.content)
+                onChange=(action (mut model.content))
+            }}
+        {{else if model.isImage}}
+            {{input
+                value=model.content
+                type="text"
+                class="form-control"
+                placeholder=(t "admin.editAssessment.questions.supplement.imageExample")
+            }}
+        {{else}}
+            {{textarea
+                value=model.content
+                rows="10"
+                class="form-control"
+            }}
+        {{/if}}
+    </div>
+{{/if}}

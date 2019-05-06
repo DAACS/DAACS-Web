@@ -17,5 +17,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{edit-assessment-question item=item parent-form-validator=parent-form-validator}}`);
 
-  assert.equal(this.$().text().trim().replace(/\s+/g, ' '), 'Question Text Answers');
+  assert.equal(this.$().text().trim().replace(/\s+/g, ' '), 'Question text Missing translation: admin.editAssessment.questions.answers');
 });
