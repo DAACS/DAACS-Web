@@ -22,6 +22,7 @@
     "node-fetch"
   ],
   "devDependencies": {
+    "ace-builds": "^1.4.1",
     "broccoli-asset-rev": "2.4.2",
     "broccoli-funnel": "1.0.3",
     "ember-ajax": "2.0.1",
@@ -71,6 +72,7 @@
     "gavant-input-validator": "file:./lib/gavant-input-validator",
     "gavant-loading-button": "file:./lib/gavant-loading-button",
     "glob": "4.5.3",
+    "jodit": "^3.2.9",
     "loader.js": "4.0.1",
     "morgan": "1.7.0"
   }
