@@ -1,32 +1,35 @@
 {{#modal-dialog title=(t "userConsent.label") cancel="cancel" size="modal-md" backdrop="static" closeOnEsc=false closeButton=false}}
-        <div class="modal-body">
-            <p>
-                You have been randomly selected as one of the first Excelsior College students and advisors to receive access to a new tool, DAACS (<a href="http://www.daacs.net">www.daacs.net</a>). The Diagnostic Assessment of Achievement and College Skills (DAACS) features self-assessments in academic areas and college skills, as well as individualized feedback reports with direct links to resources available through the college to support your success. DAACS is being developed with funding from the US Department of Education’s First in the World Program for Postsecondary Education (FIPSE).
-            </p>
-            <p>
-                The US Department of Education requires DAACS to undergo testing to document its quality and potential impact among students who use the tool. As part of the DAACS test group, external evaluators would like to ask you a few short questions about what it’s like to use DAACS. These questions will either be embedded directly into the tool or emailed to you later on as an online survey.<br>
-                If you choose to share your feedback, evaluators will de-identify your responses, keep them confidential, and report findings only in aggregate without the possibility for re-identification. There are no consequences for choosing not to participate in the study.
-            </p>
-            <p>
-                Excelsior College is excited to offer you the first opportunity to use DAACS and appreciates your help with making the tool as useful as it can be for all students.
-            </p>
-            <p>
-                I you have any questions about DAACS or this study, please feel free to email me directly at <a href="mailto:daacs@excelsior.edu">daacs@excelsior.edu</a>.
-            </p>
-            <p>
+      <div class="modal-body">
+         <p>
+            Dear Student:
+         </p>
+         <p>
+            As an incoming student of the University at Albany, you will use a tool called DAACS (<a href="http://www.daacs.net">www.daacs.net</a>) that the University has newly implemented to optimize learning and promote student success. The Diagnostic Assessment of Achievement and College Skills (DAACS) is a collection of assessments of college readiness, with instant individualized feedback and links to online educational resources.
+         </p>
+         <p>
+            In order to ensure the quality of the DAACS, my team and I will collect data related to students’ responses and usage, as well as demographic and academic information. We need your consent to collect your data, of course. Students who provide consent will be included in our database. Some will also be invited to participate in an interview about the DAACS system.
+         </p>
+         <p>
+            To protect your privacy, your responses and information will be de-identified and kept confidential. Findings will be reported only in aggregate without the possibility of identification. There are no consequences for choosing not to participate in the study; you will still be able to take advantage of the supports provided by DAACS.
+         </p>
+         <p>
+            Thank you for considering letting us include you in this important research on college success. If you have any questions about DAACS or this study, please feel free to email me directly at <a href="mailto:handrade@albany.edu">handrade@albany.edu</a>.
+         </p>
+         <p>
             Sincerely,
-            </p>
-            <p>
-                Barbara C. Storandt, MS Ed, MS<br>
-                External Evaluator, DAACS<br>
-                ALTA Solutions Group, LLC<br>
-                1182 Cumberland Head Rd.<br>
-                Plattsburgh, NY 12901<br>
-                607-279-4179<br>
-                <a href="http://www.altasolutionsgroup.com">www.altasolutionsgroup.com</a>
-            </p>
-        </div>
-        <div class="modal-footer">
+         </p>
+         <p>
+            Heidi L. Andrade, Ed.D.<br>
+            Professor<br>
+            Educational Psychology and Methodology<br>
+            1400 Washington Ave.<br>
+            Albany, NY, 12222<br>
+         </p>
+         <p>
+            Click here to indicate your preference:
+         </p>
+         </div>
+         <div class="modal-footer">
             {{#loading-button clicked=(action "submit" true) class="btn-primary btn-block"}}
                 {{t "userConsent.consent"}}
             {{/loading-button}}

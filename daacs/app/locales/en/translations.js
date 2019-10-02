@@ -51,9 +51,9 @@ export default {
     userConsent: {
         label: "Data Usage Consent",
         consent: "I CONSENT",
-        consentDescription: "I agree to provide feedback on DAACS to external evaluators and understand my responses will remain confidential, reported only in aggregate.",
+        consentDescription: "I give the DAACS team permission to use my information, and understand my responses will remain confidential, reported only in aggregate.",
         dontConsent: "I DO NOT CONSENT",
-        dontConsentDescription: "Please do not ask me follow-up questions about DAACS."
+        dontConsentDescription: "I do not give the DAACS team permission to use my information."
     },
     errors: {
         inclusion: " is not included in the list",

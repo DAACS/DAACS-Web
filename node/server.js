@@ -28,6 +28,7 @@ const CustomExpressServer = require('./custom-express-server');
 const distPath = '../daacs/dist';
 const notifierPath = distPath;
 const applyRuntimeConfig = require('./runtime-config');
+const workerCount = 1;
 
 applyRuntimeConfig(distPath);
 
@@ -43,7 +44,8 @@ const httpServer = new CustomExpressServer({
 const server = new FastBootAppServer({
   notifier: notifier,
   httpServer: httpServer,
-  distPath: distPath
+  distPath: distPath,
+  workerCount: workerCount
 });
 
 server.start();
