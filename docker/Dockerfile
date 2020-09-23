@@ -1,4 +1,4 @@
-FROM node:6.4.0
+FROM node:6.11.2
 COPY ./build /etc/daacs-web
 EXPOSE 3000
 VOLUME ["/etc/daacs-web/daacs/dist"]

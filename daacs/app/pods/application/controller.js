@@ -15,8 +15,8 @@ export default Ember.Controller.extend({
     selectedUser: alias('advisor.selectedUser'),
 
     currentPathClasses: computed('currentPath', function() {
-        //doing this to get CSS classes similar to what ember-body-class provides, but w/full fastboot compatibilty
-        //ember-body-class currently does not apply classes in fastboot/server-side, so depdendent CSS styles
+        //doing this to get CSS classes similar to what ember-body-class provides, but w/full fastboot compatibility
+        //ember-body-class currently does not apply classes in fastboot/server-side, so dependent CSS styles
         //are not applied until after the client-side app loads, resulting in a flash of different styles
         //@see https://github.com/AddJam/ember-body-class/issues/6
         return this.get('currentPath').split('.').join(' ');

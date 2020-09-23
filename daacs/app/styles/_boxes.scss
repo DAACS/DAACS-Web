@@ -191,7 +191,8 @@ button.list-group-item-heading {
         margin: 0;
 
         > a,
-        > .nav-static-content {
+        > .nav-static-content,
+        > .nav-btn {
             padding: 10px 15px;
             border-radius: 0;
             border: 1px solid $form-input-border-color;
@@ -200,6 +201,12 @@ button.list-group-item-heading {
             .fa.pull-right {
                 margin-top: 5px;
             }
+        }
+
+        > .nav-btn {
+            background-color: inherit;
+            width: 100%;
+            text-align: left;
         }
 
         > .nav-static-content {
@@ -217,8 +224,23 @@ button.list-group-item-heading {
             }
         }
 
-        &.active > a {
+        &.active > a,
+        &.active > .nav-btn {
             border-color: $themecolor;
+        }
+
+        > .nav-btn:focus,
+        > .nav-btn:hover {
+            background-color: #eeeeee;
+            color: #aeaeae;
+        }
+
+        &.active > .nav-btn,
+        &.active > .nav-btn,
+        &.active > .nav-btn:hover,
+        &.active > .nav-btn:focus {
+            color: #fff;
+            background-color: #54075B;
         }
     }
 }

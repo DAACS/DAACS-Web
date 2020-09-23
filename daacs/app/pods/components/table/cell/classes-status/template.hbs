@@ -1,0 +1,15 @@
+{{#if value}}
+    {{fa-icon icon=icon}}
+    {{t "classes.accepted"}}
+{{else}}
+    <div>
+        {{fa-icon icon=icon}}
+        <i>{{t "classes.pendingInvite"}}</i>
+    </div>
+    {{#loading-button
+        clicked=(action tableActions.resendInvite row.content.studentEmail (not row.content.enabled))
+        class="btn-table-action btn-border-skin"
+    }}
+        {{fa-icon icon="mail"}} {{t "classes.resendInvite"}}
+    {{/loading-button}}
+{{/if}}

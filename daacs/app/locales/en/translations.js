@@ -12,6 +12,13 @@ export default {
         name: "DAACS",
         copyright: "© 2016. All rights reserved."
     },
+    actions:  {
+        save: "Save",
+        create: "Create",
+        print: "Print",
+        edit: "Edit",
+        import: "Import"
+    },
     login: {
         label: "Sign in",
         email: "Email Address",
@@ -45,6 +52,7 @@ export default {
         role: "Role",
         selectRole: "Select a role",
         student: "Student",
+        instructor: "Instructor",
         advisor: "Advisor",
         success: "Account created successfully. Please log in."
     },
@@ -102,6 +110,60 @@ export default {
     routeError: {
         title: "System Error",
         message: "Sorry, an error occurred while attempting to load this page."
+    },
+    classes: {
+        label: "Classes",
+        students: "Students",
+        studentEmail: "Student Email",
+        back: "Back to class list",
+        downloadResults: "Download Results",
+        sendInvites: "Send Invites",
+        addStudents: "Add Students",
+        student: "Student",
+        scores: "Scores",
+        status: "Status",
+        pendingInvite: "Pending Invite",
+        resendInvite: "Resend Invite",
+        accepted: "Accepted",
+        score: "{{domain}}: {{score}}",
+        noClassesFound: "No classes found",
+        noStudentsFound: "No students found",
+        unableToSendInvite: "Unable to send class invite(s). Check that a class is selected and the email(s) are correct and try again.",
+        unableToAddStudents: "Unable to add student(s). Check that the email(s) are correct and try again.",
+        sentInvitesSuccess: "Sent class invite(s) successfully.",
+        addedStudentsSuccess: "Added student(s) successfully.",
+        doNotSendConfirmationEmail: "Do not send confirmation email",
+        downloadSuccess: "Download started...",
+        createClass: {
+            label: "Create Class",
+            general: "General",
+            className: "Class Name",
+            assessments: "Assessments",
+            selectAssessments: "Select Assessments",
+            students: "Students",
+            submitSuccess: "Class created successfully.",
+            submitError: "Please correct the errors in the form and resubmit."
+        },
+        editClass: {
+            label: "Edit Class",
+            submitSuccess: "Changes saved successfully."
+        },
+        classInvite: {
+            title: "Class Invite",
+            acceptClassInvite: "Accept Class Invite",
+            acceptedSuccessfully: "Accepted class invite successfully."
+        },
+        import: {
+            title: "Import Classes",
+            file: "CSV File",
+            importSuccess: "Imported classes successfully.",
+            importFailed: "Unable to import classes."
+        },
+        search: {
+            label: "Search instructors...",
+            select: "Select an instructor",
+            noneFound: "No instructors found"
+        }
     },
     admin: {
         label: "Admin",
@@ -457,6 +519,8 @@ export default {
         isInProgress: "This assessment is still in progress. Please complete it to see your results.",
         notYetGraded: "This assessment has not yet been graded. Please check back later.",
         notYetGradedWriting: "Thank you for completing your DAACS writing assessment. We have provided a copy of your response below.",
+        manualGradedResultsAvailable: "Your results and feedback will be available here. Please check back later.",
+        autoGradedResultsAvailable: "Your results and feedback will be available here. Please refresh your browser in one minute.",
         showResultsFrom: "Show Results From",
         selectCompletionDate: "Select a completion date",
         noCompletionsFound: "No completions found",
@@ -531,11 +595,24 @@ export default {
         title: "Server Error",
         msg: "Sorry, the server encountered an error while attempting to process your request.",
         codes: {
+            unknown: {
+                unexpected: "An unexpected error has occurred. If the problem persists, please contact the system administrator."
+            },
             MongoDB: {
                 requestFailed: "We're having trouble completing your request...please try again in a moment."
             },
             javaMailSender: {
                 requestFailed: "We're having trouble completing your request...please try again in a moment."
+            },
+            createUserRequest: {
+                constraintViolation: "Role must be either student or instructor"
+            },
+            sendClassInviteRequest: {
+                constraintViolation: {
+                    classId: {
+                        NotNull: "Cannot send invite(s) without a selected class. Please select a class and try again. If there are no classes, please create one and try again."
+                    }
+                }
             },
             Assessment: {
                 constraintViolation: {

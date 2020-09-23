@@ -127,6 +127,10 @@ a:hover,
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus,
+.nav-boxed > li.active > .nav-btn,
+.nav-pills > li.active > .nav-btn,
+.nav-pills > li.active > .nav-btn:hover,
+.nav-pills > li.active > .nav-btn:focus,
 /* dashboard widget button progress bar hover/active/focus */
 .progress-btn:hover .progress-btn-bar,
 .progress-btn:focus .progress-btn-bar,
@@ -345,7 +349,11 @@ textarea:focus,
 .nav-boxed > li.active > a,
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
-.nav-pills > li.active > a:focus  {
+.nav-pills > li.active > a:focus,
+.nav-boxed > li.active > .nav-btn,
+.nav-pills > li.active > .nav-btn,
+.nav-pills > li.active > .nav-btn:hover,
+.nav-pills > li.active > .nav-btn:focus  {
     border-color: #54075B;
 }
 

@@ -1,0 +1,104 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern margin-btm-30">
+        <div class="container text-center">
+            <div class="pull-right">
+                {{#if (can "classes.edit")}}
+                    <button class="btn btn-border-white" {{action "downloadResults"}} disabled={{not classId}}>
+                        {{fa-icon icon="download"}}
+                        {{t "classes.downloadResults"}}
+                    </button>
+                {{/if}}
+                {{#if (can "classes.import")}}
+                    <button type="button" class="btn btn-border-white" {{action "importClasses"}}>
+                        {{fa-icon icon="upload"}}
+                        {{t "actions.import"}}
+                    </button>
+                {{/if}}
+                {{#if (can "classes.create")}}
+                    {{#link-to "classes.new" class="btn btn-border-white"}}
+                        {{fa-icon icon="plus"}}
+                        {{t "actions.create"}}
+                    {{/link-to}}
+                {{/if}}
+                {{#if (can "classes.edit")}}
+                    {{#link-to "classes.class" classId class="btn btn-border-white"}}
+                        {{fa-icon icon="pencil"}}
+                        {{t "actions.edit"}}
+                    {{/link-to}}
+                {{/if}}
+            </div>
+            <h1>{{t "classes.label"}}</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3">
+                {{#if (can "classes.search")}}
+                    <div class="margin-btm-20">
+                        {{instructor-select onChange=(action "onInstructorChange") selectedInstructor=selectedInstructor}}
+                    </div>
+                {{/if}}
+                <div class="margin-btm-20">
+                    {{#affixed-block}}
+                        <ul class="nav nav-pills nav-boxed nav-stacked margin-btm-10">
+                            {{#each classes as |class|}}
+                                <li role="presentation" class="{{if (eq class.id classId) 'active'}}">
+                                    <button type="button" {{action "changeSelectedClass" class}} class="nav-btn d-block">{{class.name}}</button>
+                                </li>
+                            {{else}}
+                                <li role="presentation">
+                                    <div class="well text-muted margin-btm-0">{{t "classes.noClassesFound"}}</div>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    {{/affixed-block}}
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-9">
+                <h2 class="d-inline-block">{{t "classes.students"}}</h2>
+                <div class="row">
+                    <div class="col-lg-10 col-md-10">
+                        {{#power-select-multiple
+                            options=studentEmailList
+                            selected=selectedEmails
+                            onchange=(action (mut selectedEmails))
+                            searchEnabled=true
+                            placeholder=(t "classes.studentEmail")
+                            onkeydown=(action "addStudentEmail") as |email|}}
+                            {{email}}
+                        {{/power-select-multiple}}
+                        {{#if (can "classes.forceAccept")}}
+                            <label class="checkbox-inline">
+                                <input
+                                    type="checkbox"
+                                    checked={{isForceAccept}}
+                                    onclick={{action "toggleForceAccept"}}
+                                >
+                                {{t "classes.doNotSendConfirmationEmail"}}
+                            </label>
+                        {{/if}}
+                    </div>
+                    <div class="col-md-2 col-lg-2 pad-0">
+                        {{#loading-button clicked=(action "sendInvites" studentEmailList) class="btn-border-theme btn-lg full-size pad-left-15 pad-right-15"}}
+                            {{t (if (and isForceAccept (can "classes.forceAccept")) "classes.addStudents" "classes.sendInvites")}}
+                        {{/loading-button}}
+                    </div>
+                </div>
+                <hr/>
+                {{responsive-table
+                    models=model
+                    columns=columns
+                    canLoadMore=false
+                    clickableRows=true
+                    onRowClick=(action "onRowClick")
+                    noResultsText=(t "classes.noStudentsFound")
+                    rowComponent=(component "active-table-row")
+                    class="margin-btm-20"
+                    tableActions=(hash
+                        resendInvite=(action "resendInvite")
+                    )
+                }}
+            </div>
+        </div>
+    </div>
+{{/page-section}}

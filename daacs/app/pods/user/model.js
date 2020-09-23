@@ -3,6 +3,7 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { fragmentArray } from 'model-fragments/attributes';
 import { trim } from 'daacs/helpers/trim';
+import { hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
     username: attr('string'),
@@ -15,12 +16,19 @@ export default Model.extend({
     hasDataUsageConsent: attr(),
     accountNonExpired: attr('boolean'),
     accountNonLocked: attr('boolean'),
+    status: attr('string'),
+
     authorities: fragmentArray('user-authorities'),
+    classInvites: hasMany('class'),
 
     passwordConfirmation: Ember.computed.alias('passwordConfirm'),
 
     isStudent: Ember.computed('authorities', function() {
         return !Ember.isEmpty(this.get('authorities').findBy('authority', 'ROLE_STUDENT'));
+    }),
+
+    isInstructor: Ember.computed('authorities', function() {
+        return !Ember.isEmpty(this.get('authorities').findBy('authority', 'ROLE_INSTRUCTOR'));
     }),
 
     isAdvisor: Ember.computed('authorities', function() {

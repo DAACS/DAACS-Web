@@ -21,6 +21,7 @@
                 <select onchange={{action (mut model.role) value="target.value"}} class="form-control" id="create-account-role">
                     <option value="">{{t "createAccount.selectRole"}}</option>
                     <option value="ROLE_STUDENT" selected={{eq model.role "ROLE_STUDENT"}}>{{t "createAccount.student"}}</option>
+                    <option value="ROLE_INSTRUCTOR" selected={{eq model.role "ROLE_INSTRUCTOR"}}>{{t "createAccount.instructor"}}</option>
                 </select>
             {{/input-validator}}
         </div>

@@ -1,0 +1,72 @@
+{{#page-section fullWidth=true}}
+    <div class="page-title pattern">
+        <div class="container text-center">
+            <h1>{{t "classes.editClass.label"}}</h1>
+        </div>
+    </div>
+    <div class="space40"></div>
+    {{#form-validator
+        errors=errors
+        submit=(action "save")
+        as |formSubmit|
+    }}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="margin-btm-20">
+                        {{#affixed-block tagName="ul" class="nav nav-pills nav-boxed nav-stacked"}}
+                            {{#active-link-container}}
+                                {{#active-link "classes.class" model.id}}
+                                    {{t "classes.createClass.general"}}
+                                {{/active-link}}
+                            {{/active-link-container}}
+                            <li>
+                                {{#link-to "classes.index"}}
+                                    {{fa-icon icon="arrow-left" fixedWidth=true}}
+                                    {{t "classes.back"}}
+                                {{/link-to}}
+                            </li>
+                        {{/affixed-block}}
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    {{server-errors errors=model.errors}}
+                <div class="row">
+                    <div class="col-lg-8">
+                        {{#input-validator target="model.name" text=(t "classes.createClass.className")}}
+                            {{input
+                                value=model.name
+                                type="text"
+                                class="form-control"
+                                maxlength=128
+                            }}
+                        {{/input-validator}}
+                        {{#input-validator target="model.assessmentIds" text=(t "classes.createClass.assessments")}}
+                            {{#power-select-multiple
+                                options=assessments
+                                selected=selectedAssessments
+                                onchange=(action "updateAssessmentIds")
+                                searchEnabled=true
+                                searchField="label"
+                                disabled=(not model.canEditAssessments)
+                                placeholder=(t "classes.createClass.selectAssessments") as |assessment|}}
+                                {{assessment.label}} ({{assessment.assessmentCategoryGroup.label}})
+                            {{/power-select-multiple}}
+                        {{/input-validator}}
+                    </div>
+                </div>
+                    <div class="space40"></div>
+                    <div class="text-right">
+                        {{#link-to "classes.index" class="btn btn-lg btn-link"}}
+                            &laquo; {{t "classes.back"}}
+                        {{/link-to}}
+                        {{#loading-button clicked=formSubmit class="btn-border-theme btn-lg full-size"}}
+                            {{t "actions.save"}}
+                        {{/loading-button}}
+                    </div>
+                    <div class="space40"></div>
+                </div>
+            </div>
+        </div>
+    {{/form-validator}}
+{{/page-section}}

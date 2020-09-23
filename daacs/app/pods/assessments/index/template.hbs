@@ -43,6 +43,11 @@
                     {{/each}}
                     <div class="space40"></div>
                 {{else}}
+                    {{#if (not model.overallScore)}}
+                        <div class="alert-message alert-info alert">
+                            <span>{{t (if (eq model.scoringType manualScoringType.value) "assessment.manualGradedResultsAvailable" "assessment.autoGradedResultsAvailable")}}</span>
+                        </div>
+                    {{/if}}
                     <div class="jumbotron text-center">
                         <p>{{emptyText}}</p>
                         <div class="space30"></div>

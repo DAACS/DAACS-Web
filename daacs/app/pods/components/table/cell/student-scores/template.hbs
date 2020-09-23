@@ -1,0 +1,3 @@
+{{#each value as |score|}}
+    {{t "classes.score" domain=score.assessmentCategoryGroup score=score.overallScore}}{{if (and (gt value.length 1) (not-eq score value.lastObject)) ", "}}
+{{/each}}

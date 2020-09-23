@@ -43,6 +43,9 @@
                         </ul>
                     </li>
                 {{/if}}
+                {{#if (can "classes.view")}}
+                    <li>{{#link-to "classes.index"}}{{t "classes.label"}}{{/link-to}}</li>
+                {{/if}}
                 {{#if (and session.isAuthenticated logoutShown)}}
                     <li><a href="" {{action "logout"}}>{{t "logout.label"}}</a></li>
                 {{/if}}

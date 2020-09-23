@@ -1,0 +1,23 @@
+{{#modal-dialog title=(t "classes.import.title") cancel="cancel" size="modal-md"}}
+    {{#form-validator errors=errors submit=(action "submit") as |formSubmit|}}
+        <div class="modal-body">
+            {{server-errors errors=model.errors}}
+            {{#input-validator text=(t "classes.import.file") target="file"}}
+                {{file-upload-input
+                    onChange=(action "fileSelected")
+                    accept="text/csv"
+                    fileInputId="file"
+                    isUploading=isUploading
+                }}
+            {{/input-validator}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" {{action "cancel"}}>
+                {{t "dialog.close"}}
+            </button>
+            {{#loading-button clicked=formSubmit disabled=isUploading class="btn-primary"}}
+                {{t "actions.import"}}
+            {{/loading-button}}
+        </div>
+    {{/form-validator}}
+{{/modal-dialog}}

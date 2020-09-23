@@ -1,0 +1,19 @@
+{{#page-section}}
+    <div class="space80"></div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary margin-btm-50">
+                <div class="panel-heading">{{t "classes.classInvite.title"}}</div>
+                <div class="panel-body">
+                    {{server-errors errors=submitError}}
+                    <div class="form-group">
+                        {{#loading-button clicked=(action "acceptInvite") class="login-button full-size btn btn-border-theme btn-block btn-lg"}}
+                            {{t "classes.classInvite.acceptClassInvite"}}
+                            {{fa-icon icon="check"}}
+                        {{/loading-button}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/page-section}}

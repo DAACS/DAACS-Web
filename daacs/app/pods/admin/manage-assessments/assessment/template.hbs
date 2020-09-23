@@ -5,11 +5,9 @@
                 {{#copy-button clipboardText=cleanedJSON class="btn btn-border-white" success=(action "copySuccess") error=(action "copyError")}}
                     {{fa-icon icon="clipboard"}} <span class="hidden-sm hidden-xs">{{t "admin.assessmentDetails.copy"}}</span>
                 {{/copy-button}}
-                &nbsp;
                 {{#loading-button clicked=(action "exportAssessment") class="btn-border-white"}}
                     {{fa-icon icon="download"}} <span class="hidden-sm hidden-xs">{{t "admin.export"}}</span>
                 {{/loading-button}}
-                &nbsp;
                 {{#loading-button
                     clicked=(action "toggleAssessment")
                     class="btn-border-white"

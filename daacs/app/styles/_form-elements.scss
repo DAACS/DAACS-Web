@@ -145,6 +145,22 @@ legend {
     min-width: 200px;
 }
 
+.ember-power-select-multiple-trigger {
+    padding: .3em;
+
+    .ember-power-select-trigger-multiple-input {
+        min-height: 32px;
+    }
+}
+
+.ember-power-select-multiple-option {
+    border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: $themecolor;
+    border: 1px solid $themecolor;
+}
+
 .ember-basic-dropdown-content {
     z-index: $zindex-navbar + 1;
 }

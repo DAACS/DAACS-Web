@@ -57,6 +57,12 @@ Router.map(function() {
             });
         });
     });
+    this.route('classes', function() {
+        this.route('index', {});
+        this.route('new', {});
+        this.route('class', {path: '/:classId'});
+        this.route('accept-invite', {});
+    });
     this.route('password', function() {
         this.route('forgot');
         this.route('reset');

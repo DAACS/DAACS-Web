@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { SCORING_MANUAL } from 'daacs/constants/assessment/scoring-types';
 
 const {
     computed,
@@ -19,6 +20,8 @@ export default Ember.Controller.extend({
     sortedDomainScores: sort('model.domainScores', 'domainScoreSorting'),
     canRetake: alias('latestSummary.isGraded'),
     canContinue: alias('latestSummary.isInProgress'),
+    manualScoringType: SCORING_MANUAL,
+
     overallAssessmentFeedback: computed(
         'model.overallScore',
         'assessmentContent.overallRubric.supplementTable.[]',
