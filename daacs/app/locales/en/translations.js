@@ -855,16 +855,16 @@ export default {
             resources: "Open Education Resources"
         },
         rethink: {
-            label: "Rethinking Placement Exams",
-            content: "Traditional placement exams are high stakes assessments on which students receive either a passing or failing grade. Those who fail are placed into costly remediation courses that delay progress. In contrast, DAACS provides students with detailed information and feedback on their preparation for college-level work, as well as resources for shoring it up. Students can build needed skills while enrolled in courses that lead to the completion of their degrees."
+            label: "RETHINKING COLLEGE READINESS",
+            content: "In the past, newly enrolled college students had little reliable information about their readiness for college-level academic work. DAACS addresses this problem by providing students with detailed information and feedback on their preparation for college, as well as resources for shoring it up. By using DAACS, students can build needed skills in areas of self-regulated learning, writing, reading, and mathematics while enrolled in courses that lead to the completion of their degrees."
         },
         assess: {
-            label: "Assessing the Whole Student",
-            content: "Current research suggests that mindset, self-regulated learning, and grit are better predictors of college success than traditional placement or entrance exams. DAACS will assess these and provide students with strategies to be a more successful college student."
+            label: "FOCUSSING ON THE WHOLE STUDENT",
+            content: "Current research suggests that self-regulated learning, mindset, and motivation are better predictors of college success than traditional placement or entrance exams. DAACS places emphasis on these areas and provides students with concrete strategies for becoming a more successful college student."
         },
         analysis: {
-            label: "Predictive Analytics",
-            content: "Data provided by DAACS can increase the efficacy of predictive analytic models. These data will not only help institutions identify their most academically at-risk students, but also provide specific information as to why they are at risk. With this information, more targeted interventions can be developed that better serve students’ needs."
+            label: "PREDICTIVE ANALYTICS",
+            content: "Data provided by DAACS has been shown to increase the efficacy of predictive analytic models. These data not only help institutions identify their most academically at-risk students, but also provide specific information as to how they are at risk. With this information, more targeted interventions can be developed that better serve students’ needs."
         }
     },
     footer: {
