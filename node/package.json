@@ -42,7 +42,10 @@
     "node-fetch": "^1.6.0"
   },
   "dependencies": {
-    "fastboot": "1.0.0-rc.0",
-    "fastboot-express-middleware": "1.0.0-rc.3"
+    "fastboot": "1.2.1",
+    "fastboot-express-middleware": "1.2.0"
+  },
+  "volta": {
+    "node": "8.16.0"
   }
 }

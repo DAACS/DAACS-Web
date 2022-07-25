@@ -456,6 +456,13 @@ export default {
             fileInvalid: "The selected file must have a file type of .xml",
             uploadSuccess: "The LightSide model file was uploaded successfully."
         },
+        bert: {
+            modelFile: "BERT model file",
+            modelFiles: "BERT model files",
+            overallModel: "Overall model",
+            fileInvalid: "The selected file must have a file type of .pkl",
+            uploadSuccess: "The BERT model file was uploaded successfully."
+        },
         import: {
             label: "Import",
             assessment: "Import assessment",
@@ -623,6 +630,12 @@ export default {
                     assessmentType: {
                         NotNull: "The assessment type can't be blank.",
                         ValidBaseAssessment: "The selected assessment type is not valid."
+                    },
+                    bertConfig: {
+                        domainModels: {
+                            ValidWritingAssessment: "A valid BERT configuration file must be provided for each domain."
+                        },
+                        ValidWritingAssessment: "A valid BERT configuration file must be provided for each domain."
                     },
                     content: {
                         NotNull: "The assessment content can't be blank."

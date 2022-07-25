@@ -1,13 +1,14 @@
 module.exports = {
     root: true,
     parserOptions: {
-      ecmaVersion: 7,
-      sourceType: 'module'
+        ecmaVersion: 7,
+        sourceType: "module",
     },
-    parser: 'babel-eslint',
-    extends: 'eslint:recommended',
+    parser: "babel-eslint",
+    extends: "eslint:recommended",
     env: {
-      'browser': true
+        browser: true,
+        embertest: true,
     },
     rules: {
         //@see http://eslint.org/docs/rules/no-var
@@ -15,10 +16,10 @@ module.exports = {
         //@see http://eslint.org/docs/rules/object-shorthand
         "object-shorthand": "error",
         //@see http://eslint.org/docs/rules/prefer-template
-        "prefer-template": "error"
+        "prefer-template": "error",
     },
     globals: {
-        "window": true,
-        'd3': true
-    }
+        window: true,
+        d3: true,
+    },
 };

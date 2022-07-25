@@ -62,7 +62,7 @@
                         </div>
                     {{/if}}
 
-                    {{#if (and assessment.isWritingAutoGrading (not model.scoreIsSubDomainAverage))}}
+                    {{#if (and assessment.isWritingAutoGradingLightSide (not model.scoreIsSubDomainAverage))}}
                         <div class="form-group">
                             <h5><label for="lightside-model-file-{{model.id}}">
                                 {{t "admin.lightside.modelFile"}}
@@ -73,6 +73,19 @@
                                 isUploading=isUploading
                                 accept="text/xml"
                                 fileInputId="lightside-model-file"
+                            }}
+                        </div>
+                    {{else if (and assessment.isWritingAutoGradingBert (not model.scoreIsSubDomainAverage))}}
+                        <div class="form-group">
+                            <h5><label for="bert-model-file-{{model.id}}">
+                                {{t "admin.bert.modelFile"}}
+                            </label></h5>
+                            {{file-upload-input
+                                filename=model.bertModelFilename
+                                onChange=(action "onFileChange")
+                                isUploading=isUploading
+                                accept="text/pkl"
+                                fileInputId="bert-model-file"
                             }}
                         </div>
                     {{/if}}

@@ -15,6 +15,7 @@ const {
 } = Ember;
 
 export default Model.extend({
+    bertModelFilename: attr('string'),
     content: attr('string'),
     domainType: attr('string'),
     label: attr('string'),

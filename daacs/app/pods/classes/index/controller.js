@@ -15,6 +15,7 @@ const {
 export default Ember.Controller.extend(Pagination, FileDownload, {
     ajax: service(),
     notify: service(),
+    advisor: service(),
 
     serverQueryParams: ['classId'],
 
@@ -78,6 +79,7 @@ export default Ember.Controller.extend(Pagination, FileDownload, {
         },
 
         onRowClick(row) {
+            this.get('advisor').set('selectedUser', row.content);
             return this.transitionToRoute('dashboard', {queryParams: {userId: row.content.id}});
         },
 

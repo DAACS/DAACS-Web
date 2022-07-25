@@ -19,7 +19,8 @@ export const RUBRIC_ERROR_PATHS = [
 
 export const DOMAINS_ERROR_PATHS = [
     'Assessment.constraintViolation.domains',
-    'Assessment.constraintViolation.lightSideConfig'
+    'Assessment.constraintViolation.lightSideConfig',
+    'Assessment.constraintViolation.bertConfig'
 ];
 
 export const QUESTIONS_ERROR_PATHS = [

@@ -21,7 +21,7 @@ export default AuthenticatedRoute.extend(CheckAbilities, ScrollReset, DataRoute,
     },
 
     async afterModel() {
-        const assessments = await get(this, 'store').query('assessment', {});
+        const assessments = await get(this, 'store').query('assessment', { enabled: true });
         setProperties(this, {assessments});
     },
 

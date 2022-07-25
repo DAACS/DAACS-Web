@@ -15,6 +15,8 @@ You will need the following things properly installed on your computer.
 ## Installation
 
 * `git clone <repository-url>` this repository
+* node version - v8.16.0
+* npm version - 4.6.1
 * change into the `daacs` subdirectory of the newly created repository directory
 * `npm install`
 * `bower install`
@@ -192,14 +194,3 @@ Upon login, students are asked if they agree to allow DAACS to use their data fo
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
-
------
-
-Diagnostic Assessment and Achievement of College Skills (DAACS)  
-Copyright (C) 2017 Excelsior College; The Research Foundation, SUNY at the University at Albany; and Rutgers, The State University of New Jersey.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation version 3 of the License.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
