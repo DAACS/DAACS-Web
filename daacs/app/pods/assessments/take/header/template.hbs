@@ -3,9 +3,14 @@
         {{#if minBrowserResolution}}
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-9">
-                        {{#scroll-to target="#assessment-content" class="skip-nav-link pull-left sr-only"}}
-                            <span class="skip-nav-text">{{t "skipNavigation.label"}}</span>
+                    <div class="col-xs-9 top-bar-assessment-information">
+                        {{#scroll-to
+                            target="#assessment-content"
+                            class="skip-nav-link pull-left sr-only"
+                        }}
+                            <span class="skip-nav-text">{{t
+                                    "skipNavigation.label"
+                                }}</span>
                         {{/scroll-to}}
                         <div class="logo-widget" aria-hidden="true"></div>
                         {{daacs-icon icon=assessmentContent.dasherizedCategory}}
@@ -22,15 +27,22 @@
                                     aria-haspopup="true"
                                     aria-expanded="false"
                                 >
-                                    <span class="user-name-text">{{session.user.fullName}}</span>
+                                    <span
+                                        class="user-name-text"
+                                    >{{session.user.fullName}}</span>
                                     &nbsp;<span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="" {{action "invalidateSession"}}>{{t "logout.label"}}</a></li>
+                                    <li><a
+                                            href=""
+                                            {{action "invalidateSession"}}
+                                        >{{t "logout.label"}}</a></li>
                                 </ul>
                             </div>
                         {{else}}
-                            <div class="top-bar-static-text user-name-text">{{session.user.fullName}}</div>
+                            <div
+                                class="top-bar-static-text user-name-text"
+                            >{{session.user.fullName}}</div>
                         {{/if}}
                     </div>
                 </div>
@@ -38,6 +50,10 @@
         {{/if}}
     </div>
     {{#if showProgressBar}}
-        {{progress-bar value=model.progressPercentage style="skin" labelAlignment="right"}}
+        {{progress-bar
+            value=model.progressPercentage
+            style="skin"
+            labelAlignment="right"
+        }}
     {{/if}}
 </div>

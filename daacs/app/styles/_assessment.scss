@@ -7,6 +7,24 @@
             font-size: 16px;
         }
     }
+
+
+    @media(max-width: $screen-xs-max) {
+        .top-bar .text-right {
+            text-align: left;
+            padding: 0;
+            margin: 0;
+        }
+        .top-bar {
+            .logo-widget {
+                display: none;
+            }
+            &-assessment-information,
+            .daacs-icon {
+                font-size: 12px;
+            }
+        }
+    }
 }
 
 .user-name-text {
@@ -39,5 +57,20 @@
 .domain-results {
     h2 {
         margin-bottom: 30px;
+    }
+}
+
+
+.assessment-footer {
+    @media(max-width: $screen-xs-max) {
+        button {
+            padding: 10px;
+        }
+        .btn-toolbar {
+            margin-left: 0px;
+        }
+        .btn-wide {
+            min-width: 0;
+        }
     }
 }

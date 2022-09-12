@@ -78,8 +78,8 @@ module.exports = function (environment) {
         // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
         // ENV.APP.LOG_VIEW_LOOKUPS = true;
         ENV["ember-cli-mirage"].enabled = true;
-        ENV.RESTAPI = "http://wwwd-daacs.gavant.com:8080";
-        // ENV.RESTAPI = "https://daacs.gavant.com/api";
+        // ENV.RESTAPI = "http://wwwd-daacs.gavant.com:8080";
+        ENV.RESTAPI = "https://daacs.gavant.com/api";
         ENV[
             "ember-simple-auth"
         ].samlLoginEndpoint = `${ENV.RESTAPI}/saml/login?disco=true&idp=https%3A%2F%2Flogin.excelsior.edu%2Fsimplesaml%2Fsaml2%2Fidp%2Fmetadata.php`;

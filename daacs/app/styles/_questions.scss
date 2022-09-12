@@ -27,6 +27,27 @@
     white-space: nowrap;
     counter-reset: passageLine;
 
+    @include mobile {
+        & {
+            width: initial;
+            white-space: normal;
+            .truncate-text {
+                > span {
+                    counter-increment: passageLine;
+                }
+
+                > span:before {
+                    display: block;
+                    float: left;
+                    margin-left: -38px;
+                    font-size: .85rem;
+                    color: $link-hover-color;
+                    content: "(" counter(passageLine) ")";
+                }
+            }
+        }
+    }
+
     .modal-dialog &,
     .question-result & {
         width: 100%;
@@ -44,6 +65,7 @@
             float: left;
             margin-left: -38px;
             font-weight: bold;
+            font-size: 1rem;
             content: "(" counter(passageLine) ")";
         }
     }
@@ -64,6 +86,15 @@
     //finished processing the content
     math {
         display: none;
+    }
+}
+
+.mathjax-content {
+    img {
+        //responsive images for MathJax
+        max-width: 100%;
+        height: auto;
+
     }
 }
 

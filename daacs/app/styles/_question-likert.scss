@@ -17,3 +17,14 @@
     text-align: center;
     font-weight: normal;
 }
+
+@include mobile {
+    .likert-table {
+        table-layout: auto !important;
+        overflow-x: scroll;
+        &-answer-header {
+            transform: rotate(45deg);
+            font-size: .9rem;
+        }
+    }
+}
