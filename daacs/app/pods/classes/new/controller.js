@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import EmberValidations from 'ember-validations';
+import Ember from "ember";
+import EmberValidations from "ember-validations";
 
 const {
     get,
@@ -7,7 +7,7 @@ const {
     computed,
     inject: { service },
     computed: { notEmpty },
-    RSVP: { reject }
+    RSVP: { reject },
 } = Ember;
 
 export default Ember.Controller.extend(EmberValidations, {
@@ -15,35 +15,45 @@ export default Ember.Controller.extend(EmberValidations, {
     submitValidationFailed: false,
 
     validations: {
-        'model.name': { presence: true },
-        'model.assessmentIds': { presence: true }
+        "model.name": { presence: true },
+        "model.assessmentIds": { presence: true },
     },
 
-    noName: notEmpty('errors.model.name'),
-    noAssessments: notEmpty('errors.model.assessmentIds'),
+    noName: notEmpty("errors.model.name"),
+    noAssessments: notEmpty("errors.model.assessmentIds"),
 
-    selectedAssessments: computed('assessments.@each.id,model.assessmentIds.[]', function() {
-        const assessments = get(this, 'assessments').toArray();
-        return get(this, 'model.assessmentIds').map(id => assessments.findBy('id', id));
-    }),
+    selectedAssessments: computed(
+        "assessments.@each.id",
+        "model.assessmentIds.[]",
+        function () {
+            const assessments = get(this, "assessments").toArray();
+            return get(this, "model.assessmentIds").map((id) =>
+                assessments.findBy("id", id)
+            );
+        }
+    ),
 
     async save() {
         try {
-            const model = get(this, 'model');
+            const model = get(this, "model");
             await model.save();
-            set(this, 'submitValidationFailed', false);
-            get(this, 'notify').success(get(this, 'i18n').t('classes.createClass.submitSuccess'));
-            return this.transitionToRoute('classes');
-        } catch(error) {
-            set(this, 'submitValidationFailed', true);
-            get(this, 'notify').error(get(this, 'i18n').t('classes.createClass.submitError'));
+            set(this, "submitValidationFailed", false);
+            get(this, "notify").success(
+                get(this, "i18n").t("classes.createClass.submitSuccess")
+            );
+            return this.transitionToRoute("classes");
+        } catch (error) {
+            set(this, "submitValidationFailed", true);
+            get(this, "notify").error(
+                get(this, "i18n").t("classes.createClass.submitError")
+            );
             return reject(error);
         }
     },
 
     updateAssessmentIds(assessments) {
-        const assessmentIds = assessments ? assessments.mapBy('id') : [];
-        set(this, 'model.assessmentIds', assessmentIds);
+        const assessmentIds = assessments ? assessments.mapBy("id") : [];
+        set(this, "model.assessmentIds", assessmentIds);
     },
 
     actions: {
@@ -52,6 +62,6 @@ export default Ember.Controller.extend(EmberValidations, {
         },
         updateAssessmentIds(assessments) {
             return this.updateAssessmentIds(assessments);
-        }
-    }
+        },
+    },
 });
