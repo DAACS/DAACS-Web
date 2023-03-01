@@ -872,12 +872,12 @@ export default {
             content: "In the past, newly enrolled college students had little reliable information about their readiness for college-level academic work. DAACS addresses this problem by providing students with detailed information and feedback on their preparation for college, as well as resources for shoring it up. By using DAACS, students can build needed skills in areas of self-regulated learning, writing, reading, and mathematics while enrolled in courses that lead to the completion of their degrees."
         },
         assess: {
-            label: "FOCUSSING ON THE WHOLE STUDENT",
-            content: "Current research suggests that self-regulated learning, mindset, and motivation are better predictors of college success than traditional placement or entrance exams. DAACS places emphasis on these areas and provides students with concrete strategies for becoming a more successful college student."
+            label: "FOCUSING ON THE WHOLE STUDENT",
+            content: "Current research suggests that self-regulated learning, mindset, and motivation are better predictors of college success than traditional placement or entrance exams. DAACS places emphasis on these areas and provides students with concrete strategies for becoming more successful college students."
         },
         analysis: {
             label: "PREDICTIVE ANALYTICS",
-            content: "Data provided by DAACS has been shown to increase the efficacy of predictive analytic models. These data not only help institutions identify their most academically at-risk students, but also provide specific information as to how they are at risk. With this information, more targeted interventions can be developed that better serve students’ needs."
+            content: "Data provided by DAACS has been shown to increase the accuracy of predictive analytic models. These data not only help institutions identify their most academically at-risk students, but also provide specific information as to how they are at risk. With this information, more targeted interventions can be developed that better serve students’ needs."
         }
     },
     footer: {
